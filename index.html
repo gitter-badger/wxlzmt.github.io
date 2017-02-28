@@ -1,0 +1,334 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!--
+	<script type="text/javascript" src="/js/d3.js"></script>
+	<script type="text/javascript" src="/js/jquery-2.1.1.js"></script>
+	-->
+	<!-- 新 Bootstrap 核心 CSS 文件 -->
+	
+	<link href="/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!-- 可选的Bootstrap主题文件（一般不使用） -->
+<!--
+	<script src="/css/bootstrap-theme.min.css"></script> 
+-->
+
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<!--
+<script src="/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery-ui"></script>
+<link href="/css/bootstrap-combined.min.css" rel="stylesheet" media="screen">
+
+<script src="/js/angular.min.js"></script>
+<script src="/js/angular-sanitize.min.js"></script>
+
+<script src="/js/echarts-all-3.js"></script>
+-->
+<title>wxlzmt</title>
+<script type="text/javascript">
+	//获取滚动条当前的位置
+	function getScrollTop() {
+	  var scrollTop = 0;
+	  if (document.documentElement && document.documentElement.scrollTop) {
+	    scrollTop = document.documentElement.scrollTop;
+	  } else if (document.body) {
+	    scrollTop = document.body.scrollTop;
+	  }
+	  return scrollTop;
+	}
+
+	//获取当前可视范围的高度
+	function getClientHeight() {
+	  var clientHeight = 0;
+	  if (document.body.clientHeight && document.documentElement.clientHeight) {
+	    clientHeight = Math.min(document.body.clientHeight, document.documentElement.clientHeight);
+	  } else {
+	    clientHeight = Math.max(document.body.clientHeight, document.documentElement.clientHeight);
+	  }
+	  return clientHeight;
+	}
+
+	//获取文档完整的高度
+	function getScrollHeight() {
+	  return Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+	}
+	//dom onready事件监听
+	function loadReady(){
+		resize();
+	}
+	//窗体大小改变时，调整margin-top;
+	function resize(){
+		var domDiv = document.getElementById("idDivContent");
+		var realHeight = domDiv.offsetHeight;
+		var clientHeight = getClientHeight();
+		var marginTop = (clientHeight-realHeight)*0.4;
+		if(marginTop>0){
+			domDiv.style.marginTop=marginTop+"px";
+		}
+	}
+</script>
+<style type="text/css">
+	body{
+		font-family:'微软雅黑','Helvetica Neue','Helvetica','Arial','sans-serif';
+	}
+	a{
+	    position: relative;
+	    outline: none;
+	    text-decoration: none;
+	    font-size: 14px;
+	}
+	a:visited{
+
+	}
+	a:hover,.hover_underline:hover{
+	    text-decoration:underline;
+	}
+	.div_piece a:hover::before, .div_piece a:hover::after { position: absolute; }
+	/*
+	.div_piece a:hover::before { content: "\5B"; left: -15px; }
+	.div_piece a:hover::after { content: "\5D"; right:  -15px; }
+	*/
+	.div_piece a:hover::before { content: "\261E"; left: -15px; }
+	.div_piece a:hover::after { content: "\261C"; right:  -15px; }
+
+    .div_tb{
+        display: table;
+        width: 100%;
+        margin:0px;
+        padding-top:5px;
+        padding-bottom: 10px;
+    }
+    .div_tb>div{
+        display: table-row;
+    }
+    .div_tb>div>div{
+        display: table-cell;
+        width: 33.3333%;
+        vertical-align: middle;
+        padding-left: 10px;
+        padding-top: 10px;
+    }
+	.span_info{
+        color:green;
+        width: 100%;
+    }
+    .div_piece{
+    	/*一个div块*/
+ 		background-color:#FFFFFF;
+ 		border: 1px solid rgb(241,241,241);
+ 		margin-top:10px;
+    }
+    .div_piece:hover{
+		border: 1px solid #458B74;
+    }
+    .left_top_title{
+    	/*div块的左上角的title的样式*/
+    	padding-left: 5px;
+    	padding-top:2px;
+    	color:black;
+    	position: absolute;
+    	opacity: 0.8;
+    }
+    .left_top_title:hover::after{
+    	content:"\27B7";
+    }
+    body{
+    	/*
+    	background: url(/images/main_page_background.png) no-repeat center;
+    	*/
+    	background: rgba(241,241,241,0.3);
+    }
+
+</style>
+</head>
+<body onload="loadReady();" onresize="resize();" >
+<div style="float:left;width:100%;">
+<div style="display:table;width:100%;">
+<div style="display:table-cell;width:100%;" align="center">
+<!-- 正文，页面宽度，margin都在此处指定 -->
+<div id="idDivContent" style="max-width:800px;margin:5px;">
+<div class="div_piece">
+	<div class='left_top_title' align='left'>主页</div>
+	<div class="div_tb container-fluid">
+		<div class='row-fluid'>
+			<div class='span4'>
+				<div><a href="/iuha/dir" target="_blank">文件索引</a></div>
+			</div>
+			<div class='span4'>
+				<div><a href="/iuha/documents" target="_blank">文档</a></div>
+			</div class='span4'>
+			<div>
+				<div><a href="/iuha/log.txt" target="_blank">日志</a></div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="div_piece">
+	<div class='left_top_title' align='left'>API</div>
+	<div class="div_tb container-fluid">
+		<div class='row-fluid'>
+			<div class='span4'>
+				<div><a href="/iuha/api/docs_www/api/index.html" target="_blank">Java™SE 7 API</a></div>
+			</div>
+			<div class='span4'>
+				<div><a href="/iuha/api/docs_www/index.html" target="_blank">Java SE 7 Documentation</a></div>
+			</div>
+			<div class='span4'>
+				<div><a href="/iuha/api/aip-jdk1.6-%E4%B8%AD%E6%96%87%E7%89%88/index.html" target="_blank">jdk1.6中文版API</a></div>
+			</div>
+		</div class='row-fluid'>
+		<div>
+			<div class='span4'>
+				<div><a href="/iuha/api/glassfish4/docs/api/index.html" target="_blank">Java(TM) EE 7 Specification APIs</a></div>
+			</div>
+			<div class='span4'>
+				<div><a href="/iuha/snapshot/struts.apache.org/maven/struts2-core/apidocs/index.html" target="_blank">struts2-core-API</a></div>
+			</div>
+			<div class='span4'>
+				<div><a href="/iuha/snapshot/struts.apache.org/docs/guides.html" target="_blank">struts2-Core-Developers-Guide</a></div>
+			</div>
+		</div>
+		<div>
+			<div class='span4'>
+				<div><a href="/iuha/snapshot/www.runoob.com/manual/jquery/index.html" target="_blank">jQuery速查表</a></div>
+			</div>
+			<div class='span4'>
+				<div><a href="/iuha/snapshot/www.php100.com/manual/xmldom/index.html" target="_blank">XMLDOM对象方法手册</a></div>
+			</div>
+			<div class='span4'>
+				<div><a href="/iuha/snapshot/css.doyoe.com/index.htm" target="_blank">CSS参考手册</a></div>
+			</div>
+		</div>
+		<div>
+			<div class='span4'>
+				<div><a href="/iuha/snapshot/shouce.jb51.net/jscript/index.html" target="_blank">js中文手册</a></div>
+			</div>
+			<div class='span4'>
+				<div><a href="/iuha/project/zTree_v3-master/api/API_cn.html" target="_blank">zTree_v3 API</a></div>
+			</div>
+			<div class='span4'>
+				<div><a href="/iuha/project/zTree_v3-master/demo/cn/index.html" target="_blank">zTree_v3 demo</a></div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="div_piece">
+	<div class='left_top_title' align='left'>工具</div>
+	<div class="div_tb container-fluid">
+		<div class='row-fluid'>
+			<div class='span4'>
+				<div><a href="/iuha/pages/test/test_js.html" target="_blank">HTML测试</a></div>
+			</div>
+			<div class='span4'>
+				<div><a href="/iuha/pages/regexptest/regexptest.html" target="_blank">正则表达式测试</a></div>
+			</div>
+			<div class='span4'>
+				<div><a href="/iuha/pages/rgb-16-radix/RGB_to_16radix.html" target="_blank">RGB转16进制</a></div>
+			</div>
+		</div>
+		<div class='row-fluid'>
+			<div class='span4'>
+				<div><a href="/iuha/pages/test/test_image_decode.html" target="_blank">base64→图片</a></div>
+			</div>
+			<div class='span4'>
+				<div><a href="/iuha/pages/img_to_base64/BASE64.html" target="_blank">图片→base64</a></div>
+			</div>
+			<div class='span4'>
+				<div><a href="/iuha/pages/radix_switch/radix_switch.html" target="_blank">进制转换器</a></div>
+			</div>
+		</div>
+		<div class='row-fluid'>
+			<div class='span4'>
+				<div><a href="/iuha/pages/json_format/jsonformat.html" target="_blank">JSON格式化</a></div>
+			</div>
+			<div class='span4'>
+				<div><a href="/iuha/pages/PPICalculator/PPICalculator.html" target="_blank">PPI计算器</a></div>
+			</div>
+			<div class='span4'>
+				<div><a href="/iuha/pages/unicode_trans/unicode_trans.html" target="_blank">unicode转换</a></div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="div_piece">
+	<div class='left_top_title' align='left'>栗子</div>
+	<div class="div_tb container-fluid">
+		<div class='row-fluid'>
+			<div class='span4'>
+				<div><a href="/iuha/pages/echart3/echart3_demo.html" target="_blank">Echart3_demo</a></div>
+			</div>
+			<div class='span4'>
+				<div><a href="/iuha/api/jquery-ui-1.11.4.custom/index.html" target="_blank">jquery-ui-1.11.4.custom</a></div>
+			</div>
+			<div class='span4'>
+				<div><a href="/iuha/pages/font_awesome/Font_Awesome.html" target="_blank">FontAwesome图标字体</a></div>
+			</div>
+		</div>
+		<div class='row-fluid'>
+			<div class='span4'>
+				<div><a href="/iuha/pages/menu-float/test_menu_float.html" target="_blank">浮动菜单</a></div>
+			</div>
+			<div class='span4'>
+				<div><a href="/iuha/pages/throbber/placeholder.html" target="_blank">进度圈</a></div>
+			</div>
+			<div class='span4'>
+				<div></div>
+			</div>
+		</div>
+		<div class='row-fluid'>
+			<div class='span4'>
+				<div><a href="/iuha/pages/test/custom_scroll_bar.html" target="_blank">自定义滚动条</a></div>
+			</div>
+			<div class='span4'>
+				<div><a href="/iuha/pages/scroll_load/scrollAlertTest.html" target="_blank">滚动位置监听</a></div>
+			</div>
+			<div class='span4'>
+				<div><a href="/iuha/pages/scroll_load/ScrollLoad.html" target="_blank">页面滚动图片加载</a></div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--
+<div class="div_piece"   >
+	<div class='left_top_title' align='left'>其它</div>
+	<div class="div_tb container-fluid">
+		<div class='row-fluid'>
+			<div class='span4'>
+				<div></div>
+			</div>
+			<div class='span4'>
+				<div></div>
+			</div>
+			<div class='span4'>
+				<div></div>
+			</div>
+		</div>
+	</div>
+</div>
+-->
+<div style="display: table;width: 100%;margin-top: 10px; " >
+	<div style="display: table-row;width: 100%; " >
+		<!--server-->
+		<div align="left" style="display: table-cell;width: 60%;color:black;opacity: 0.7; " >
+			<i style="padding-left: 5px; " ><a href="https://wxlzmt.github.io/" target='_blank' >index</a></i>
+		</div>
+		<!--author-->
+		<div align="right" style="display: table-cell;width: 40%;padding-right: 5px; color:black; " >
+		<i class="hover_underline" style="cursor: pointer;padding-right: 5px;opacity: 0.7; " mode='1' onclick="{var mode = this.getAttribute('mode');if(mode=='1'){this.setAttribute('mode','2');this.innerHTML='wxlzmtzd@gmail.com';}else{this.setAttribute('mode','1');this.innerHTML='author : wxlzmt';};}" >author : wxlzmt</i>
+		</div>
+	</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
