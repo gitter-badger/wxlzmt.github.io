@@ -1,2 +1,2 @@
 # wxlzmt.github.io
-web pages
+web pages https://wxlzmt.github.io/
