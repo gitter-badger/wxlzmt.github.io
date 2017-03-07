@@ -14,8 +14,8 @@ function add(){
 	var div = document.createElement('div');
 	div.className = 'div-circle';
 	div.style.backgroundColor = 'rgb('+Math.ceil(Math.random()*255)+','+Math.ceil(Math.random()*255)+','+Math.ceil(Math.random()*255)+')';
-	div.style.top = Math.ceil(Math.random()*(window.innerHeight))+'px';
-	div.style.left = Math.ceil(Math.random()*window.innerWidth)+'px';
+	div.style.top = Math.ceil(Math.random()*(window.innerHeight-20))+'px';
+	div.style.left = Math.ceil(Math.random()*(window.innerWidth-20))+'px';
 	var body = document.getElementsByTagName('body')[0];
 	body.appendChild(div);
 	if(body.childElementCount>max){
