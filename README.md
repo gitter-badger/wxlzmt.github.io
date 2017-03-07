@@ -3,3 +3,8 @@
 
 ###我的简历1.0
 - https://wxlzmt.github.io/pages/resume/zhilian_20170304.html
+
+###站内快速链接
+- [auto add or remove circles](https://wxlzmt.github.io/pages/simple/auto_circles.html)
+
+
