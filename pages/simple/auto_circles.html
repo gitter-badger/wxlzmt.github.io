@@ -14,7 +14,7 @@ function add(){
 	var div = document.createElement('div');
 	div.style='width:20px;height:20px;border-radius:10px;z-index:99999;background-color:rgb('+Math.ceil(Math.random()*255)+','+Math.ceil(Math.random()*255)+','+Math.ceil(Math.random()*255)+');position:absolute;top:'+Math.ceil(Math.random()*(window.innerHeight+window.scrollY))+'px;left:'+Math.ceil(Math.random()*window.innerWidth)+'px;';
 	var body = document.getElementsByTagName('body')[0];
-	body.prepend(div);
+	body.appendChild(div);
 	if(body.childElementCount>max){
 		isAdd = false;
 	}
@@ -22,11 +22,10 @@ function add(){
 
 function remove(){
 	var body = document.getElementsByTagName('body')[0];
-	if(body.firstChild){
-		body.firstChild.remove();
-	}
 	if(body.childElementCount===0){
 		isAdd = true;
+	}else{
+		body.childNodes[body.childElementCount-1].remove();
 	}
 }
 
