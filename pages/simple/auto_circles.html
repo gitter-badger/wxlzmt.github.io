@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>auto_circles</title>
+<script type="text/javascript">
+
+var max = Math.ceil(window.innerWidth*window.innerHeight/200);
+var interval = 10;
+var isAdd = true;
+
+function add(){
+	var div = document.createElement('div');
+	div.style='width:20px;height:20px;border-radius:10px;z-index:99999;background-color:rgb('+Math.ceil(Math.random()*255)+','+Math.ceil(Math.random()*255)+','+Math.ceil(Math.random()*255)+');position:absolute;top:'+Math.ceil(Math.random()*(window.innerHeight+window.scrollY))+'px;left:'+Math.ceil(Math.random()*window.innerWidth)+'px;';
+	var body = document.getElementsByTagName('body')[0];
+	body.prepend(div);
+	if(body.childElementCount>max){
+		isAdd = false;
+	}
+}
+
+function remove(){
+	var body = document.getElementsByTagName('body')[0];
+	if(body.firstChild){
+		body.firstChild.remove();
+	}
+	if(body.childElementCount===0){
+		isAdd = true;
+	}
+}
+
+function func(){
+	var body = document.getElementsByTagName('body')[0];
+	if(isAdd){
+		add();
+	}else{
+		remove();
+	}
+}
+
+setInterval(func,interval);
+
+</script>
+<style type="text/css">
+	body{
+	    overflow: hidden;
+	}
+</style>
+</head>
+<body>
+	<div style="display:table;width:100%;height:100%;">
+		
+	</div>
+</body>
+</html>
