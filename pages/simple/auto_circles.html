@@ -12,7 +12,10 @@ var isAdd = true;
 
 function add(){
 	var div = document.createElement('div');
-	div.style='width:20px;height:20px;border-radius:10px;z-index:99999;background-color:rgb('+Math.ceil(Math.random()*255)+','+Math.ceil(Math.random()*255)+','+Math.ceil(Math.random()*255)+');position:absolute;top:'+Math.ceil(Math.random()*(window.innerHeight+window.scrollY))+'px;left:'+Math.ceil(Math.random()*window.innerWidth)+'px;';
+	div.className = 'div-circle';
+	div.style.backgroundColor = 'rgb('+Math.ceil(Math.random()*255)+','+Math.ceil(Math.random()*255)+','+Math.ceil(Math.random()*255)+')';
+	div.style.top = Math.ceil(Math.random()*(window.innerHeight))+'px';
+	div.style.left = Math.ceil(Math.random()*window.innerWidth)+'px';
 	var body = document.getElementsByTagName('body')[0];
 	body.appendChild(div);
 	if(body.childElementCount>max){
@@ -47,6 +50,13 @@ function load(){
 <style type="text/css">
 	body{
 	    overflow: hidden;
+	}
+	.div-circle{
+		width:20px;
+		height:20px;
+		border-radius:10px;
+		z-index:99999;
+		position:absolute;
 	}
 </style>
 </head>
