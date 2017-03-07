@@ -36,10 +36,13 @@ function func(){
 	}else{
 		remove();
 	}
+	
+	setTimeout(func,interval);
 }
 
-setInterval(func,interval);
-
+function load(){
+	func();
+}
 </script>
 <style type="text/css">
 	body{
@@ -47,9 +50,7 @@ setInterval(func,interval);
 	}
 </style>
 </head>
-<body>
-	<div style="display:table;width:100%;height:100%;">
-		
-	</div>
+<body onload="load();">
+	
 </body>
 </html>
