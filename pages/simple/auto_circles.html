@@ -6,7 +6,7 @@
 <title>auto_circles</title>
 <script type="text/javascript">
 
-var max = Math.ceil(window.innerWidth*window.innerHeight/200);
+var max = 9999;
 var interval = 10;
 var isAdd = true;
 
@@ -40,8 +40,16 @@ function func(){
 	}
 	setTimeout(func,interval);
 }
+    
+function resetMax(){
+    max = Math.ceil(window.innerWidth*window.innerHeight/200);
+}
 
 function load(){
+    window.addEventListener("resize",function(){
+		resetMax();
+	});
+    resetMax();
 	func();
 }
 </script>
