@@ -33,13 +33,11 @@ function remove(){
 }
 
 function func(){
-	var body = document.getElementsByTagName('body')[0];
 	if(isAdd){
 		add();
 	}else{
 		remove();
 	}
-	
 	setTimeout(func,interval);
 }
 
