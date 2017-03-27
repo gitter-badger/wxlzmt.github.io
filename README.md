@@ -7,5 +7,6 @@
 
 ### 站内快速链接
 - [auto add or remove circles](https://wxlzmt.github.io/pages/simple/auto_circles.html)
+- [base64 解码/编码](https://wxlzmt.github.io/pages/simple/base64.html)
 
 
