@@ -9,51 +9,50 @@
 > - - [angularjs/test_i18n_asyn.html](angularjs/test_i18n_asyn.html)
 > - - [angularjs/test_multip_language.html](angularjs/test_multip_language.html)
 
-> - [code_highlight/highlight.html](code_highlight/highlight.html)
+> - 代码着色高亮[code_highlight/highlight.html](code_highlight/highlight.html)
 
 > - [echart3/echart3_demo.html](echart3/echart3_demo.html)
 
 > - [font_awesome/Font_Awesome.html](font_awesome/Font_Awesome.html)
 
-> - [img_to_base64/BASE64.html](img_to_base64/BASE64.html)
+> - 图片转BASE64编码[img_to_base64/BASE64.html](img_to_base64/BASE64.html)
 
-> - [json_format/jsonformat.html](json_format/jsonformat.html)
+> - JSON格式化工具[json_format/jsonformat.html](json_format/jsonformat.html)
 
-> - [menu-float/test_menu_float.html](menu-float/test_menu_float.html)
+> - 测试浮动菜单[menu-float/test_menu_float.html](menu-float/test_menu_float.html)
 
-> - [PPICalculator/PPICalculator.html](PPICalculator/PPICalculator.html)
+> - PPI计算器[PPICalculator/PPICalculator.html](PPICalculator/PPICalculator.html)
 
-> - [radix_switch/radix_switch.html](radix_switch/radix_switch.html)
+> - 进制转换器[radix_switch/radix_switch.html](radix_switch/radix_switch.html)
 
-> - [regexptest/regexptest.html](regexptest/regexptest.html)
+> - 正则表达式在线测试[regexptest/regexptest.html](regexptest/regexptest.html)
 
-> - [resume](resume)
+> - 简历[resume](resume)
 
-> - [rgb-16-radix/RGB_to_16radix.html](rgb-16-radix/RGB_to_16radix.html)
+> - RGB转16进制[rgb-16-radix/RGB_to_16radix.html](rgb-16-radix/RGB_to_16radix.html)
 
 > - [scroll_load/files](scroll_load/files)
 > - [scroll_load/scrollAlertTest.html](scroll_load/scrollAlertTest.html)
 > - [scroll_load/ScrollLoad.html](scroll_load/ScrollLoad.html)
 
 > - [simple](simple)
-> - [simple/auto_circles.html](simple/auto_circles.html)
-> - [simple/base64.html](simple/base64.html)
+> - - [simple/auto_circles.html](simple/auto_circles.html)
+> - - base64编码/解码[simple/base64.html](simple/base64.html)
 
 > - [test](test)
-> - - [base64.html](base64.html)
-> - - [custom_scroll_bar.html](custom_scroll_bar.html)
-> - - [test_auto_add_circles.html](test_auto_add_circles.html)
-> - - [test_box-shadow.html](test_box-shadow.html)
-> - - [test_image_decode.html](test_image_decode.html)
-> - - [test_js.html](test_js.html)
-> - - [url_en_decode.html](url_en_decode.html)
+> - - 自定义滚动条[test/custom_scroll_bar.html](test/custom_scroll_bar.html)
+> - - [test/test_auto_add_circles.html](test/test_auto_add_circles.html)
+> - - [test/test_box-shadow.html](test/test_box-shadow.html)
+> - - base64图片预览[test/test_image_decode.html](test/test_image_decode.html)
+> - - 测试HTML_js[test/test_js.html](test/test_js.html)
+> - - URL encode/decode[test/url_en_decode.html](test/url_en_decode.html)
 
-> - [throbber/placeholder.html](throbber/placeholder.html)
+> - 进度圈[throbber/placeholder.html](throbber/placeholder.html)
 > - [throbber/throbber_small.svg](throbber/throbber_small.svg)
 
 > - [title_switch](title_switch)
-> - [title_switch/tb.html](title_switch/tb.html)
+> - 表头切换[title_switch/tb.html](title_switch/tb.html)
 
-> - [unicode_trans/unicode_trans.html](unicode_trans/unicode_trans.html)
+> - 汉字转化unicode编码[unicode_trans/unicode_trans.html](unicode_trans/unicode_trans.html)
 
 > - [README.md](README.md)
