@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="zh">
+<head>
+	<meta charset="utf-8">
+	<title>表头样式</title>
+	<style type="text/css">
+		.simple_table{
+			border: 1px solid #D9D9D9;
+		}
+		.simple_table tr{
+			height: 40px;
+		}
+		.simple_table td{
+			width: 100px;
+		}
+		.img_back{
+			background-image: url(widget_top.png);
+			background-repeat: repeat-x;
+			border-bottom: 1px solid #D9D9D9;
+		}
+		.img_back_focus{
+			background-image: url(widget_bottom.png);
+			background-repeat: repeat-x;
+			cursor: pointer;
+			border-bottom: 1px solid white;
+		}
+		.img_back_td{
+			cursor: pointer;
+		}
+	</style>
+	<script type="text/javascript">
+		function tdEvtListener(event){
+			var td = event.target || event.srcElement;
+			if(td.className=="img_back_focus"){
+				return;
+			}else{
+				var tr = document.getElementById("idTrTitle");
+				var others = tr.getElementsByClassName("img_back_focus");
+				if(others){
+					for(var j = 0;j<others.length;j++){
+						others[j].className="img_back_td";
+					}
+				}
+				td.className="img_back_focus";
+			}
+		}
+		function loadReady(){
+			var tr = document.getElementById("idTrTitle");
+			var tds = tr.getElementsByTagName("td");
+			for (var i = 0; i< tds.length ; i++) {
+				var td = tds[i];
+				td.addEventListener("click",tdEvtListener);
+			}
+		}
+	</script>
+</head>
+<body onload="loadReady();" style="width:100%;height: 100%; " >
+<div style="width:100%;height:100%;overflow: hidden;position: absolute;top: 0px;left: 0px;  " >
+<div style="display: table;width: 100%;height: 100%; ">
+<div align="center" style="display: table-cell; position: relative;vertical-align: middle; " >
+<!-- 左右上下 居中,由此开始 -->
+	<div>
+		<div style="" >
+			<table class="simple_table" cellpadding="0px" cellspacing="0px" >
+				<tr id="idTrTitle" class="img_back" >
+					<td align="center" class="img_back_td" >测</td>
+					<td align="center" class="img_back_focus" >试</td>
+					<td align="center" class="img_back_td" >表</td>
+					<td align="center" class="img_back_td" >头</td>
+					<td align="center" class="img_back_td" >背</td>
+					<td align="center" class="img_back_td" >景</td>
+					<td align="center" class="img_back_td" >...</td>
+				</tr>
+				<tr>
+					<td align="center">7</td>
+					<td align="center">6</td>
+					<td align="center">5</td>
+					<td align="center">4</td>
+					<td align="center">3</td>
+					<td align="center">2</td>
+					<td align="center">1</td>
+				</tr>
+				<tr>
+					<td align="center">23</td>
+					<td align="center">sf</td>
+					<td align="center">wfe</td>
+					<td align="center">d</td>
+					<td align="center">qqq</td>
+					<td align="center">sdf</td>
+					<td align="center">z</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
+</div>		
+</div>
+</body>
+</html>

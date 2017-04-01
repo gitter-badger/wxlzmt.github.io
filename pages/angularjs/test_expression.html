@@ -1,0 +1,33 @@
+<!doctype html> 
+<html ng-app="myApp" > 
+<head>
+
+<script src="/js/angular-1.4.6.js"></script>
+
+<script type="text/javascript"> 
+
+		angular.module("myApp",["testModule"]);
+		
+		angular.module("testModule",[]).controller("MyController",function($scope,$parse){
+				$scope.$watch('expr', function(newVal, oldVal, scope) { 
+					if (newVal !== oldVal) { 
+					  // 用该表达式设置parseFun 
+					  var parseFun = $parse(newVal); 
+					  // 获取经过解析后表达式的值 
+					  $scope.parsedValue = parseFun(scope); 
+					} 
+				});
+			}
+		);
+	
+
+</script> 
+
+</head> 
+<body> 
+	<div ng-controller="MyController"> 
+	  <input ng-model="expr"  type="text"  placeholder="Enter an expression" /> 
+	  <h2>{{ parsedValue }}</h2> 
+	</div>
+</body> 
+</html> 

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>汉字转unicode|unicode转汉字|unicode编码转换器</title>
+<link href="./unicode_trans_files/gskin-tools.css" rel="stylesheet" media="screen" type="text/css" />
+<script language="javascript" type="text/javascript" src="./unicode_trans_files/jquery.js"></script>
+<!--<link rel="stylesheet" href="./unicode_trans_files/share_style0_32.css">-->
+</head>
+<body>
+<!--
+<div id="BAIDU_DUP_fp_wrapper" style="position: absolute; left: -1px; bottom: -1px; z-index: 0; width: 0px; height: 0px; overflow: hidden; visibility: hidden; display: none;">
+<iframe id="BAIDU_DUP_fp_iframe" src="./unicode_trans_files/o.html" style="width: 0px; height: 0px; visibility: hidden; display: none;">
+</iframe>
+</div>
+<iframe src="./unicode_trans_files/cs1.html" width="0" height="0" frameborder="0">
+</iframe>
+-->
+<script type="text/javascript">
+function action(pChoice){ 
+switch(pChoice){ 
+case "CONVERT_FMT1": 
+	$("#show2").val(ascii($("#source").val()));
+	break; 
+case "CONVERT_FMT2": 
+	$("#show2").val(unicode($("#source").val())); 
+	break; 
+case "CONVERT_FMT3": 
+	$("#show2").val(unicode1($("#source").val())); 
+	break; 
+case "RECONVERT": 
+	$("#show2").val(reconvert($("#source").val())); 
+	break; 
+} 
+} 
+function ascii(str){ 
+//return str.replace(/[^\u0000-\u00FF]/g,function($0){return escape($0).replace(/(%u)(\w{4})/gi,"\&#x$2;")}); 
+	var value='';
+	for (var i = 0; i < str.length; i++){
+		if(!$("#a4wei").prop('checked')){
+	    	value += '\&#x' + parseInt(str.charCodeAt(i)).toString(16)+';';
+		}else{
+			value += '\&#x' + ("00"+str.charCodeAt(i).toString(16)).slice(-4)+';';
+		}
+	}
+	return value;
+} 
+function unicode(str){ 
+//return str.replace(/[^\u0000-\u00FF]/g,function($0){return escape($0).replace(/(%u)(\w{4})/gi,"\\u$2")}); 
+	var value='';
+	for (var i = 0; i < str.length; i++){
+		if(!$("#a4wei").prop('checked')){
+	    	value += '\\u' + parseInt(str.charCodeAt(i)).toString(16);
+		}else{
+			value += '\\u' + ("00"+str.charCodeAt(i).toString(16)).slice(-4);
+		}
+	}
+	return value;
+} 
+function unicode1(str){ 
+	var value='';
+	for (var i = 0; i < str.length; i++)
+	    value += '&#' + str.charCodeAt(i) + ';';
+	return value;
+} 
+
+function reconvert(str){ 
+str = str.replace(/(\\u)(\w{1,4})/gi,function($0){ 
+return (String.fromCharCode(parseInt((escape($0).replace(/(%5Cu)(\w{1,4})/g,"$2")),16))); 
+}); 
+str = str.replace(/(&#x)(\w{1,4});/gi,function($0){ 
+return String.fromCharCode(parseInt(escape($0).replace(/(%26%23x)(\w{1,4})(%3B)/g,"$2"),16)); 
+}); 
+str = str.replace(/(&#)(\d{1,6});/gi,function($0){ 
+return String.fromCharCode(parseInt(escape($0).replace(/(%26%23)(\d{1,6})(%3B)/g,"$2"))); 
+}); 
+return str; 
+} 
+</script>
+
+<div id="mbody" class="bw">
+	<div class="lc"><div class="lc-in">
+	
+	<div class="listbox">
+		<div class="caption"><h1>汉字转化unicode编码</h1></div>
+		<p></p><div class="hline"></div>
+		此程序将一段中文字转换成unicode编码，也将unicode编码转换为汉字，还具在汉字转十六进制功能，只需要在内容源文本框中输入汉字、unicode汉字编码、十六进制汉字编码即可转换为相应内容。<br>
+		
+			<strong>内容源文本框:</strong> 
+			<input name="a4wei" type="checkbox" id="a4wei" value="1">
+			Ascii字符补齐4位<br>
+			<textarea name="source" id="source" cols="45" rows="5" onfocus="if(this.value==&#39;在这里粘贴或输入&#39;){this.value=&#39;&#39;;}">在这里粘贴或输入</textarea>
+			<!-- /listbox -->
+<p></p>
+		<p>
+			</p><div class="btn_row"><input type="submit" name="button" id="button" value="转Unicode编码(\uXXXX)" onclick="action(&#39;CONVERT_FMT2&#39;)">
+				&nbsp;
+				<input type="submit" name="button" id="button1" value="转换为(&amp;#DDDDDD)" onclick="action(&#39;CONVERT_FMT3&#39;)">
+				&nbsp;
+				<input type="submit" name="button2" id="button2" value="转换为&amp;#XXXX" onclick="action(&#39;CONVERT_FMT1&#39;)">
+				&nbsp; <input type="submit" name="button3" id="button3" value="转换为汉字" onclick="action(&#39;RECONVERT&#39;)">
+			</div>
+		<p></p>
+		<p>
+			<strong>转换结果：</strong><br>
+			<textarea name="show2" id="show2" cols="45" rows="5" onclick="this.select();"></textarea>
+		</p>
+		<p class="word_dict"><br>
+			<strong>unicode编码可兼容所有语言的操作系统。</strong>&nbsp;<br>
+			在计算机科学领域中，Unicode（统一码、万国码、单一码、标准万国码）是业界的一种标准，它可以使电脑得以呈现世界上数十种文字的系统。Unicode是基于通用字符集（Universal Character Set）的标准来发展，并且同时也以书本的形式（The Unicode Standard，目前第五版由Addison-Wesley Professional出版，ISBN-10: 0321480910）对外发表。Unicode包含了超过十万个字符（在2005年，Unicode的第十万个字符被采纳且认可成为标准之一）、一组可用以作为视觉参考的代码图表、一套编码方法与一组标准字符编码、一套包含了上标字、下标字等字符特性的列举等。&nbsp;<br>
+			Unicode组织（The Unicode Consortium）是由一个非营利性的机构所运作，并主导Unicode的后续发展，其目标在于：将既有的字符编码方案，以Unicode编码方案来加以取代，特别是既有的方案在多语环境下，皆仅有有限的空间以及不相容的问题。&nbsp;<br>
+			Unicode在字符集认可的成功，使其得以在电脑软件的国际化与本地化领域中，广泛且具优势的被采用。这标准已在近年来的多种新科技当中被加以采用，包含了可扩展置标语言（XML）、Java编程语言、以及最新的操作系统中。&nbsp;<br>
+			unicode编码的编码规则<br>
+			比如要把“杨”编码，我们可以新建一个记事本，输入“杨”保存时选择存为unicode编码，然后查看文件二进制内容，前面的FF FE两个字节是unicode编码文件头标志，接着的68 67两个字节就是“杨”的unicode编码，用计算器换算为十进制就是26472，现在可以在一个html文件里面写入“杨”，IE打开就显示一个“杨”字。&nbsp;<br>
+			当然，对于一般ASCII码，unicode编码与ASCII编码一致，所以A可以显示一个大写字母“A”.&nbsp;</p>
+	</div>
+	
+	</div></div>
+
+</div><!--//mbody-->
+
+
+
+
+</body></html>

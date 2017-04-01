@@ -1,0 +1,80 @@
+@charset "utf-8";
+@import "gskin-common.css";
+
+/*身份证栏目样式*/
+#header{background:url("../images/gskin-header-bg.jpg") left top no-repeat #5FA300;height:43px;}
+#header .logo{width:210px;height:40px;position:relative;}
+#header .nav-icon{}
+#header .c-logo{display:block;background:url("../images/gskin-tools-logo.gif") left center no-repeat;width:125px;height:43px;text-indent:-200px;overflow:hidden;position:absolute;left:0px;top:0px;}
+#header .www-logo{display:block;background:url("../images/gskin-header-logo.png") left center no-repeat;width:90px;height:43px;text-indent:-200px;overflow:hidden;position:absolute;top:0px;right:0px;}
+#header .nav{position:absolute;left:220px;top:4px;}
+#header .nav-icon{width:24px;height:43px;background:url("../images/gskin-nav-icon1.gif") left 6px no-repeat;display:block;}
+#header .bw{position:relative;display:block;}
+#header .share{position:absolute;right:2px;top:0px;}
+
+.ricon1 li{line-height:180%;}
+.ricon1 li a{font-size:14px;color:#555;}
+.ricon1 li a:hover{color:#090;text-decoration:underline;}
+
+/*汉字转unicode工具样式*/
+.listbox{margin:8px 0px;line-height:180%;}
+.caption h1{text-align:center;line-height:200%;}
+.btn_row{text-align:center;}
+#button,#button2,#button1,#button3{margin:15px auto;height:36px;line-height:36px;width:150px;text-align:center;}
+#button2,#button1{width:130px;}
+#button3{width:100px;}
+
+#source,#show2{width:95%;height:120px;padding:8px;border:1px inset #CCC;font-family:Arial, Helvetica, sans-serif;background:#DEEDF1;font-size:20px;}
+
+/*时间戳工具样式*/
+.cur-timestamp{font-size:14px;height:28px;line-height:28px;}
+.cur-timestamp div,.cur-timestamp a{float:left;}
+.cur-timestamp .curtamp{
+	background:url("../images/gskin-tools-timestamp.gif") left top no-repeat;
+	height:29px;line-height:28px;width:112px;margin-right:10px;padding:0px 8px;color:#990000;font-size:16px;font-weight:bold;}
+.cur-timestamp .curbtn{margin:5px 0px 6px 10px;text-indent:-100px;overflow:hidden;width:20px;height:17px;}
+.cur-timestamp .cur-stop{background:url("../images/gskin-tools-timestamp.gif") -222px -6px no-repeat;}
+.cur-timestamp .cur-run{background:url("../images/gskin-tools-timestamp.gif") -253px -6px no-repeat;}
+.cur-timestamp .cur-refresh{background:url("../images/gskin-tools-timestamp.gif") -277px -6px no-repeat;}
+.cur-timestamp .cur-stop-s{background:url("../images/gskin-tools-timestamp.gif") -133px -6px no-repeat;}
+.cur-timestamp .cur-run-s{background:url("../images/gskin-tools-timestamp.gif") -164px -6px no-repeat;}
+.cur-timestamp .cur-refresh-s{background:url("../images/gskin-tools-timestamp.gif") -188px -6px no-repeat;}
+.covert-box{position:relative;}
+.covert-box h3{font-size:16px;color:#006AAC;margin-bottom:10px;}
+.covert-box .cfun{margin:6px 0px;line-height:28px;}
+.covert-box .cfun .mlabel,.covert-box .cfun .ma,.covert-box .cfun .minput,.covert-box .cfun .mdiv{float:left;}
+.covert-box .cfun .mlabel{width:70px;text-align:right;padding-right:4px;}
+.covert-box .cfun .minput{height:28px;border:1px solid #89B6C9;background:#FFF;padding:0px 5px;width:140px;}
+.covert-box .cfun .ma{margin:0px 8px;display:block;border:1px solid #89B6C9;font-size:#006AAC;font-weight:bold;letter-spacing:2px;width:50px;text-align:center;}
+.covert-box .cfun .mdiv{border:1px solid #89B6C9;background:#CFE1E9;height:28px;width:160px;padding:0px 6px;}
+.c-tips{line-height:160%;color:#999999;font-size:12px;margin-top:15px;}
+
+.c-datetime{height:28px;border:1px solid #89B6C9;background:#FFF;padding:0px 5px;width:140px;float:left;}
+.c-datetime input{border:none;float:left;width:16px;line-height:20px;height:20px;border-bottom:1px solid #CCC;margin-top:3px;}
+.c-datetime div{float:left;}
+.c-datetime .c-y{width:30px;}
+.c-m{}
+.c-d{}
+.c-h{}
+.c-min{}
+.c-s{}
+
+/*html转js*/
+#page_htmltojs .listbox{margin:8px 10px;line-height:180%;}
+#page_htmltojs .caption h1{text-align:center;line-height:200%;}
+#page_htmltojs .btn_row{text-align:center;}
+#page_htmltojs #button,#page_htmltojs #button2,#page_htmltojs #button3{
+	margin:15px auto;height:36px;line-height:36px;width:150px;text-align:center;}
+#page_htmltojs #source,#page_htmltojs #show2{
+	width:95%;height:150px;padding:8px;border:1px inset #CCC;
+	font-family:Arial, Helvetica, sans-serif;background:#DEEDF1;font-size:20px;}
+	
+/*url编码解码*/
+#page_url .listbox{margin:8px 10px;line-height:180%;}
+#page_url .caption h1{text-align:center;line-height:200%;}
+#page_url .btn_row{text-align:center;}
+#page_url #button,#page_url #button2,#page_url #button3{
+	margin:15px auto;height:36px;line-height:36px;width:150px;text-align:center;}
+#page_url #source,#page_url #result{
+	width:95%;height:80px;padding:8px;border:1px inset #CCC;
+	font-family:Arial, Helvetica, sans-serif;background:#DEEDF1;font-size:16px;}

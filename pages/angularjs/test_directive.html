@@ -1,0 +1,245 @@
+<!doctype html> 
+<html ng-app="myApp" > 
+<head>
+<style>
+ul{
+	list-style:none;
+}
+li{
+	margin-top:20px;
+	margin-left:10px;
+}
+.odd { 
+    background-color: blue; 
+} 
+.even { 
+    background-color: red; 
+}
+</style>
+<script src="/js/angular-1.4.6.js"></script>
+
+<script type="text/javascript"> 
+	/*
+		angular.module("myApp",["testModule"]);
+		
+		angular.module("testModule",[]).controller("MyController",function($scope,$parse){
+				$scope.$watch('expr', function(newVal, oldVal, scope) { 
+					if (newVal !== oldVal) { 
+					  // 用该表达式设置parseFun 
+					  var parseFun = $parse(newVal); 
+					  // 获取经过解析后表达式的值 
+					  $scope.parsedValue = parseFun(scope); 
+					} 
+				});
+			}
+		);
+	*/
+	
+	var app = angular.module('myApp', []);
+	
+	app.directive('myDirective', function() { 
+		return { 
+			restrict: 'A', 
+			replace: true, 
+			scope: { 
+				myUrl: '=someAttr', // 经过了修改 
+				myLinkText: '@' 
+			}, 
+			template: '\<div>\ <label>My Url Field:</label>\ <input type="text"\ ng-model="myUrl" />\ <a href="{{myUrl}}">{{myLinkText}}</a>\ </div>\ '
+			
+		}; 
+	});
+	
+	
+	app.controller('SomeController', function($scope,$element, $attrs, $transclude,$injector) { 
+		console.log(arguments);
+		// 反模式，裸值 
+		$scope.someBareValue = 'hello computer'; 
+		// 设置 $scope 本身的操作，这样没问题 
+		$scope.someAction = function() { 
+			// 在SomeController和ChildController中设置{{ someBareValue }} 
+			$scope.someBareValue = 'hello human, from parent'; 
+		}; 
+	}) 
+	.controller('ChildController', function($scope) { 
+		$scope.childAction = function() { 
+			// 在ChildController中设置{{ someBareValue }} 
+			$scope.someBareValue = 'hello human, from child'; 
+		}; 
+	})
+	.controller('PeopleController',function($scope) { 
+		$scope.people = [ 
+			{name: "Ari", city: "San Francisco"}, 
+			{name: "Erik", city: "Seattle"} 
+		]; 
+	})
+	.controller('CityController',function($scope) { 
+		$scope.cities = [ 
+		  {name: 'Seattle'}, 
+		  {name: 'San Francisco'}, 
+		  {name: 'Chicago'}, 
+		  {name: 'New York'}, 
+		  {name: 'Boston'} 
+		]; 
+	})
+	.controller('FormController',function($scope) { 
+		$scope.person = { 
+			name: null 
+		}; 
+	 
+		$scope.people = []; 
+	 
+		$scope.submit = function() { 
+			if ($scope.person.name) { 
+				$scope.people.push({name: $scope.person.name}); 
+				$scope.person.name = ''; 
+			} 
+		}; 
+	})
+	.controller('LotteryController', function($scope) { 
+		$scope.generateNumber = function() { 
+			return Math.floor((Math.random()*10)+1); 
+		}; 
+	})
+	;
+
+</script> 
+
+</head> 
+<body  ng-init="greeting='HelloWorld'"> 
+<p ng-cloak >{{ greeting }}</p>
+
+	<ul>
+		<li>
+			<div > 
+				<label>Their URL field:</label> 
+				<input type="text"  ng-model="theirUrl"> 
+				<div my-directive some-attr="theirUrl"  my-link-text="啥玩意儿这是?"></div>
+			</div>
+		</li>
+		<li>
+			<label>someProperty = {{someProperty}}</label> 
+			<input type="checkbox" 
+			   ng-checked="someProperty" 
+			   ng-init="someProperty = true" 
+			   ng-model="someProperty">
+		</li>
+		<li>
+			   <label>someProperty = {{anotherProperty}}</label> 
+				<input type="checkbox" 
+			   ng-checked="anotherProperty" 
+			   ng-init="anotherProperty = false" 
+			   ng-model="anotherProperty">
+		 </li>
+		 <li>
+			<label>Select Two Fish:</label> 
+			<input type="checkbox" 
+				   ng-model="isTwoFish"><br/> 
+			<select> 
+			  <option>One Fish</option> 
+			  <option ng-selected="isTwoFish">Two Fish</option> 
+			</select>
+		 </li>
+		 <li>
+			<div ng-controller="SomeController"> 
+				{{ someBareValue }} 
+				<button ng-click="someAction()">Communicate to child</button> 
+				<div ng-controller="ChildController"> 
+					{{ someBareValue }} 
+					<button ng-click="childAction()">Communicate to parent</button> 
+				</div> 
+			</div>
+		 </li>
+		 <li>
+			<input type="text" ng-model="person.name" placeholder="输入字母 Ari 然后会出现结果" /> 
+			<div ng-switch on="person.name"> 
+				<p ng-switch-default>And the winner is</p> 
+				<h1 ng-switch-when="Ari">{{ person.name }}</h1> 
+			</div>
+		 </li>
+		 <li>
+			<ul ng-controller="PeopleController"> 
+				<li ng-repeat="person in people" ng-class="{even: !$even, odd: !$odd}"> 
+					{{person.name}} lives in {{person.city}} 
+				</li> 
+			</ul> 
+		 </li>	
+		 
+		 <li>
+			<div ng-controller="CityController"> 
+				<select ng-model="city" 
+				ng-options="city.name for city in cities"> 
+					<option value="">Choose City</option> 
+				</select> 
+				Best City: {{ city.name }} 
+			</div>
+		 </li>
+		<li>
+			<form ng-submit="submit()" 
+				  ng-controller="FormController"> 
+				Enter text and hit enter: 
+				<input type="text" ng-model="person.name" name="person.name" /> 
+				<input type="submit" name="person.name" value="Submit" /> 
+				<code>people={{people}}</code> 
+				<ul ng-repeat="(index, object) in people"> 
+					<li>{{ object.name }},{{index}}</li> 
+				</ul> 
+			</form>
+		</li>
+		<li>
+			<div ng-controller="LotteryController"> 
+				<div ng-class="{red: x > 5}" 
+					ng-if="x > 5">  
+					You won! 
+				</div> 
+				<button ng-click="x = generateNumber()" 
+					ng-init="x = 0"> 
+					Draw Number 
+				</button> 
+				<p>Number is: {{ x }}</p> 
+			</div>
+			<style>
+			.red { 
+				background-color: red; 
+			} 
+			</style>
+		</li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>   
+</body> 
+</html> 

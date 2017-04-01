@@ -1,0 +1,26 @@
+<!DOCTYPE html> 
+<html> 
+<head>
+<meta charset="utf8" ></meta>
+<script src="/js/vue-1.0.14.js"></script>
+<script type="text/javascript"> 
+	function loadHtml(){
+		var moduleData = {
+			clock:{
+				now:new Date()
+			}
+		};
+		var v = new Vue({
+			el:"#idDiv01",
+			data:moduleData
+		});	
+	}
+</script> 
+</head> 
+<body onload="loadHtml()" > 
+	<div id="idDiv01"> 
+		<h1>Hello {{clock.now}}!</h1> 
+	</div> 
+</body>
+
+</html> 

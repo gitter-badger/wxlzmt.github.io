@@ -1,0 +1,37 @@
+<!doctype html> 
+<html ng-app="myApp" > 
+<head>
+
+<script src="/js/angular-1.4.6.js"></script>
+
+<script type="text/javascript"> 
+
+		angular.module("myApp",["testModule"]);
+		
+		angular.module("testModule",[]).controller("MyController",function($scope,$parse){
+				controllerFunc($scope);
+			}
+		);
+	
+	
+	function controllerFunc($scope) { 
+		$scope.clock = { 
+			now: new Date() 
+		}; 
+		var updateClock = function() { 
+			$scope.clock.now = new Date() 
+		}; 
+		setInterval(function() { 
+			$scope.$apply(updateClock); 
+		}, 1000); 
+		updateClock(); 
+	};
+</script> 
+
+</head> 
+<body> 
+	<div ng-controller="MyController"> 
+		<h1>Hello {{clock.now}}!</h1> 
+	</div> 
+</body> 
+</html> 

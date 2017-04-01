@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=10,IE=9,IE=8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<link rel="stylesheet" id="style-css" href="./Font_Awesome_files/style.css" type="text/css" media="all">
+<!--
+<link rel="stylesheet" id="toc-screen-css" href="./Font_Awesome_files/screen.min.css" type="text/css" media="all">
+-->
+<!--
+<script type="text/javascript" async="" src="./Font_Awesome_files/js"></script>
+-->
+<script type="text/javascript" src="./Font_Awesome_files/jquery-1.8.3.min.js"></script>
+<style type="text/css">
+div#toc_container {width: 98%;}
+div#toc_container ul li {font-size: 97%;}
+.idDivPopStyle i{
+	width:100%;
+	font-size:5cm;
+	color:black;
+}
+</style>
+<!--
+<link rel="stylesheet" type="text/css" href="./Font_Awesome_files/shCore.css">
+<link rel="stylesheet" type="text/css" href="./Font_Awesome_files/shThemeEclipse.css">
+-->
+<!--
+<script src="./Font_Awesome_files/asyncLoad.js"></script>
+-->
+<!--
+<script src="./Font_Awesome_files/wb.js" type="text/javascript" charset="utf-8"></script>
+-->
+<title>Font Awesome:图标字体</title>
+<!--
+<script charset="UTF-8" src="./Font_Awesome_files/bundle.js"></script>
+-->
+<!--
+<script charset="UTF-8" src="./Font_Awesome_files/iframeWidget.js"></script>
+-->
+</head>
+<body class="single single-post postid-1099 single-format-standard">
+<div id = "idDivPop" class='idDivPopStyle' style=" z-index:9999; display:none;position:absolute;width:250px;height:220px;background: #f9f9f9;padding: 5px;border: 1px solid #d3dae5; " >
+<div style="display:table;width:100%;height:100%;" >
+<div container style="display:table-cell;vertical-align:middle;width:100%;height:100%; " align='center' ></div>
+</div>
+</div>
+<section class="container">
+<div class="content-wrap">
+	<div>
+		<header class="article-header">
+			<h1 class="article-title">Font Awesome:图标字体，完全CSS控制</h1>
+		</header>
+<article class="article-content">
+<p>　　Font Awesome是一种web font，它包含了几乎所有常用的图标，比如Twitter、facebook等等。用户可以自定义这些图标字体，包括大小、颜色、阴影效果以及其它可以通过CSS控制的属性。它有以下的优点：</p>
+<ol>
+<li>1、像矢量图形一样，可以无限放大</li>
+<li>2、只需一种字体，同时拥有多个图标，目前支持439个图标</li>
+<li>3、无需考虑兼容性问题，fontawesome不依赖于javascript</li>
+<li>4、通过CSS可以任意控制所有图标的大小 ，颜色，阴影。</li>
+<li>5、由于fontawesome是矢量字体，可以完全兼容视网膜屏</li>
+<li>6、能和Bootstrap等常用UI框架一起使用，良好兼容性</li>
+<li>7、可以用于桌面应用中</li>
+<li>8、不像其它字体那样， 它可以兼容屏幕阅读器。</li>
+</ol>
+<p>　　它的缺点是：</p>
+<ol>
+<li>1、对IE6等浏览器兼容性不是很好，不过最新版本的Font Awesome和IE7完美兼容</li>
+<li>2、要想用fontawesome，需要引入相关的字体文件，增加了网页大小 </li>
+</ol>
+
+<style type="text/css">
+#font-awesome-list ul {
+list-style: none;
+margin: 0;
+padding: 0;
+border: 0;
+font-size: 100%;
+vertical-align: baseline;
+background: 0 0;
+display: block;
+-webkit-margin-before: 1em;
+-webkit-margin-after: 1em;
+-webkit-margin-start: 0px;
+-webkit-margin-end: 0px;
+-webkit-padding-start: 40px;
+}
+#font-awesome-list {
+margin-top: 3em;
+-webkit-column-count: 2;
+-moz-column-count: 2;
+column-count: 2;
+-webkit-column-gap: 40px;
+-moz-column-gap: 40px;
+column-gap: 40px;
+}
+.font-group span {
+display: inline-block;
+font-family: 'Open Sans',sans-serif;
+font-size: 13px;
+font-size: .8125rem;
+width: 100px;
+text-align: left;
+}
+
+span.icon-name{
+	color:green;
+	width:150px;
+}
+span.icon-value{
+	color:red;
+}
+.customHo>li>i{
+	cursor:pointer;
+}
+.customHo>li>span{
+	cursor:text;
+}
+
+</style>
+<script type="text/javascript" >
+$(function(){
+	$(".customHo li i").hover(
+	function(){//A function to execute when the mouse pointer enters the element.
+		var $dom = $(this);
+		var y = $dom.offset().top;
+		var x = $dom.offset().left;
+		var dom = $dom[0].outerHTML;
+		var $div = $("#idDivPop");
+		$div.find("div[container]").html(dom);
+		$div.css({top:y+30,left:x+30});
+		$div.show();
+	}
+	,function(){//A function to execute when the mouse pointer leaves the element.
+		//$("#idDivPop").hide();
+	});
+	$("#idDivPop").on('click',function(e){
+		$(this).hide();
+	});
+});
+</script>
+<p>
+　　下面是全部的Font Awesome图标：<span style="color:green;font-size:12px;" >(鼠标放到图标上进行预览,点击预览图关闭预览)</span>
+</p>
+<div id="font-awesome-list" style=" width:800px;overflow-x:auto; position:relative; margin-top:8px; " >
+
+<ul class="font-group customHo" style=" margin:0px; "  >
+
+
+<li><i class="fa fa-glass"></i> <span class="icon-name">glass</span>          <span class="icon-value">"\f000"</span></li>
+<li><i class="fa fa-music"></i> <span class="icon-name">music</span>          <span class="icon-value">"\f001"</span></li>
+<li><i class="fa fa-search"></i> <span class="icon-name">search</span>          <span class="icon-value">"\f002"</span></li>
+<li><i class="fa fa-envelope-o"></i> <span class="icon-name">envelope-o</span>          <span class="icon-value">"\f003"</span></li>
+<li><i class="fa fa-heart"></i> <span class="icon-name">heart</span>          <span class="icon-value">"\f004"</span></li>
+<li><i class="fa fa-star"></i> <span class="icon-name">star</span>          <span class="icon-value">"\f005"</span></li>
+<li><i class="fa fa-star-o"></i> <span class="icon-name">star-o</span>          <span class="icon-value">"\f006"</span></li>
+<li><i class="fa fa-user"></i> <span class="icon-name">user</span>          <span class="icon-value">"\f007"</span></li>
+<li><i class="fa fa-film"></i> <span class="icon-name">film</span>          <span class="icon-value">"\f008"</span></li>
+<li><i class="fa fa-th-large"></i> <span class="icon-name">th-large</span>          <span class="icon-value">"\f009"</span></li>
+<li><i class="fa fa-th"></i> <span class="icon-name">th</span>          <span class="icon-value">"\f00a"</span></li>
+<li><i class="fa fa-th-list"></i> <span class="icon-name">th-list</span>          <span class="icon-value">"\f00b"</span></li>
+<li><i class="fa fa-check"></i> <span class="icon-name">check</span>          <span class="icon-value">"\f00c"</span></li>
+<li><i class="fa fa-times"></i> <span class="icon-name">times</span>          <span class="icon-value">"\f00d"</span></li>
+<li><i class="fa fa-search-plus"></i> <span class="icon-name">search-plus</span>          <span class="icon-value">"\f00e"</span></li>
+<li><i class="fa fa-search-minus"></i> <span class="icon-name">search-minus</span>          <span class="icon-value">"\f010"</span></li>
+<li><i class="fa fa-power-off"></i> <span class="icon-name">power-off</span>          <span class="icon-value">"\f011"</span></li>
+<li><i class="fa fa-signal"></i> <span class="icon-name">signal</span>          <span class="icon-value">"\f012"</span></li>
+<li><i class="fa fa-cog"></i> <span class="icon-name">cog</span>          <span class="icon-value">"\f013"</span></li>
+<li><i class="fa fa-trash-o"></i> <span class="icon-name">trash-o</span>          <span class="icon-value">"\f014"</span></li>
+<li><i class="fa fa-home"></i> <span class="icon-name">home</span>          <span class="icon-value">"\f015"</span></li>
+<li><i class="fa fa-file-o"></i> <span class="icon-name">file-o</span>          <span class="icon-value">"\f016"</span></li>
+<li><i class="fa fa-clock-o"></i> <span class="icon-name">clock-o</span>          <span class="icon-value">"\f017"</span></li>
+<li><i class="fa fa-road"></i> <span class="icon-name">road</span>          <span class="icon-value">"\f018"</span></li>
+<li><i class="fa fa-download"></i> <span class="icon-name">download</span>          <span class="icon-value">"\f019"</span></li>
+<li><i class="fa fa-arrow-circle-o-down"></i> <span class="icon-name">arrow-circle-o-down</span>          <span class="icon-value">"\f01a"</span></li>
+<li><i class="fa fa-arrow-circle-o-up"></i> <span class="icon-name">arrow-circle-o-up</span>          <span class="icon-value">"\f01b"</span></li>
+<li><i class="fa fa-inbox"></i> <span class="icon-name">inbox</span>          <span class="icon-value">"\f01c"</span></li>
+<li><i class="fa fa-play-circle-o"></i> <span class="icon-name">play-circle-o</span>          <span class="icon-value">"\f01d"</span></li>
+<li><i class="fa fa-repeat"></i> <span class="icon-name">repeat</span>          <span class="icon-value">"\f01e"</span></li>
+<li><i class="fa fa-refresh"></i> <span class="icon-name">refresh</span>          <span class="icon-value">"\f021"</span></li>
+<li><i class="fa fa-list-alt"></i> <span class="icon-name">list-alt</span>          <span class="icon-value">"\f022"</span></li>
+<li><i class="fa fa-lock"></i> <span class="icon-name">lock</span>          <span class="icon-value">"\f023"</span></li>
+<li><i class="fa fa-flag"></i> <span class="icon-name">flag</span>          <span class="icon-value">"\f024"</span></li>
+<li><i class="fa fa-headphones"></i> <span class="icon-name">headphones</span>          <span class="icon-value">"\f025"</span></li>
+<li><i class="fa fa-volume-off"></i> <span class="icon-name">volume-off</span>          <span class="icon-value">"\f026"</span></li>
+<li><i class="fa fa-volume-down"></i> <span class="icon-name">volume-down</span>          <span class="icon-value">"\f027"</span></li>
+<li><i class="fa fa-volume-up"></i> <span class="icon-name">volume-up</span>          <span class="icon-value">"\f028"</span></li>
+<li><i class="fa fa-qrcode"></i> <span class="icon-name">qrcode</span>          <span class="icon-value">"\f029"</span></li>
+<li><i class="fa fa-barcode"></i> <span class="icon-name">barcode</span>          <span class="icon-value">"\f02a"</span></li>
+<li><i class="fa fa-tag"></i> <span class="icon-name">tag</span>          <span class="icon-value">"\f02b"</span></li>
+<li><i class="fa fa-tags"></i> <span class="icon-name">tags</span>          <span class="icon-value">"\f02c"</span></li>
+<li><i class="fa fa-book"></i> <span class="icon-name">book</span>          <span class="icon-value">"\f02d"</span></li>
+<li><i class="fa fa-bookmark"></i> <span class="icon-name">bookmark</span>          <span class="icon-value">"\f02e"</span></li>
+<li><i class="fa fa-print"></i> <span class="icon-name">print</span>          <span class="icon-value">"\f02f"</span></li>
+<li><i class="fa fa-camera"></i> <span class="icon-name">camera</span>          <span class="icon-value">"\f030"</span></li>
+<li><i class="fa fa-font"></i> <span class="icon-name">font</span>          <span class="icon-value">"\f031"</span></li>
+<li><i class="fa fa-bold"></i> <span class="icon-name">bold</span>          <span class="icon-value">"\f032"</span></li>
+<li><i class="fa fa-italic"></i> <span class="icon-name">italic</span>          <span class="icon-value">"\f033"</span></li>
+<li><i class="fa fa-text-height"></i> <span class="icon-name">text-height</span>          <span class="icon-value">"\f034"</span></li>
+<li><i class="fa fa-text-width"></i> <span class="icon-name">text-width</span>          <span class="icon-value">"\f035"</span></li>
+<li><i class="fa fa-align-left"></i> <span class="icon-name">align-left</span>          <span class="icon-value">"\f036"</span></li>
+<li><i class="fa fa-align-center"></i> <span class="icon-name">align-center</span>          <span class="icon-value">"\f037"</span></li>
+<li><i class="fa fa-align-right"></i> <span class="icon-name">align-right</span>          <span class="icon-value">"\f038"</span></li>
+<li><i class="fa fa-align-justify"></i> <span class="icon-name">align-justify</span>          <span class="icon-value">"\f039"</span></li>
+<li><i class="fa fa-list"></i> <span class="icon-name">list</span>          <span class="icon-value">"\f03a"</span></li>
+<li><i class="fa fa-outdent"></i> <span class="icon-name">outdent</span>          <span class="icon-value">"\f03b"</span></li>
+<li><i class="fa fa-indent"></i> <span class="icon-name">indent</span>          <span class="icon-value">"\f03c"</span></li>
+<li><i class="fa fa-video-camera"></i> <span class="icon-name">video-camera</span>          <span class="icon-value">"\f03d"</span></li>
+<li><i class="fa fa-picture-o"></i> <span class="icon-name">picture-o</span>          <span class="icon-value">"\f03e"</span></li>
+<li><i class="fa fa-pencil"></i> <span class="icon-name">pencil</span>          <span class="icon-value">"\f040"</span></li>
+<li><i class="fa fa-map-marker"></i> <span class="icon-name">map-marker</span>          <span class="icon-value">"\f041"</span></li>
+<li><i class="fa fa-adjust"></i> <span class="icon-name">adjust</span>          <span class="icon-value">"\f042"</span></li>
+<li><i class="fa fa-tint"></i> <span class="icon-name">tint</span>          <span class="icon-value">"\f043"</span></li>
+<li><i class="fa fa-pencil-square-o"></i> <span class="icon-name">pencil-square-o</span>          <span class="icon-value">"\f044"</span></li>
+<li><i class="fa fa-share-square-o"></i> <span class="icon-name">share-square-o</span>          <span class="icon-value">"\f045"</span></li>
+<li><i class="fa fa-check-square-o"></i> <span class="icon-name">check-square-o</span>          <span class="icon-value">"\f046"</span></li>
+<li><i class="fa fa-arrows"></i> <span class="icon-name">arrows</span>          <span class="icon-value">"\f047"</span></li>
+<li><i class="fa fa-step-backward"></i> <span class="icon-name">step-backward</span>          <span class="icon-value">"\f048"</span></li>
+<li><i class="fa fa-fast-backward"></i> <span class="icon-name">fast-backward</span>          <span class="icon-value">"\f049"</span></li>
+<li><i class="fa fa-backward"></i> <span class="icon-name">backward</span>          <span class="icon-value">"\f04a"</span></li>
+<li><i class="fa fa-play"></i> <span class="icon-name">play</span>          <span class="icon-value">"\f04b"</span></li>
+<li><i class="fa fa-pause"></i> <span class="icon-name">pause</span>          <span class="icon-value">"\f04c"</span></li>
+<li><i class="fa fa-stop"></i> <span class="icon-name">stop</span>          <span class="icon-value">"\f04d"</span></li>
+<li><i class="fa fa-forward"></i> <span class="icon-name">forward</span>          <span class="icon-value">"\f04e"</span></li>
+<li><i class="fa fa-fast-forward"></i> <span class="icon-name">fast-forward</span>          <span class="icon-value">"\f050"</span></li>
+<li><i class="fa fa-step-forward"></i> <span class="icon-name">step-forward</span>          <span class="icon-value">"\f051"</span></li>
+<li><i class="fa fa-eject"></i> <span class="icon-name">eject</span>          <span class="icon-value">"\f052"</span></li>
+<li><i class="fa fa-chevron-left"></i> <span class="icon-name">chevron-left</span>          <span class="icon-value">"\f053"</span></li>
+<li><i class="fa fa-chevron-right"></i> <span class="icon-name">chevron-right</span>          <span class="icon-value">"\f054"</span></li>
+<li><i class="fa fa-plus-circle"></i> <span class="icon-name">plus-circle</span>          <span class="icon-value">"\f055"</span></li>
+<li><i class="fa fa-minus-circle"></i> <span class="icon-name">minus-circle</span>          <span class="icon-value">"\f056"</span></li>
+<li><i class="fa fa-times-circle"></i> <span class="icon-name">times-circle</span>          <span class="icon-value">"\f057"</span></li>
+<li><i class="fa fa-check-circle"></i> <span class="icon-name">check-circle</span>          <span class="icon-value">"\f058"</span></li>
+<li><i class="fa fa-question-circle"></i> <span class="icon-name">question-circle</span>          <span class="icon-value">"\f059"</span></li>
+<li><i class="fa fa-info-circle"></i> <span class="icon-name">info-circle</span>          <span class="icon-value">"\f05a"</span></li>
+<li><i class="fa fa-crosshairs"></i> <span class="icon-name">crosshairs</span>          <span class="icon-value">"\f05b"</span></li>
+<li><i class="fa fa-times-circle-o"></i> <span class="icon-name">times-circle-o</span>          <span class="icon-value">"\f05c"</span></li>
+<li><i class="fa fa-check-circle-o"></i> <span class="icon-name">check-circle-o</span>          <span class="icon-value">"\f05d"</span></li>
+<li><i class="fa fa-ban"></i> <span class="icon-name">ban</span>          <span class="icon-value">"\f05e"</span></li>
+<li><i class="fa fa-arrow-left"></i> <span class="icon-name">arrow-left</span>          <span class="icon-value">"\f060"</span></li>
+<li><i class="fa fa-arrow-right"></i> <span class="icon-name">arrow-right</span>          <span class="icon-value">"\f061"</span></li>
+<li><i class="fa fa-arrow-up"></i> <span class="icon-name">arrow-up</span>          <span class="icon-value">"\f062"</span></li>
+<li><i class="fa fa-arrow-down"></i> <span class="icon-name">arrow-down</span>          <span class="icon-value">"\f063"</span></li>
+<li><i class="fa fa-share"></i> <span class="icon-name">share</span>          <span class="icon-value">"\f064"</span></li>
+<li><i class="fa fa-expand"></i> <span class="icon-name">expand</span>          <span class="icon-value">"\f065"</span></li>
+<li><i class="fa fa-compress"></i> <span class="icon-name">compress</span>          <span class="icon-value">"\f066"</span></li>
+<li><i class="fa fa-plus"></i> <span class="icon-name">plus</span>          <span class="icon-value">"\f067"</span></li>
+<li><i class="fa fa-minus"></i> <span class="icon-name">minus</span>          <span class="icon-value">"\f068"</span></li>
+<li><i class="fa fa-asterisk"></i> <span class="icon-name">asterisk</span>          <span class="icon-value">"\f069"</span></li>
+<li><i class="fa fa-exclamation-circle"></i> <span class="icon-name">exclamation-circle</span>          <span class="icon-value">"\f06a"</span></li>
+<li><i class="fa fa-gift"></i> <span class="icon-name">gift</span>          <span class="icon-value">"\f06b"</span></li>
+<li><i class="fa fa-leaf"></i> <span class="icon-name">leaf</span>          <span class="icon-value">"\f06c"</span></li>
+<li><i class="fa fa-fire"></i> <span class="icon-name">fire</span>          <span class="icon-value">"\f06d"</span></li>
+<li><i class="fa fa-eye"></i> <span class="icon-name">eye</span>          <span class="icon-value">"\f06e"</span></li>
+<li><i class="fa fa-eye-slash"></i> <span class="icon-name">eye-slash</span>          <span class="icon-value">"\f070"</span></li>
+<li><i class="fa fa-exclamation-triangle"></i> <span class="icon-name">exclamation-triangle</span>          <span class="icon-value">"\f071"</span></li>
+<li><i class="fa fa-plane"></i> <span class="icon-name">plane</span>          <span class="icon-value">"\f072"</span></li>
+<li><i class="fa fa-calendar"></i> <span class="icon-name">calendar</span>          <span class="icon-value">"\f073"</span></li>
+<li><i class="fa fa-random"></i> <span class="icon-name">random</span>          <span class="icon-value">"\f074"</span></li>
+<li><i class="fa fa-comment"></i> <span class="icon-name">comment</span>          <span class="icon-value">"\f075"</span></li>
+<li><i class="fa fa-magnet"></i> <span class="icon-name">magnet</span>          <span class="icon-value">"\f076"</span></li>
+<li><i class="fa fa-chevron-up"></i> <span class="icon-name">chevron-up</span>          <span class="icon-value">"\f077"</span></li>
+<li><i class="fa fa-chevron-down"></i> <span class="icon-name">chevron-down</span>          <span class="icon-value">"\f078"</span></li>
+<li><i class="fa fa-retweet"></i> <span class="icon-name">retweet</span>          <span class="icon-value">"\f079"</span></li>
+<li><i class="fa fa-shopping-cart"></i> <span class="icon-name">shopping-cart</span>          <span class="icon-value">"\f07a"</span></li>
+<li><i class="fa fa-folder"></i> <span class="icon-name">folder</span>          <span class="icon-value">"\f07b"</span></li>
+<li><i class="fa fa-folder-open"></i> <span class="icon-name">folder-open</span>          <span class="icon-value">"\f07c"</span></li>
+<li><i class="fa fa-arrows-v"></i> <span class="icon-name">arrows-v</span>          <span class="icon-value">"\f07d"</span></li>
+<li><i class="fa fa-arrows-h"></i> <span class="icon-name">arrows-h</span>          <span class="icon-value">"\f07e"</span></li>
+<li><i class="fa fa-bar-chart-o"></i> <span class="icon-name">bar-chart-o</span>          <span class="icon-value">"\f080"</span></li>
+<li><i class="fa fa-twitter-square"></i> <span class="icon-name">twitter-square</span>          <span class="icon-value">"\f081"</span></li>
+<li><i class="fa fa-facebook-square"></i> <span class="icon-name">facebook-square</span>          <span class="icon-value">"\f082"</span></li>
+<li><i class="fa fa-camera-retro"></i> <span class="icon-name">camera-retro</span>          <span class="icon-value">"\f083"</span></li>
+<li><i class="fa fa-key"></i> <span class="icon-name">key</span>          <span class="icon-value">"\f084"</span></li>
+<li><i class="fa fa-cogs"></i> <span class="icon-name">cogs</span>          <span class="icon-value">"\f085"</span></li>
+<li><i class="fa fa-comments"></i> <span class="icon-name">comments</span>          <span class="icon-value">"\f086"</span></li>
+<li><i class="fa fa-thumbs-o-up"></i> <span class="icon-name">thumbs-o-up</span>          <span class="icon-value">"\f087"</span></li>
+<li><i class="fa fa-thumbs-o-down"></i> <span class="icon-name">thumbs-o-down</span>          <span class="icon-value">"\f088"</span></li>
+<li><i class="fa fa-star-half"></i> <span class="icon-name">star-half</span>          <span class="icon-value">"\f089"</span></li>
+<li><i class="fa fa-heart-o"></i> <span class="icon-name">heart-o</span>          <span class="icon-value">"\f08a"</span></li>
+<li><i class="fa fa-sign-out"></i> <span class="icon-name">sign-out</span>          <span class="icon-value">"\f08b"</span></li>
+<li><i class="fa fa-linkedin-square"></i> <span class="icon-name">linkedin-square</span>          <span class="icon-value">"\f08c"</span></li>
+<li><i class="fa fa-thumb-tack"></i> <span class="icon-name">thumb-tack</span>          <span class="icon-value">"\f08d"</span></li>
+<li><i class="fa fa-external-link"></i> <span class="icon-name">external-link</span>          <span class="icon-value">"\f08e"</span></li>
+<li><i class="fa fa-sign-in"></i> <span class="icon-name">sign-in</span>          <span class="icon-value">"\f090"</span></li>
+<li><i class="fa fa-trophy"></i> <span class="icon-name">trophy</span>          <span class="icon-value">"\f091"</span></li>
+<li><i class="fa fa-github-square"></i> <span class="icon-name">github-square</span>          <span class="icon-value">"\f092"</span></li>
+<li><i class="fa fa-upload"></i> <span class="icon-name">upload</span>          <span class="icon-value">"\f093"</span></li>
+<li><i class="fa fa-lemon-o"></i> <span class="icon-name">lemon-o</span>          <span class="icon-value">"\f094"</span></li>
+<li><i class="fa fa-phone"></i> <span class="icon-name">phone</span>          <span class="icon-value">"\f095"</span></li>
+<li><i class="fa fa-square-o"></i> <span class="icon-name">square-o</span>          <span class="icon-value">"\f096"</span></li>
+<li><i class="fa fa-bookmark-o"></i> <span class="icon-name">bookmark-o</span>          <span class="icon-value">"\f097"</span></li>
+<li><i class="fa fa-phone-square"></i> <span class="icon-name">phone-square</span>          <span class="icon-value">"\f098"</span></li>
+<li><i class="fa fa-twitter"></i> <span class="icon-name">twitter</span>          <span class="icon-value">"\f099"</span></li>
+<li><i class="fa fa-facebook"></i> <span class="icon-name">facebook</span>          <span class="icon-value">"\f09a"</span></li>
+<li><i class="fa fa-github"></i> <span class="icon-name">github</span>          <span class="icon-value">"\f09b"</span></li>
+<li><i class="fa fa-unlock"></i> <span class="icon-name">unlock</span>          <span class="icon-value">"\f09c"</span></li>
+<li><i class="fa fa-credit-card"></i> <span class="icon-name">credit-card</span>          <span class="icon-value">"\f09d"</span></li>
+<li><i class="fa fa-rss"></i> <span class="icon-name">rss</span>          <span class="icon-value">"\f09e"</span></li>
+<li><i class="fa fa-hdd-o"></i> <span class="icon-name">hdd-o</span>          <span class="icon-value">"\f0a0"</span></li>
+<li><i class="fa fa-bullhorn"></i> <span class="icon-name">bullhorn</span>          <span class="icon-value">"\f0a1"</span></li>
+<li><i class="fa fa-bell"></i> <span class="icon-name">bell</span>          <span class="icon-value">"\f0f3"</span></li>
+<li><i class="fa fa-certificate"></i> <span class="icon-name">certificate</span>          <span class="icon-value">"\f0a3"</span></li>
+<li><i class="fa fa-hand-o-right"></i> <span class="icon-name">hand-o-right</span>          <span class="icon-value">"\f0a4"</span></li>
+<li><i class="fa fa-hand-o-left"></i> <span class="icon-name">hand-o-left</span>          <span class="icon-value">"\f0a5"</span></li>
+<li><i class="fa fa-hand-o-up"></i> <span class="icon-name">hand-o-up</span>          <span class="icon-value">"\f0a6"</span></li>
+<li><i class="fa fa-hand-o-down"></i> <span class="icon-name">hand-o-down</span>          <span class="icon-value">"\f0a7"</span></li>
+<li><i class="fa fa-arrow-circle-left"></i> <span class="icon-name">arrow-circle-left</span>          <span class="icon-value">"\f0a8"</span></li>
+<li><i class="fa fa-arrow-circle-right"></i> <span class="icon-name">arrow-circle-right</span>          <span class="icon-value">"\f0a9"</span></li>
+<li><i class="fa fa-arrow-circle-up"></i> <span class="icon-name">arrow-circle-up</span>          <span class="icon-value">"\f0aa"</span></li>
+<li><i class="fa fa-arrow-circle-down"></i> <span class="icon-name">arrow-circle-down</span>          <span class="icon-value">"\f0ab"</span></li>
+<li><i class="fa fa-globe"></i> <span class="icon-name">globe</span>          <span class="icon-value">"\f0ac"</span></li>
+<li><i class="fa fa-wrench"></i> <span class="icon-name">wrench</span>          <span class="icon-value">"\f0ad"</span></li>
+<li><i class="fa fa-tasks"></i> <span class="icon-name">tasks</span>          <span class="icon-value">"\f0ae"</span></li>
+<li><i class="fa fa-filter"></i> <span class="icon-name">filter</span>          <span class="icon-value">"\f0b0"</span></li>
+<li><i class="fa fa-briefcase"></i> <span class="icon-name">briefcase</span>          <span class="icon-value">"\f0b1"</span></li>
+<li><i class="fa fa-arrows-alt"></i> <span class="icon-name">arrows-alt</span>          <span class="icon-value">"\f0b2"</span></li>
+<li><i class="fa fa-users"></i> <span class="icon-name">users</span>          <span class="icon-value">"\f0c0"</span></li>
+<li><i class="fa fa-link"></i> <span class="icon-name">link</span>          <span class="icon-value">"\f0c1"</span></li>
+<li><i class="fa fa-cloud"></i> <span class="icon-name">cloud</span>          <span class="icon-value">"\f0c2"</span></li>
+<li><i class="fa fa-flask"></i> <span class="icon-name">flask</span>          <span class="icon-value">"\f0c3"</span></li>
+<li><i class="fa fa-scissors"></i> <span class="icon-name">scissors</span>          <span class="icon-value">"\f0c4"</span></li>
+<li><i class="fa fa-files-o"></i> <span class="icon-name">files-o</span>          <span class="icon-value">"\f0c5"</span></li>
+<li><i class="fa fa-paperclip"></i> <span class="icon-name">paperclip</span>          <span class="icon-value">"\f0c6"</span></li>
+<li><i class="fa fa-floppy-o"></i> <span class="icon-name">floppy-o</span>          <span class="icon-value">"\f0c7"</span></li>
+<li><i class="fa fa-square"></i> <span class="icon-name">square</span>          <span class="icon-value">"\f0c8"</span></li>
+<li><i class="fa fa-bars"></i> <span class="icon-name">bars</span>          <span class="icon-value">"\f0c9"</span></li>
+<li><i class="fa fa-list-ul"></i> <span class="icon-name">list-ul</span>          <span class="icon-value">"\f0ca"</span></li>
+<li><i class="fa fa-list-ol"></i> <span class="icon-name">list-ol</span>          <span class="icon-value">"\f0cb"</span></li>
+<li><i class="fa fa-strikethrough"></i> <span class="icon-name">strikethrough</span>          <span class="icon-value">"\f0cc"</span></li>
+<li><i class="fa fa-underline"></i> <span class="icon-name">underline</span>          <span class="icon-value">"\f0cd"</span></li>
+<li><i class="fa fa-table"></i> <span class="icon-name">table</span>          <span class="icon-value">"\f0ce"</span></li>
+<li><i class="fa fa-magic"></i> <span class="icon-name">magic</span>          <span class="icon-value">"\f0d0"</span></li>
+<li><i class="fa fa-truck"></i> <span class="icon-name">truck</span>          <span class="icon-value">"\f0d1"</span></li>
+<li><i class="fa fa-pinterest"></i> <span class="icon-name">pinterest</span>          <span class="icon-value">"\f0d2"</span></li>
+<li><i class="fa fa-pinterest-square"></i> <span class="icon-name">pinterest-square</span>          <span class="icon-value">"\f0d3"</span></li>
+<li><i class="fa fa-google-plus-square"></i> <span class="icon-name">google-plus-square</span>          <span class="icon-value">"\f0d4"</span></li>
+<li><i class="fa fa-google-plus"></i> <span class="icon-name">google-plus</span>          <span class="icon-value">"\f0d5"</span></li>
+<li><i class="fa fa-money"></i> <span class="icon-name">money</span>          <span class="icon-value">"\f0d6"</span></li>
+<li><i class="fa fa-caret-down"></i> <span class="icon-name">caret-down</span>          <span class="icon-value">"\f0d7"</span></li>
+<li><i class="fa fa-caret-up"></i> <span class="icon-name">caret-up</span>          <span class="icon-value">"\f0d8"</span></li>
+<li><i class="fa fa-caret-left"></i> <span class="icon-name">caret-left</span>          <span class="icon-value">"\f0d9"</span></li>
+<li><i class="fa fa-caret-right"></i> <span class="icon-name">caret-right</span>          <span class="icon-value">"\f0da"</span></li>
+<li><i class="fa fa-columns"></i> <span class="icon-name">columns</span>          <span class="icon-value">"\f0db"</span></li>
+<li><i class="fa fa-sort"></i> <span class="icon-name">sort</span>          <span class="icon-value">"\f0dc"</span></li>
+<li><i class="fa fa-sort-asc"></i> <span class="icon-name">sort-asc</span>          <span class="icon-value">"\f0dd"</span></li>
+<li><i class="fa fa-sort-desc"></i> <span class="icon-name">sort-desc</span>          <span class="icon-value">"\f0de"</span></li>
+<li><i class="fa fa-envelope"></i> <span class="icon-name">envelope</span>          <span class="icon-value">"\f0e0"</span></li>
+<li><i class="fa fa-linkedin"></i> <span class="icon-name">linkedin</span>          <span class="icon-value">"\f0e1"</span></li>
+<li><i class="fa fa-undo"></i> <span class="icon-name">undo</span>          <span class="icon-value">"\f0e2"</span></li>
+<li><i class="fa fa-gavel"></i> <span class="icon-name">gavel</span>          <span class="icon-value">"\f0e3"</span></li>
+<li><i class="fa fa-tachometer"></i> <span class="icon-name">tachometer</span>          <span class="icon-value">"\f0e4"</span></li>
+<li><i class="fa fa-comment-o"></i> <span class="icon-name">comment-o</span>          <span class="icon-value">"\f0e5"</span></li>
+<li><i class="fa fa-comments-o"></i> <span class="icon-name">comments-o</span>          <span class="icon-value">"\f0e6"</span></li>
+<li><i class="fa fa-bolt"></i> <span class="icon-name">bolt</span>          <span class="icon-value">"\f0e7"</span></li>
+<li><i class="fa fa-sitemap"></i> <span class="icon-name">sitemap</span>          <span class="icon-value">"\f0e8"</span></li>
+<li><i class="fa fa-umbrella"></i> <span class="icon-name">umbrella</span>          <span class="icon-value">"\f0e9"</span></li>
+<li><i class="fa fa-clipboard"></i> <span class="icon-name">clipboard</span>          <span class="icon-value">"\f0ea"</span></li>
+<li><i class="fa fa-lightbulb-o"></i> <span class="icon-name">lightbulb-o</span>          <span class="icon-value">"\f0eb"</span></li>
+<li><i class="fa fa-exchange"></i> <span class="icon-name">exchange</span>          <span class="icon-value">"\f0ec"</span></li>
+<li><i class="fa fa-cloud-download"></i> <span class="icon-name">cloud-download</span>          <span class="icon-value">"\f0ed"</span></li>
+<li><i class="fa fa-cloud-upload"></i> <span class="icon-name">cloud-upload</span>          <span class="icon-value">"\f0ee"</span></li>
+<li><i class="fa fa-user-md"></i> <span class="icon-name">user-md</span>          <span class="icon-value">"\f0f0"</span></li>
+<li><i class="fa fa-stethoscope"></i> <span class="icon-name">stethoscope</span>          <span class="icon-value">"\f0f1"</span></li>
+<li><i class="fa fa-suitcase"></i> <span class="icon-name">suitcase</span>          <span class="icon-value">"\f0f2"</span></li>
+<li><i class="fa fa-bell-o"></i> <span class="icon-name">bell-o</span>          <span class="icon-value">"\f0a2"</span></li>
+<li><i class="fa fa-coffee"></i> <span class="icon-name">coffee</span>          <span class="icon-value">"\f0f4"</span></li>
+<li><i class="fa fa-cutlery"></i> <span class="icon-name">cutlery</span>          <span class="icon-value">"\f0f5"</span></li>
+<li><i class="fa fa-file-text-o"></i> <span class="icon-name">file-text-o</span>          <span class="icon-value">"\f0f6"</span></li>
+<li><i class="fa fa-building-o"></i> <span class="icon-name">building-o</span>          <span class="icon-value">"\f0f7"</span></li>
+<li><i class="fa fa-hospital-o"></i> <span class="icon-name">hospital-o</span>          <span class="icon-value">"\f0f8"</span></li>
+<li><i class="fa fa-ambulance"></i> <span class="icon-name">ambulance</span>          <span class="icon-value">"\f0f9"</span></li>
+<li><i class="fa fa-medkit"></i> <span class="icon-name">medkit</span>          <span class="icon-value">"\f0fa"</span></li>
+<li><i class="fa fa-fighter-jet"></i> <span class="icon-name">fighter-jet</span>          <span class="icon-value">"\f0fb"</span></li>
+<li><i class="fa fa-beer"></i> <span class="icon-name">beer</span>          <span class="icon-value">"\f0fc"</span></li>
+<li><i class="fa fa-h-square"></i> <span class="icon-name">h-square</span>          <span class="icon-value">"\f0fd"</span></li>
+<li><i class="fa fa-plus-square"></i> <span class="icon-name">plus-square</span>          <span class="icon-value">"\f0fe"</span></li>
+<li><i class="fa fa-angle-double-left"></i> <span class="icon-name">angle-double-left</span>          <span class="icon-value">"\f100"</span></li>
+<li><i class="fa fa-angle-double-right"></i> <span class="icon-name">angle-double-right</span>          <span class="icon-value">"\f101"</span></li>
+<li><i class="fa fa-angle-double-up"></i> <span class="icon-name">angle-double-up</span>          <span class="icon-value">"\f102"</span></li>
+<li><i class="fa fa-angle-double-down"></i> <span class="icon-name">angle-double-down</span>          <span class="icon-value">"\f103"</span></li>
+<li><i class="fa fa-angle-left"></i> <span class="icon-name">angle-left</span>          <span class="icon-value">"\f104"</span></li>
+<li><i class="fa fa-angle-right"></i> <span class="icon-name">angle-right</span>          <span class="icon-value">"\f105"</span></li>
+<li><i class="fa fa-angle-up"></i> <span class="icon-name">angle-up</span>          <span class="icon-value">"\f106"</span></li>
+<li><i class="fa fa-angle-down"></i> <span class="icon-name">angle-down</span>          <span class="icon-value">"\f107"</span></li>
+<li><i class="fa fa-desktop"></i> <span class="icon-name">desktop</span>          <span class="icon-value">"\f108"</span></li>
+<li><i class="fa fa-laptop"></i> <span class="icon-name">laptop</span>          <span class="icon-value">"\f109"</span></li>
+<li><i class="fa fa-tablet"></i> <span class="icon-name">tablet</span>          <span class="icon-value">"\f10a"</span></li>
+<li><i class="fa fa-mobile"></i> <span class="icon-name">mobile</span>          <span class="icon-value">"\f10b"</span></li>
+<li><i class="fa fa-circle-o"></i> <span class="icon-name">circle-o</span>          <span class="icon-value">"\f10c"</span></li>
+<li><i class="fa fa-quote-left"></i> <span class="icon-name">quote-left</span>          <span class="icon-value">"\f10d"</span></li>
+<li><i class="fa fa-quote-right"></i> <span class="icon-name">quote-right</span>          <span class="icon-value">"\f10e"</span></li>
+<li><i class="fa fa-spinner"></i> <span class="icon-name">spinner</span>          <span class="icon-value">"\f110"</span></li>
+<li><i class="fa fa-circle"></i> <span class="icon-name">circle</span>          <span class="icon-value">"\f111"</span></li>
+<li><i class="fa fa-reply"></i> <span class="icon-name">reply</span>          <span class="icon-value">"\f112"</span></li>
+<li><i class="fa fa-github-alt"></i> <span class="icon-name">github-alt</span>          <span class="icon-value">"\f113"</span></li>
+<li><i class="fa fa-folder-o"></i> <span class="icon-name">folder-o</span>          <span class="icon-value">"\f114"</span></li>
+<li><i class="fa fa-folder-open-o"></i> <span class="icon-name">folder-open-o</span>          <span class="icon-value">"\f115"</span></li>
+<li><i class="fa fa-smile-o"></i> <span class="icon-name">smile-o</span>          <span class="icon-value">"\f118"</span></li>
+<li><i class="fa fa-frown-o"></i> <span class="icon-name">frown-o</span>          <span class="icon-value">"\f119"</span></li>
+<li><i class="fa fa-meh-o"></i> <span class="icon-name">meh-o</span>          <span class="icon-value">"\f11a"</span></li>
+<li><i class="fa fa-gamepad"></i> <span class="icon-name">gamepad</span>          <span class="icon-value">"\f11b"</span></li>
+<li><i class="fa fa-keyboard-o"></i> <span class="icon-name">keyboard-o</span>          <span class="icon-value">"\f11c"</span></li>
+<li><i class="fa fa-flag-o"></i> <span class="icon-name">flag-o</span>          <span class="icon-value">"\f11d"</span></li>
+<li><i class="fa fa-flag-checkered"></i> <span class="icon-name">flag-checkered</span>          <span class="icon-value">"\f11e"</span></li>
+<li><i class="fa fa-terminal"></i> <span class="icon-name">terminal</span>          <span class="icon-value">"\f120"</span></li>
+<li><i class="fa fa-code"></i> <span class="icon-name">code</span>          <span class="icon-value">"\f121"</span></li>
+<li><i class="fa fa-reply-all"></i> <span class="icon-name">reply-all</span>          <span class="icon-value">"\f122"</span></li>
+<li><i class="fa fa-mail-reply-all"></i> <span class="icon-name">mail-reply-all</span>          <span class="icon-value">"\f122"</span></li>
+<li><i class="fa fa-star-half-o"></i> <span class="icon-name">star-half-o</span>          <span class="icon-value">"\f123"</span></li>
+<li><i class="fa fa-location-arrow"></i> <span class="icon-name">location-arrow</span>          <span class="icon-value">"\f124"</span></li>
+<li><i class="fa fa-crop"></i> <span class="icon-name">crop</span>          <span class="icon-value">"\f125"</span></li>
+<li><i class="fa fa-code-fork"></i> <span class="icon-name">code-fork</span>          <span class="icon-value">"\f126"</span></li>
+<li><i class="fa fa-chain-broken"></i> <span class="icon-name">chain-broken</span>          <span class="icon-value">"\f127"</span></li>
+<li><i class="fa fa-question"></i> <span class="icon-name">question</span>          <span class="icon-value">"\f128"</span></li>
+<li><i class="fa fa-info"></i> <span class="icon-name">info</span>          <span class="icon-value">"\f129"</span></li>
+<li><i class="fa fa-exclamation"></i> <span class="icon-name">exclamation</span>          <span class="icon-value">"\f12a"</span></li>
+<li><i class="fa fa-superscript"></i> <span class="icon-name">superscript</span>          <span class="icon-value">"\f12b"</span></li>
+<li><i class="fa fa-subscript"></i> <span class="icon-name">subscript</span>          <span class="icon-value">"\f12c"</span></li>
+<li><i class="fa fa-eraser"></i> <span class="icon-name">eraser</span>          <span class="icon-value">"\f12d"</span></li>
+<li><i class="fa fa-puzzle-piece"></i> <span class="icon-name">puzzle-piece</span>          <span class="icon-value">"\f12e"</span></li>
+<li><i class="fa fa-microphone"></i> <span class="icon-name">microphone</span>          <span class="icon-value">"\f130"</span></li>
+<li><i class="fa fa-microphone-slash"></i> <span class="icon-name">microphone-slash</span>          <span class="icon-value">"\f131"</span></li>
+<li><i class="fa fa-shield"></i> <span class="icon-name">shield</span>          <span class="icon-value">"\f132"</span></li>
+<li><i class="fa fa-calendar-o"></i> <span class="icon-name">calendar-o</span>          <span class="icon-value">"\f133"</span></li>
+<li><i class="fa fa-fire-extinguisher"></i> <span class="icon-name">fire-extinguisher</span>          <span class="icon-value">"\f134"</span></li>
+<li><i class="fa fa-rocket"></i> <span class="icon-name">rocket</span>          <span class="icon-value">"\f135"</span></li>
+<li><i class="fa fa-maxcdn"></i> <span class="icon-name">maxcdn</span>          <span class="icon-value">"\f136"</span></li>
+<li><i class="fa fa-chevron-circle-left"></i> <span class="icon-name">chevron-circle-left</span>          <span class="icon-value">"\f137"</span></li>
+<li><i class="fa fa-chevron-circle-right"></i> <span class="icon-name">chevron-circle-right</span>          <span class="icon-value">"\f138"</span></li>
+<li><i class="fa fa-chevron-circle-up"></i> <span class="icon-name">chevron-circle-up</span>          <span class="icon-value">"\f139"</span></li>
+<li><i class="fa fa-chevron-circle-down"></i> <span class="icon-name">chevron-circle-down</span>          <span class="icon-value">"\f13a"</span></li>
+<li><i class="fa fa-html5"></i> <span class="icon-name">html5</span>          <span class="icon-value">"\f13b"</span></li>
+<li><i class="fa fa-css3"></i> <span class="icon-name">css3</span>          <span class="icon-value">"\f13c"</span></li>
+<li><i class="fa fa-anchor"></i> <span class="icon-name">anchor</span>          <span class="icon-value">"\f13d"</span></li>
+<li><i class="fa fa-unlock-alt"></i> <span class="icon-name">unlock-alt</span>          <span class="icon-value">"\f13e"</span></li>
+<li><i class="fa fa-bullseye"></i> <span class="icon-name">bullseye</span>          <span class="icon-value">"\f140"</span></li>
+<li><i class="fa fa-ellipsis-h"></i> <span class="icon-name">ellipsis-h</span>          <span class="icon-value">"\f141"</span></li>
+<li><i class="fa fa-ellipsis-v"></i> <span class="icon-name">ellipsis-v</span>          <span class="icon-value">"\f142"</span></li>
+<li><i class="fa fa-rss-square"></i> <span class="icon-name">rss-square</span>          <span class="icon-value">"\f143"</span></li>
+<li><i class="fa fa-play-circle"></i> <span class="icon-name">play-circle</span>          <span class="icon-value">"\f144"</span></li>
+<li><i class="fa fa-ticket"></i> <span class="icon-name">ticket</span>          <span class="icon-value">"\f145"</span></li>
+<li><i class="fa fa-minus-square"></i> <span class="icon-name">minus-square</span>          <span class="icon-value">"\f146"</span></li>
+<li><i class="fa fa-minus-square-o"></i> <span class="icon-name">minus-square-o</span>          <span class="icon-value">"\f147"</span></li>
+<li><i class="fa fa-level-up"></i> <span class="icon-name">level-up</span>          <span class="icon-value">"\f148"</span></li>
+<li><i class="fa fa-level-down"></i> <span class="icon-name">level-down</span>          <span class="icon-value">"\f149"</span></li>
+<li><i class="fa fa-check-square"></i> <span class="icon-name">check-square</span>          <span class="icon-value">"\f14a"</span></li>
+<li><i class="fa fa-pencil-square"></i> <span class="icon-name">pencil-square</span>          <span class="icon-value">"\f14b"</span></li>
+<li><i class="fa fa-external-link-square"></i> <span class="icon-name">external-link-square</span>          <span class="icon-value">"\f14c"</span></li>
+<li><i class="fa fa-share-square"></i> <span class="icon-name">share-square</span>          <span class="icon-value">"\f14d"</span></li>
+<li><i class="fa fa-compass"></i> <span class="icon-name">compass</span>          <span class="icon-value">"\f14e"</span></li>
+<li><i class="fa fa-caret-square-o-down"></i> <span class="icon-name">caret-square-o-down</span>          <span class="icon-value">"\f150"</span></li>
+<li><i class="fa fa-caret-square-o-up"></i> <span class="icon-name">caret-square-o-up</span>          <span class="icon-value">"\f151"</span></li>
+<li><i class="fa fa-caret-square-o-right"></i> <span class="icon-name">caret-square-o-right</span>          <span class="icon-value">"\f152"</span></li>
+<li><i class="fa fa-eur"></i> <span class="icon-name">eur</span>          <span class="icon-value">"\f153"</span></li>
+<li><i class="fa fa-gbp"></i> <span class="icon-name">gbp</span>          <span class="icon-value">"\f154"</span></li>
+<li><i class="fa fa-usd"></i> <span class="icon-name">usd</span>          <span class="icon-value">"\f155"</span></li>
+<li><i class="fa fa-inr"></i> <span class="icon-name">inr</span>          <span class="icon-value">"\f156"</span></li>
+<li><i class="fa fa-jpy"></i> <span class="icon-name">jpy</span>          <span class="icon-value">"\f157"</span></li>
+<li><i class="fa fa-rub"></i> <span class="icon-name">rub</span>          <span class="icon-value">"\f158"</span></li>
+<li><i class="fa fa-krw"></i> <span class="icon-name">krw</span>          <span class="icon-value">"\f159"</span></li>
+<li><i class="fa fa-btc"></i> <span class="icon-name">btc</span>          <span class="icon-value">"\f15a"</span></li>
+<li><i class="fa fa-file"></i> <span class="icon-name">file</span>          <span class="icon-value">"\f15b"</span></li>
+<li><i class="fa fa-file-text"></i> <span class="icon-name">file-text</span>          <span class="icon-value">"\f15c"</span></li>
+<li><i class="fa fa-sort-alpha-asc"></i> <span class="icon-name">sort-alpha-asc</span>          <span class="icon-value">"\f15d"</span></li>
+<li><i class="fa fa-sort-alpha-desc"></i> <span class="icon-name">sort-alpha-desc</span>          <span class="icon-value">"\f15e"</span></li>
+<li><i class="fa fa-sort-amount-asc"></i> <span class="icon-name">sort-amount-asc</span>          <span class="icon-value">"\f160"</span></li>
+<li><i class="fa fa-sort-amount-desc"></i> <span class="icon-name">sort-amount-desc</span>          <span class="icon-value">"\f161"</span></li>
+<li><i class="fa fa-sort-numeric-asc"></i> <span class="icon-name">sort-numeric-asc</span>          <span class="icon-value">"\f162"</span></li>
+<li><i class="fa fa-sort-numeric-desc"></i> <span class="icon-name">sort-numeric-desc</span>          <span class="icon-value">"\f163"</span></li>
+<li><i class="fa fa-thumbs-up"></i> <span class="icon-name">thumbs-up</span>          <span class="icon-value">"\f164"</span></li>
+<li><i class="fa fa-thumbs-down"></i> <span class="icon-name">thumbs-down</span>          <span class="icon-value">"\f165"</span></li>
+<li><i class="fa fa-youtube-square"></i> <span class="icon-name">youtube-square</span>          <span class="icon-value">"\f166"</span></li>
+<li><i class="fa fa-youtube"></i> <span class="icon-name">youtube</span>          <span class="icon-value">"\f167"</span></li>
+<li><i class="fa fa-xing"></i> <span class="icon-name">xing</span>          <span class="icon-value">"\f168"</span></li>
+<li><i class="fa fa-xing-square"></i> <span class="icon-name">xing-square</span>          <span class="icon-value">"\f169"</span></li>
+<li><i class="fa fa-youtube-play"></i> <span class="icon-name">youtube-play</span>          <span class="icon-value">"\f16a"</span></li>
+<li><i class="fa fa-dropbox"></i> <span class="icon-name">dropbox</span>          <span class="icon-value">"\f16b"</span></li>
+<li><i class="fa fa-stack-overflow"></i> <span class="icon-name">stack-overflow</span>          <span class="icon-value">"\f16c"</span></li>
+<li><i class="fa fa-instagram"></i> <span class="icon-name">instagram</span>          <span class="icon-value">"\f16d"</span></li>
+<li><i class="fa fa-flickr"></i> <span class="icon-name">flickr</span>          <span class="icon-value">"\f16e"</span></li>
+<li><i class="fa fa-adn"></i> <span class="icon-name">adn</span>          <span class="icon-value">"\f170"</span></li>
+<li><i class="fa fa-bitbucket"></i> <span class="icon-name">bitbucket</span>          <span class="icon-value">"\f171"</span></li>
+<li><i class="fa fa-bitbucket-square"></i> <span class="icon-name">bitbucket-square</span>          <span class="icon-value">"\f172"</span></li>
+<li><i class="fa fa-tumblr"></i> <span class="icon-name">tumblr</span>          <span class="icon-value">"\f173"</span></li>
+<li><i class="fa fa-tumblr-square"></i> <span class="icon-name">tumblr-square</span>          <span class="icon-value">"\f174"</span></li>
+<li><i class="fa fa-long-arrow-down"></i> <span class="icon-name">long-arrow-down</span>          <span class="icon-value">"\f175"</span></li>
+<li><i class="fa fa-long-arrow-up"></i> <span class="icon-name">long-arrow-up</span>          <span class="icon-value">"\f176"</span></li>
+<li><i class="fa fa-long-arrow-left"></i> <span class="icon-name">long-arrow-left</span>          <span class="icon-value">"\f177"</span></li>
+<li><i class="fa fa-long-arrow-right"></i> <span class="icon-name">long-arrow-right</span>          <span class="icon-value">"\f178"</span></li>
+<li><i class="fa fa-apple"></i> <span class="icon-name">apple</span>          <span class="icon-value">"\f179"</span></li>
+<li><i class="fa fa-windows"></i> <span class="icon-name">windows</span>          <span class="icon-value">"\f17a"</span></li>
+<li><i class="fa fa-android"></i> <span class="icon-name">android</span>          <span class="icon-value">"\f17b"</span></li>
+<li><i class="fa fa-linux"></i> <span class="icon-name">linux</span>          <span class="icon-value">"\f17c"</span></li>
+<li><i class="fa fa-dribbble"></i> <span class="icon-name">dribbble</span>          <span class="icon-value">"\f17d"</span></li>
+<li><i class="fa fa-skype"></i> <span class="icon-name">skype</span>          <span class="icon-value">"\f17e"</span></li>
+<li><i class="fa fa-foursquare"></i> <span class="icon-name">foursquare</span>          <span class="icon-value">"\f180"</span></li>
+<li><i class="fa fa-trello"></i> <span class="icon-name">trello</span>          <span class="icon-value">"\f181"</span></li>
+<li><i class="fa fa-female"></i> <span class="icon-name">female</span>          <span class="icon-value">"\f182"</span></li>
+<li><i class="fa fa-male"></i> <span class="icon-name">male</span>          <span class="icon-value">"\f183"</span></li>
+<li><i class="fa fa-gittip"></i> <span class="icon-name">gittip</span>          <span class="icon-value">"\f184"</span></li>
+<li><i class="fa fa-sun-o"></i> <span class="icon-name">sun-o</span>          <span class="icon-value">"\f185"</span></li>
+<li><i class="fa fa-moon-o"></i> <span class="icon-name">moon-o</span>          <span class="icon-value">"\f186"</span></li>
+<li><i class="fa fa-archive"></i> <span class="icon-name">archive</span>          <span class="icon-value">"\f187"</span></li>
+<li><i class="fa fa-bug"></i> <span class="icon-name">bug</span>          <span class="icon-value">"\f188"</span></li>
+<li><i class="fa fa-vk"></i> <span class="icon-name">vk</span>          <span class="icon-value">"\f189"</span></li>
+<li><i class="fa fa-weibo"></i> <span class="icon-name">weibo</span>          <span class="icon-value">"\f18a"</span></li>
+<li><i class="fa fa-renren"></i> <span class="icon-name">renren</span>          <span class="icon-value">"\f18b"</span></li>
+<li><i class="fa fa-pagelines"></i> <span class="icon-name">pagelines</span>          <span class="icon-value">"\f18c"</span></li>
+<li><i class="fa fa-stack-exchange"></i> <span class="icon-name">stack-exchange</span>          <span class="icon-value">"\f18d"</span></li>
+<li><i class="fa fa-arrow-circle-o-right"></i> <span class="icon-name">arrow-circle-o-right</span>          <span class="icon-value">"\f18e"</span></li>
+<li><i class="fa fa-arrow-circle-o-left"></i> <span class="icon-name">arrow-circle-o-left</span>          <span class="icon-value">"\f190"</span></li>
+<li><i class="fa fa-caret-square-o-left"></i> <span class="icon-name">caret-square-o-left</span>          <span class="icon-value">"\f191"</span></li>
+<li><i class="fa fa-dot-circle-o"></i> <span class="icon-name">dot-circle-o</span>          <span class="icon-value">"\f192"</span></li>
+<li><i class="fa fa-wheelchair"></i> <span class="icon-name">wheelchair</span>          <span class="icon-value">"\f193"</span></li>
+<li><i class="fa fa-vimeo-square"></i> <span class="icon-name">vimeo-square</span>          <span class="icon-value">"\f194"</span></li>
+<li><i class="fa fa-try"></i> <span class="icon-name">try</span>          <span class="icon-value">"\f195"</span></li>
+<li><i class="fa fa-plus-square-o"></i> <span class="icon-name">plus-square-o</span>          <span class="icon-value">"\f196"</span></li>
+
+</ul>
+</div>
+</article>	
+
+
+	</div>
+</div>
+<!--
+<script type="text/javascript" src="./Font_Awesome_files/form.js"></script>
+<script type="text/javascript" src="./Font_Awesome_files/shCore.js"></script>
+<script type="text/javascript" src="./Font_Awesome_files/shBrushJava.js"></script>
+-->
+<!--
+<script type="text/javascript">
+/* <![CDATA[ */
+var tocplus = {"smooth_scroll":"1","visibility_show":"show","visibility_hide":"hide","width":"98%"};
+/* ]]> */
+</script>
+-->
+<!--
+<script type="text/javascript" src="./Font_Awesome_files/front.min.js"></script>
+-->
+<!--
+<script type="text/javascript" src="./Font_Awesome_files/jquery.js"></script>
+-->
+<!--
+<script type="text/javascript" src="./Font_Awesome_files/wp-embed.min.js"></script>
+-->
+</body>
+</html>

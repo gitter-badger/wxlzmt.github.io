@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="/js/d3.js"></script>
+    <script type="text/javascript" src="/js/jquery-2.1.1.js"></script>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <!--<link href="/css/bootstrap.min.css" rel="stylesheet">-->
+<title>menu-float-test</title>
+
+
+<style type="text/css">
+.sQ0 {
+    position: absolute;
+    left: 9px;
+    bottom: 9px;
+    z-index: 20;
+    width: 32px;
+    height: 32px;
+    background-color: #888;
+    background-color: RGBA(54,54,54,.85);
+    border-radius: 32px;
+    
+}
+.sQ0:hover{
+    box-shadow: 0px 0px 10px RGBA(0,0,0,.5);
+}
+
+.qt0 {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    line-height: 0;
+    font-size: 0;
+    background-color: #91DE87;
+    border: 1px solid #91DE87;
+    left: 9px;
+    top: 9px;
+}
+
+.ok0 {
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    border-bottom-left-radius: 2px;
+}
+
+.od0 {
+    left: 17px;
+    background-color: #F6CB4C;
+    border-color: #F6CB4C;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+}
+
+.nX0 {
+    top: 17px;
+    background: none!important;
+    border-color: #61BDED;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+}
+
+.nP0 {
+    left: 17px;
+    top: 17px;
+    background-color: #E69D9E;
+    border-color: #E69D9E;
+    border-top-right-radius: 2px;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+}
+
+.ty0 {
+    overflow: hidden;
+    background-image: url(dot.png);
+    background-position: 0 0;
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    color: #fff;
+    text-align: center;
+    font-weight: 700;
+    line-height: 100px;
+    font-size: 0;
+}
+
+.qo0 {
+    width: 52px;
+    height: 52px;
+    position: absolute;
+    left: -9px;
+    bottom: -9px;
+    cursor: pointer;
+    outline: 0;
+}
+
+.tQ0 {
+    position: absolute;
+    left: 14px;
+    bottom: 14px;
+    z-index: 200;
+}
+
+.div_tb{
+    display: table;
+    margin:0px;
+    padding-left: 50px;
+    padding-top: 50px;
+    overflow: scroll;
+}
+.div_tb>div{
+    display: table-row;
+}
+.div_tb>div>div{
+    display: table-cell;
+    padding: 5px;
+    vertical-align: middle;
+}
+.div_module{
+    display: table-cell;
+    width: 150px;
+    height: 150px;
+    margin: 10px;
+    vertical-align: middle;
+    background-color: #008CBA;
+	border-color:rgba(255,255,255,0.5);
+    cursor: pointer;
+    color: white;
+}
+.div_module:hover{
+	background-color: #007095;
+    box-shadow: 0 0 10px RGBA(0,40,0,0.7);
+}
+
+</style>
+<script type="text/javascript">
+	var interval = 1;
+    function clickShowOrHide(event){
+        resize();
+		
+		var $d = $("#idDivMaskBack");
+		var display = $d.css("display");
+		if(display=="none"){
+			$d.css({width:"1%",height:"1%"});
+			$d.show();
+			toShow($d);
+		}else{
+			toHide($d);
+		}
+		
+    }
+	
+	function toShow($d){
+		
+		var i = 0;
+		var add = function(){
+			if(i<=100){
+				$d.css({width:(i*1)+"%",height:(i*1)+"%"});
+				i = i +1;
+				setTimeout(add,interval);			
+			}
+		}
+		setTimeout(add,interval);
+	}
+	
+	function toHide($d){
+		var i = 100;
+		var del = function(){
+			if(i>=0){
+				$d.css({width:(i*1)+"%",height:(i*1)+"%"});
+				i = i -1;
+				setTimeout(del,interval);			
+			}else{
+				$d.hide();
+			}
+		}
+		setTimeout(del,interval);
+	}
+	
+    function resize(){
+        /*
+        var h1 = window.innerHeight;
+        var w1 = window.innerWidth;
+        var w2 = document.body.offsetWidth;
+        var h2 = document.body.offsetHeight;
+        var h = h2>h1?h2:h1;
+        var w = w2>w1?w2:w1;
+        */
+        //console.log('h='+h+",w="+w+",h2="+h2+",w2="+w2);
+        //$("#idDivMaskBack").css({width:w,height:h});
+    }
+    function clickOpen(i,j,e){
+        var $dd = $(e.target);
+        var str = "点击并打开了第"+(i+1)+"行,第"+(j+1)+"列的菜单项:"+$dd.html();
+        $cont = $("#idDivContent");
+        $cont.html(str);
+        clickShowOrHide();
+    }
+</script>
+</head>
+<body onresize='resize();'>
+<div id="idDivMaskBack" style='display:none;overflow: hidden;
+background-color: #000050;opacity: 0.9;position: absolute;bottom: 0px;left: 0px;'>
+    <div class="div_tb" style=" min-height:800px;min-height:800px; overflow:hidden; " >
+        <div>
+            <div align="center">
+                <div class='div_module' onclick="clickOpen(0,0,event);">菜单</div>
+            </div>
+            <div align="center">
+                <div class='div_module' onclick="clickOpen(0,1,event);">菜单sss</div>
+            </div>
+            <div align="center">
+                <div class='div_module' onclick="clickOpen(0,2,event);">发发发</div>
+            </div>
+            <div align="center">
+                <div class='div_module' onclick="clickOpen(0,3,event);">试试水</div>
+            </div>
+            <div align="center">
+                <div class='div_module' onclick="clickOpen(0,4,event);">吃吃吃吃</div>
+            </div>
+        </div>
+        <div>
+            <div align="center">
+                <div class='div_module' onclick="clickOpen(1,0,event);">问问</div>
+            </div>
+            <div align="center">
+                <div class='div_module' onclick="clickOpen(1,1,event);">听听</div>
+            </div>
+            <div align="center">
+                <div class='div_module' onclick="clickOpen(1,2,event);">飞</div>
+            </div>
+            <div align="center">
+                <div class='div_module' onclick="clickOpen(1,3,event);">切切切</div>
+            </div>
+            <div align="center">
+                <div class='div_module' onclick="clickOpen(1,4,event);">uuu</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="idDivContent" style="margin-top:100px;margin-left:100px;font-size:20px;"></div>
+
+<div class="tQ0" id="dvDock" onclick="clickShowOrHide(event);">
+    <div class="qo0" id="dvDockStartOuter" title="触点" tabindex="0" hidefocus="true">
+    <div class="sQ0" id="dvDockStart">
+        <span class="qt0 ok0"></span>
+        <span class="qt0 od0"></span>
+        <span class="qt0 nX0"></span>
+        <span class="qt0 nP0"></span>
+        <span class="ty0" id="spnDockNew" style="display:none"></span>
+    </div>
+    </div>
+</div>
+
+</body>
+</html>

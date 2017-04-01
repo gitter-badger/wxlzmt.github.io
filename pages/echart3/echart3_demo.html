@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>echart3_demo</title>
+<script src="/js/echarts-all-resource.js"></script>
+<script src="/js/china.js"></script>
+<script type="text/javascript">
+
+var option0_0 = {
+    title : {
+        text: '某站点用户访问来源',
+        subtext: '纯属虚构',
+        x:'center'
+    },
+    tooltip : {
+        trigger: 'item',
+        formatter: "{a} <br/>{b} : {c} ({d}%)"
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        data: ['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
+    },
+    series : [
+        {
+            name: '访问来源',
+            type: 'pie',
+            radius : '55%',
+            center: ['50%', '60%'],
+            data:[
+                {value:335, name:'直接访问'},
+                {value:310, name:'邮件营销'},
+                {value:234, name:'联盟广告'},
+                {value:135, name:'视频广告'},
+                {value:1548, name:'搜索引擎'}
+            ],
+            itemStyle: {
+                emphasis: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ]
+};
+
+var option1_0 = {
+    tooltip: {
+        trigger: 'item',
+        formatter: "{a} <br/>{b}: {c} ({d}%)"
+    },
+    legend: {
+        orient: 'vertical',
+        x: 'left',
+        data:['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
+    },
+    series: [
+        {
+            name:'访问来源',
+            type:'pie',
+            radius: ['50%', '70%'],
+            avoidLabelOverlap: false,
+            label: {
+                normal: {
+                    show: false,
+                    position: 'center'
+                },
+                emphasis: {
+                    show: true,
+                    textStyle: {
+                        fontSize: '30',
+                        fontWeight: 'bold'
+                    }
+                }
+            },
+            labelLine: {
+                normal: {
+                    show: false
+                }
+            },
+            data:[
+                {value:335, name:'直接访问'},
+                {value:310, name:'邮件营销'},
+                {value:234, name:'联盟广告'},
+                {value:135, name:'视频广告'},
+                {value:1548, name:'搜索引擎'}
+            ]
+        }
+    ]
+};
+
+var option1_1 = {
+    title : {
+        text: '统计',
+        x:'center'
+    },
+    tooltip : {
+        trigger: 'item',
+        formatter: "{b} : {c} ({d}%)"
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        data: ['成功','失败','其它','零度','多少','别笑','凑数'],
+    },
+    series : [
+        {
+            name: '状况',
+            type: 'pie',
+            radius :['45%', '75%'],
+            data:[
+                {value:5, name:'成功'},
+                {value:7, name:'失败'},
+                {value:3, name:'其它'},
+                {value:0, name:'零度',
+                label:{normal: {show: false}},labelLine:{normal: {show: false},emphasis:{show:false}}},
+                {value:2, name:'多少'},
+                {value:6, name:'别笑'},
+                {value:8, name:'凑数'}
+            ],
+            label: {
+                normal: {
+                    show: true,
+                    position: 'outside'
+                },
+                emphasis: {
+                    show: true,
+                    textStyle: {
+                        fontSize: '30',
+                        fontWeight: 'bold'
+                    }
+                }
+            },
+            itemStyle: {
+                emphasis: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ]
+}
+
+var option0_1 = {
+    title : {
+        text: '任务健康状况统计',
+        x:'center'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: "{c} ({d}%)"
+    },
+    legend: {
+        orient: 'vertical',
+        x: 'left',
+        data:['成功','失败','其它']
+    },
+    series: [
+        {
+            name:'健康状况',
+            type:'pie',
+            radius: '60%',
+            avoidLabelOverlap: false,
+            label: {
+                normal: {
+                    show: true,
+                    position: 'outside'
+                },
+                emphasis: {
+                    show: true,
+                    textStyle: {
+                        fontSize: '30',
+                        fontWeight: 'bold'
+                    }
+                }
+            },
+            labelLine: {
+                normal: {
+                    show: true
+                }
+            },
+            data:[
+                {value:335, name:'成功',type:"success"},
+                {value:310, name:'失败',type:"failed"},
+                {value:234, name:'其它',type:"other"}
+            ],
+            itemStyle: {
+                emphasis: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            },
+            color:["#32B16C","#F2021E",'#91c7ae','#749f83','#ca8622','#bda29a','#6e7074','#546570','#c4ccd3']
+
+        }
+    ]
+};
+var option2_0 = {
+    tooltip : {
+        trigger: 'axis',
+        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+        }
+    },
+    legend: {
+        data:['直接访问','邮件营销','联盟广告','视频广告','搜索引擎','百度','谷歌','必应','其他']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis : [
+        {
+            type : 'category',
+            data : ['周一','周二','周三','周四','周五','周六','周日']
+        }
+    ],
+    yAxis : [
+        {
+            type : 'value'
+        }
+    ],
+    series : [
+        {
+            name:'直接访问',
+            type:'bar',
+            data:[320, 332, 301, 334, 390, 330, 320]
+        },
+        {
+            name:'邮件营销',
+            type:'bar',
+            stack: '广告',
+            data:[120, 132, 101, 134, 90, 230, 210]
+        },
+        {
+            name:'联盟广告',
+            type:'bar',
+            stack: '广告',
+            data:[220, 182, 191, 234, 290, 330, 310]
+        },
+        {
+            name:'视频广告',
+            type:'bar',
+            stack: '广告',
+            data:[150, 232, 201, 154, 190, 330, 410]
+        },
+        {
+            name:'搜索引擎',
+            type:'bar',
+            data:[862, 1018, 964, 1026, 1679, 1600, 1570],
+            markLine : {
+                lineStyle: {
+                    normal: {
+                        type: 'dashed'
+                    }
+                },
+                data : [
+                    [{type : 'min'}, {type : 'max'}]
+                ]
+            }
+        },
+        {
+            name:'百度',
+            type:'bar',
+            barWidth : 5,
+            stack: '搜索引擎',
+            data:[620, 732, 701, 734, 1090, 1130, 1120]
+        },
+        {
+            name:'谷歌',
+            type:'bar',
+            stack: '搜索引擎',
+            data:[120, 132, 101, 134, 290, 230, 220]
+        },
+        {
+            name:'必应',
+            type:'bar',
+            stack: '搜索引擎',
+            data:[60, 72, 71, 74, 190, 130, 110]
+        },
+        {
+            name:'其他',
+            type:'bar',
+            stack: '搜索引擎',
+            data:[62, 82, 91, 84, 109, 110, 120]
+        }
+    ]
+};
+
+var option2_1 = {
+    tooltip : {
+        formatter: "{a} <br/>{c} {b}"
+    },
+    toolbox: {
+        show: true,
+        feature: {
+            restore: {show: true},
+            saveAsImage: {show: true}
+        }
+    },
+    series : [
+        {
+            name: '速度',
+            type: 'gauge',
+            z: 3,
+            min: 0,
+            max: 220,
+            splitNumber: 11,
+            radius: '50%',
+            axisLine: {            // 坐标轴线
+                lineStyle: {       // 属性lineStyle控制线条样式
+                    width: 10
+                }
+            },
+            axisTick: {            // 坐标轴小标记
+                length: 15,        // 属性length控制线长
+                lineStyle: {       // 属性lineStyle控制线条样式
+                    color: 'auto'
+                }
+            },
+            splitLine: {           // 分隔线
+                length: 20,         // 属性length控制线长
+                lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
+                    color: 'auto'
+                }
+            },
+            title : {
+                textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                    fontWeight: 'bolder',
+                    fontSize: 20,
+                    fontStyle: 'italic'
+                }
+            },
+            detail : {
+                textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                    fontWeight: 'bolder'
+                }
+            },
+            data:[{value: 40, name: 'km/h'}]
+        },
+        {
+            name: '转速',
+            type: 'gauge',
+            center: ['20%', '55%'],    // 默认全局居中
+            radius: '35%',
+            min:0,
+            max:7,
+            endAngle:45,
+            splitNumber:7,
+            axisLine: {            // 坐标轴线
+                lineStyle: {       // 属性lineStyle控制线条样式
+                    width: 8
+                }
+            },
+            axisTick: {            // 坐标轴小标记
+                length:12,        // 属性length控制线长
+                lineStyle: {       // 属性lineStyle控制线条样式
+                    color: 'auto'
+                }
+            },
+            splitLine: {           // 分隔线
+                length:20,         // 属性length控制线长
+                lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
+                    color: 'auto'
+                }
+            },
+            pointer: {
+                width:5
+            },
+            title: {
+                offsetCenter: [0, '-30%'],       // x, y，单位px
+            },
+            detail: {
+                textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                    fontWeight: 'bolder'
+                }
+            },
+            data:[{value: 1.5, name: 'x1000 r/min'}]
+        },
+        {
+            name: '油表',
+            type: 'gauge',
+            center: ['77%', '50%'],    // 默认全局居中
+            radius: '25%',
+            min: 0,
+            max: 2,
+            startAngle: 135,
+            endAngle: 45,
+            splitNumber: 2,
+            axisLine: {            // 坐标轴线
+                lineStyle: {       // 属性lineStyle控制线条样式
+                    width: 8
+                }
+            },
+            axisTick: {            // 坐标轴小标记
+                splitNumber: 5,
+                length: 10,        // 属性length控制线长
+                lineStyle: {       // 属性lineStyle控制线条样式
+                    color: 'auto'
+                }
+            },
+            axisLabel: {
+                formatter:function(v){
+                    switch (v + '') {
+                        case '0' : return 'E';
+                        case '1' : return 'Gas';
+                        case '2' : return 'F';
+                    }
+                }
+            },
+            splitLine: {           // 分隔线
+                length: 15,         // 属性length控制线长
+                lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
+                    color: 'auto'
+                }
+            },
+            pointer: {
+                width:2
+            },
+            title : {
+                show: false
+            },
+            detail : {
+                show: false
+            },
+            data:[{value: 0.5, name: 'gas'}]
+        },
+        {
+            name: '水表',
+            type: 'gauge',
+            center : ['77%', '50%'],    // 默认全局居中
+            radius : '25%',
+            min: 0,
+            max: 2,
+            startAngle: 315,
+            endAngle: 225,
+            splitNumber: 2,
+            axisLine: {            // 坐标轴线
+                lineStyle: {       // 属性lineStyle控制线条样式
+                    width: 8
+                }
+            },
+            axisTick: {            // 坐标轴小标记
+                show: false
+            },
+            axisLabel: {
+                formatter:function(v){
+                    switch (v + '') {
+                        case '0' : return 'H';
+                        case '1' : return 'Water';
+                        case '2' : return 'C';
+                    }
+                }
+            },
+            splitLine: {           // 分隔线
+                length: 15,         // 属性length控制线长
+                lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
+                    color: 'auto'
+                }
+            },
+            pointer: {
+                width:2
+            },
+            title: {
+                show: false
+            },
+            detail: {
+                show: false
+            },
+            data:[{value: 0.5, name: 'gas'}]
+        }
+    ]
+};
+
+
+var axisData_3_0 = ['周一','周二','周三','周四','周五','周六','周日'];
+var data_3_0 = axisData_3_0.map(function (item, i) {
+    return Math.round(Math.random() * 1000 * (i + 1));
+});
+var links_3_0 = data_3_0.map(function (item, i) {
+    return {
+        source: i,
+        target: i + 1
+    };
+});
+links_3_0.pop();
+var option3_0 = {
+    title: {
+        text: '笛卡尔坐标系上的 Graph'
+    },
+    tooltip: {},
+    xAxis: {
+        type : 'category',
+        boundaryGap : false,
+        data : axisData_3_0
+    },
+    yAxis: {
+        type : 'value'
+    },
+    series: [
+        {
+            type: 'graph',
+            layout: 'none',
+            coordinateSystem: 'cartesian2d',
+            symbolSize: 40,
+            label: {
+                normal: {
+                    show: true
+                }
+            },
+            edgeSymbol: ['circle', 'arrow'],
+            edgeSymbolSize: [4, 10],
+            data: data_3_0,
+            links: links_3_0,
+            lineStyle: {
+                normal: {
+                    color: '#2f4554'
+                }
+            }
+        }
+    ]
+};
+
+
+
+var hours_3_1 = ['12a', '1a', '2a', '3a', '4a', '5a', '6a',
+        '7a', '8a', '9a','10a','11a',
+        '12p', '1p', '2p', '3p', '4p', '5p',
+        '6p', '7p', '8p', '9p', '10p', '11p'];
+var days_3_1 = ['Saturday', 'Friday', 'Thursday',
+        'Wednesday', 'Tuesday', 'Monday', 'Sunday'];
+
+var data_3_1 = [[0,0,5],[0,1,1],[0,2,0],[0,3,0],[0,4,0],[0,5,0],[0,6,0],[0,7,0],[0,8,0],[0,9,0],[0,10,0],[0,11,2],[0,12,4],[0,13,1],[0,14,1],[0,15,3],[0,16,4],[0,17,6],[0,18,4],[0,19,4],[0,20,3],[0,21,3],[0,22,2],[0,23,5],[1,0,7],[1,1,0],[1,2,0],[1,3,0],[1,4,0],[1,5,0],[1,6,0],[1,7,0],[1,8,0],[1,9,0],[1,10,5],[1,11,2],[1,12,2],[1,13,6],[1,14,9],[1,15,11],[1,16,6],[1,17,7],[1,18,8],[1,19,12],[1,20,5],[1,21,5],[1,22,7],[1,23,2],[2,0,1],[2,1,1],[2,2,0],[2,3,0],[2,4,0],[2,5,0],[2,6,0],[2,7,0],[2,8,0],[2,9,0],[2,10,3],[2,11,2],[2,12,1],[2,13,9],[2,14,8],[2,15,10],[2,16,6],[2,17,5],[2,18,5],[2,19,5],[2,20,7],[2,21,4],[2,22,2],[2,23,4],[3,0,7],[3,1,3],[3,2,0],[3,3,0],[3,4,0],[3,5,0],[3,6,0],[3,7,0],[3,8,1],[3,9,0],[3,10,5],[3,11,4],[3,12,7],[3,13,14],[3,14,13],[3,15,12],[3,16,9],[3,17,5],[3,18,5],[3,19,10],[3,20,6],[3,21,4],[3,22,4],[3,23,1],[4,0,1],[4,1,3],[4,2,0],[4,3,0],[4,4,0],[4,5,1],[4,6,0],[4,7,0],[4,8,0],[4,9,2],[4,10,4],[4,11,4],[4,12,2],[4,13,4],[4,14,4],[4,15,14],[4,16,12],[4,17,1],[4,18,8],[4,19,5],[4,20,3],[4,21,7],[4,22,3],[4,23,0],[5,0,2],[5,1,1],[5,2,0],[5,3,3],[5,4,0],[5,5,0],[5,6,0],[5,7,0],[5,8,2],[5,9,0],[5,10,4],[5,11,1],[5,12,5],[5,13,10],[5,14,5],[5,15,7],[5,16,11],[5,17,6],[5,18,0],[5,19,5],[5,20,3],[5,21,4],[5,22,2],[5,23,0],[6,0,1],[6,1,0],[6,2,0],[6,3,0],[6,4,0],[6,5,0],[6,6,0],[6,7,0],[6,8,0],[6,9,0],[6,10,1],[6,11,0],[6,12,2],[6,13,1],[6,14,3],[6,15,4],[6,16,0],[6,17,0],[6,18,0],[6,19,0],[6,20,1],[6,21,2],[6,22,2],[6,23,6]];
+
+var option3_1 = {
+    title: {
+        text: 'Punch Card of Github',
+    },
+    legend: {
+        data: ['Punch Card'],
+        left: 'right'
+    },
+    polar: {},
+    tooltip: {
+        formatter: function (params) {
+            return params.value[2] + ' commits in ' + hours[params.value[1]] + ' of ' + days[params.value[0]];
+        }
+    },
+    angleAxis: {
+        type: 'category',
+        data: hours_3_1,
+        boundaryGap: false,
+        splitLine: {
+            show: true,
+            lineStyle: {
+                color: '#ddd',
+                type: 'dashed'
+            }
+        },
+        axisLine: {
+            show: false
+        }
+    },
+    radiusAxis: {
+        type: 'category',
+        data: days_3_1,
+        axisLine: {
+            show: false
+        },
+        axisLabel: {
+            rotate: 45
+        }
+    },
+    series: [{
+        name: 'Punch Card',
+        type: 'scatter',
+        coordinateSystem: 'polar',
+        symbolSize: function (val) {
+            return val[2] * 2;
+        },
+        data: data_3_1,
+        animationDelay: function (idx) {
+            return idx * 5;
+        }
+    }]
+};
+
+
+
+var option4_0 = {
+    title: {
+        text: '动态数据',
+        subtext: '纯属虚构'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data:['最新成交价', '预购队列']
+    },
+    toolbox: {
+        show: true,
+        feature: {
+            dataView: {readOnly: false},
+            restore: {},
+            saveAsImage: {}
+        }
+    },
+    dataZoom: {
+        show: false,
+        start: 0,
+        end: 100
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: true,
+            data: (function (){
+                var now = new Date();
+                var res = [];
+                var len = 10;
+                while (len--) {
+                    res.unshift(now.toLocaleTimeString().replace(/^\D*/,''));
+                    now = new Date(now - 2000);
+                }
+                return res;
+            })()
+        },
+        {
+            type: 'category',
+            boundaryGap: true,
+            data: (function (){
+                var res = [];
+                var len = 10;
+                while (len--) {
+                    res.push(len + 1);
+                }
+                return res;
+            })()
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value',
+            scale: true,
+            name: '价格',
+            max: 20,
+            min: 0,
+            boundaryGap: [0.2, 0.2]
+        },
+        {
+            type: 'value',
+            scale: true,
+            name: '预购量',
+            max: 1200,
+            min: 0,
+            boundaryGap: [0.2, 0.2]
+        }
+    ],
+    series: [
+        {
+            name:'预购队列',
+            type:'bar',
+            xAxisIndex: 1,
+            yAxisIndex: 1,
+            data:(function (){
+                var res = [];
+                var len = 10;
+                while (len--) {
+                    res.push(Math.round(Math.random() * 1000));
+                }
+                return res;
+            })()
+        },
+        {
+            name:'最新成交价',
+            type:'line',
+            data:(function (){
+                var res = [];
+                var len = 0;
+                while (len < 10) {
+                    res.push((Math.random()*10 + 5).toFixed(1) - 0);
+                    len++;
+                }
+                return res;
+            })()
+        }
+    ]
+};
+
+
+var option4_1 = {
+    title:{
+        text: '中国地图',
+        subtext: '需要引入china.js'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{b}'
+    },
+    series: [
+        {
+            name: '中国',
+            type: 'map',
+            mapType: 'china',
+            selectedMode : 'multiple',
+            label: {
+                normal: {
+                    show: true
+                },
+                emphasis: {
+                    show: true
+                }
+            },
+            data:[
+                {name:'广东', selected:true}
+            ]
+        }
+    ]
+};
+var opt5_0_data_length = 10;
+var now = new Date();
+var getNextDate = function(){
+    now = new Date(now.getTime() + 2000);
+    return now;
+}
+var opt5_0_timeArr = (function(){
+    var len = opt5_0_data_length;
+    var dateArr = [];
+    for(var i=0;i<len;i++){
+        dateArr.push(now);
+        getNextDate();
+    }
+    return dateArr;
+})();
+//console.log(opt5_0_timeArr);
+var getRandomYData = function(){
+    var res = [];
+    len = opt5_0_data_length;
+    while (len--) {
+        res.push(Math.round(Math.random() * 1000));
+    }
+    return res;
+}
+//console.log(getRandomYData());
+//console.log(getRandomYData());
+var formatTime = function (d) {
+  var s2 = ":";
+  var hh = d.getHours() < 10 ? ("0" + d.getHours()) : d.getHours();
+  var mi = d.getMinutes() < 10 ? ("0" + d.getMinutes()) : d.getMinutes();
+  var ss = d.getSeconds() < 10 ? ("0" + d.getSeconds()) : d.getSeconds();
+  return hh + s2 + mi + s2 + ss;
+}
+
+var option5_0 = {
+    title: {
+        text: '动态数据',
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter:function(params){
+            var str = "";
+            var index = params.seriesIndex;
+            if(index==0){
+                var date0 = formatTime(params.value[0]);
+                var data0 = params.value[1];
+                str = "series_a "+date0+"," +data0;
+            }else if(index==1){
+                var date1 = formatTime(params.value[0]);
+                var data1 = params.value[1];
+                str = "series_b "+date1+","+data1;
+            }
+            return str;
+        }
+    },
+    legend: {
+        data:['a', 'b']
+    },
+    toolbox: {
+        show: true,
+        feature: {
+            dataView: {readOnly: false},
+            restore: {},
+            saveAsImage: {}
+        }
+    },
+    dataZoom: {
+        show: false,
+        start: 0,
+        end: 100
+    },
+    xAxis: [
+        {
+            type: 'time',
+            boundaryGap: true
+            //data:opt5_0_timeArr
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value',
+            name: 'bbb',
+            max: 1200,
+            min: 0,
+            boundaryGap: [0.2, 0.2]
+        }
+    ],
+    series: [
+        {
+            name:'a',
+            type:'line',
+            data:(function (){
+                var arr = [];
+                var dataArr = getRandomYData();
+                for(var i=0;i<opt5_0_data_length;i++){
+                    arr.push([opt5_0_timeArr[i],dataArr[i]]);
+                }
+                return arr;
+            })()
+        },
+        {
+            name:'b',
+            type:'line',
+            data:(function (){
+                var arr = [];
+                var dataArr = getRandomYData();
+                for(var i=0;i<opt5_0_data_length;i++){
+                    arr.push([opt5_0_timeArr[i],dataArr[i]]);
+                }
+                return arr;
+            })()
+        }
+    ]
+};
+
+var labelRight_5_1 = {
+    normal: {
+        position: 'right'
+    }
+};
+var option5_1 = {
+    title: {
+        text: '交错正负轴标签',
+    },
+    tooltip : {
+        trigger: 'axis',
+        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+        }
+    },
+    grid: {
+        top: 80,
+        bottom: 30
+    },
+    xAxis: {
+        type : 'value',
+        position: 'top',
+        splitLine: {lineStyle:{type:'dashed'}},
+    },
+    yAxis: {
+        type : 'category',
+        axisLine: {show: false},
+        axisLabel: {show: true},
+        axisTick: {show: false},
+        splitLine: {show: false},
+        data : ['ten', 'nine', 'eight', 'seven', 'six', 'five', 'four', 'three', 'two', 'one']
+    },
+    series : [
+        {
+            name:'生活费',
+            type:'bar',
+            stack: '总量',
+            label: {
+                normal: {
+                    show: true,
+                    formatter: '{b}'
+                }
+            },
+            data:[
+                {value: 0.07, label: labelRight_5_1},
+                {value: 0.09, label: labelRight_5_1},
+                0.2, 0.44,
+                {value: 0.23, label: labelRight_5_1},
+                0.08,
+                {value: 0.17, label: labelRight_5_1},
+                0.47,
+                {value: 0.36, label: labelRight_5_1},
+                0.18
+            ]
+        }
+    ]
+};
+
+
+/**
+ * 用百度的Echarts做图,需要引入3.0以上版本的js包;
+ * 参数1:要做图的容器的ID;
+ * 参数2:option;
+ * @param {Object} containerId 要做图的容器的ID;
+ * @param {Object} option option对象
+ */
+function drawEchart(containerId,option){
+    if(typeof(containerId)=="string" && typeof(option)=="object" && containerId!=null && containerId!=""){
+        try{
+            var myChart = echarts.init(document.getElementById(containerId));
+            // 为echarts对象加载数据 
+            myChart.setOption(option);
+            return myChart;
+        }catch(e){
+            console.log(e);
+        }
+    }
+}
+
+var echartInstances = [];
+
+//绘图
+function readyDraw(){
+    var myChart0_0 = drawEchart('container0_0',option0_0);
+    if(myChart0_0){
+        echartInstances.push(myChart0_0);
+    }
+
+    var myChart0_1 = drawEchart('container0_1',option0_1);
+    if(myChart0_1){
+        echartInstances.push(myChart0_1);
+        myChart0_1.on('click', function (params) {
+            console.log(params);
+            alert("点击的区域是:"+params.name);
+        });
+    }
+
+    var myChart1_0 =  drawEchart('container1_0',option1_0);
+    if(myChart1_0){
+        echartInstances.push(myChart1_0);
+    }
+
+    var myChart1_1 = drawEchart('container1_1',option1_1);
+    if(myChart1_1){
+        echartInstances.push(myChart1_1);
+        myChart1_1.on('click', function (params) {
+            console.log(params);
+            alert("点击的区域是:"+params.name);
+        });
+    }
+
+    var myChart2_0 =drawEchart('container2_0',option2_0);
+    if(myChart2_0){
+        echartInstances.push(myChart2_0);
+    }
+
+    var myChart2_1 = drawEchart('container2_1',option2_1);
+    if(myChart2_1){
+        echartInstances.push(myChart2_1);
+        var app_2_1 = {};
+        app_2_1.timeTicket = setInterval(function (){
+            option2_1.series[0].data[0].value = (Math.random()*100).toFixed(2) - 0;
+            option2_1.series[1].data[0].value = (Math.random()*7).toFixed(2) - 0;
+            option2_1.series[2].data[0].value = (Math.random()*2).toFixed(2) - 0;
+            option2_1.series[3].data[0].value = (Math.random()*2).toFixed(2) - 0;
+            myChart2_1.setOption(option2_1,true);
+        },2000);
+    }
+
+    var myChart3_0 = drawEchart('container3_0',option3_0);
+    if(myChart3_0){
+        echartInstances.push(myChart3_0);
+    }
+
+    var myChart3_1 = drawEchart('container3_1',option3_1);
+    if(myChart3_1){
+        echartInstances.push(myChart3_1);
+    }
+
+    var myChart4_0 = drawEchart('container4_0',option4_0);
+    if(myChart4_0){
+        echartInstances.push(myChart4_0);
+        var app_4_0 = {};
+        clearInterval(app_4_0.timeTicket);
+        app_4_0.count = 11;
+        app_4_0.timeTicket = setInterval(function (){
+            var axisData_4_0 = (new Date()).toLocaleTimeString().replace(/^\D*/,'');
+
+            var data0 = option4_0.series[0].data;
+            var data1 = option4_0.series[1].data;
+            data0.shift();
+            data0.push(Math.round(Math.random() * 1000));
+            data1.shift();
+            data1.push((Math.random() * 10 + 5).toFixed(1) - 0);
+
+            option4_0.xAxis[0].data.shift();
+            option4_0.xAxis[0].data.push(axisData_4_0);
+            option4_0.xAxis[1].data.shift();
+            option4_0.xAxis[1].data.push(app_4_0.count++);
+
+            myChart4_0.setOption(option4_0);
+        }, 2100);
+    }
+
+    var myChart4_1 = drawEchart('container4_1',option4_1);
+    if(myChart4_1){
+        echartInstances.push(myChart4_1);
+    }
+
+    var myChart5_0 = drawEchart('container5_0',option5_0);
+    if(myChart5_0){
+        echartInstances.push(myChart5_0);
+        //console.log(option5_0);
+        var app_5_0 = {};
+        clearInterval(app_5_0.timeTicket);
+        app_5_0.count = 11;
+        app_5_0.timeTicket = setInterval(function (){
+            //var axisData_5_0 = (new Date()).toLocaleTimeString().replace(/^\D*/,'');
+
+            var data0 = option5_0.series[0].data;
+            var arr = data0[data0.length-1];
+            var dd = new Date(arr[0]);
+            dd.getSeconds(dd.getSeconds()+2);
+            var axisData_5_0 = getNextDate();
+
+            var data1 = option5_0.series[1].data;
+            data0.shift();
+            data0.push([axisData_5_0,Math.round(Math.random() * 1000)]);
+            data1.shift();
+            data1.push([axisData_5_0,Math.round(Math.random() * 1000)]);
+
+            //console.log(axisData_5_0);
+
+            //option5_0.xAxis[0].data.shift();
+           // option5_0.xAxis[0].data.push(axisData_5_0);
+            //option5_0.xAxis[1].data.shift();
+            //option5_0.xAxis[1].data.push(axisData_5_0);
+
+            myChart5_0.setOption(option5_0);
+        }, 2000);
+    }
+	
+	var myChart5_1 = drawEchart('container5_1',option5_1);
+
+}
+/*
+window.addEventListener("resize", function () {
+    for(var i=0 ; i<echartInstances.length;i++){
+        var ins = echartInstances[i];
+        ins.resize();
+    }
+});
+*/
+</script>
+<style>
+    .div_tb{
+        display: table;
+        width: 100%;
+        margin:0px;
+    }
+    .div_tb>div{
+        display: table-row;
+    }
+    .div_tb>div>div{
+        display: table-cell;
+        width: 50%;
+        /*高度,必须指定*/
+        height: 450px;
+        vertical-align: middle;
+        padding-left: 10px;
+        padding-top: 10px;
+    }
+
+    .div_container{
+        width:100%;
+        height:100%;
+        border:1px solid green;
+    }
+    .span_info{
+        color:green;
+    }
+</style>
+</head>
+<body onload="readyDraw()" >
+    <div style="float:left;width:98%;">
+        <div style='padding-left: 30px;'><p>
+        <span class="span_info">必须一定只能引入3.0以及以上版本的chart.js</span>
+        &nbsp
+        <a href="http://echarts.baidu.com/gallery/vendors/echarts/echarts-all-3.js">百度Echart3</a>
+        &nbsp<a href="/js/echarts-all-resource.js">本机服务器完整版源代码</a>
+        </p></div>
+        <div class="div_tb">
+            <div>
+                <div>
+                    <div id="container0_0" class="div_container"></div>
+                </div>
+                <div>
+                    <div id="container0_1" class="div_container"></div>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <div id="container1_0" class="div_container"></div>
+                </div>
+                <div>
+                    <div id="container1_1" class="div_container"></div>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <div id="container2_0" class="div_container"></div>
+                </div>
+                <div>
+                    <div id="container2_1" class="div_container"></div>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <div id="container3_0" class="div_container"></div>
+                </div>
+                <div>
+                    <div id="container3_1" class="div_container"></div>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <div id="container4_0" class="div_container"></div>
+                </div>
+                <div>
+                    <div id="container4_1" class="div_container"></div>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <div id="container5_0" class="div_container"></div>
+                </div>
+                <div>
+                    <div id="container5_1" class="div_container"></div>
+                </div>
+            </div>
+        </div>
+        <div style="display:table;width:100%;padding-top:20px;">
+            <div style="display:table-cell;vertical-align:middle;width:100%;" align="center">
+                <span style="width:100%;color:green;font-size:18px;">--end--</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

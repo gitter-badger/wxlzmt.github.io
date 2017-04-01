@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head> 
+<meta charset="utf-8" /> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>测试滚动位置监听</title> 
+<script type="text/javascript" >
+//获取滚动条当前的位置
+function getScrollTop() {
+  var scrollTop = 0;
+  if (document.documentElement && document.documentElement.scrollTop) {
+    scrollTop = document.documentElement.scrollTop;
+  } else if (document.body) {
+    scrollTop = document.body.scrollTop;
+  }
+  return scrollTop;
+}
+
+//获取当前可视范围的高度
+function getClientHeight() {
+  var clientHeight = 0;
+  if (document.body.clientHeight && document.documentElement.clientHeight) {
+    clientHeight = Math.min(document.body.clientHeight, document.documentElement.clientHeight);
+  } else {
+    clientHeight = Math.max(document.body.clientHeight, document.documentElement.clientHeight);
+  }
+  return clientHeight;
+}
+
+//获取文档完整的高度
+function getScrollHeight() {
+  return Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+}
+
+</script>
+</head>
+<body style="height:100%;overflow-y:auto; " >
+<div id='idDivToast' style="display:block;position:fixed;top:20px;left:20px;z-index:300;
+width:250px;height:100px;overflow:scroll;
+background-color:rgb(241,241,241); color:rgb(111,111,111); 
+padding-top:10px;padding-left:10px;font-size:16px; " ></div>
+<div align='center' >
+<p>充数的，往下滑</p>
+<p>充数的，往下滑</p>
+<p>充数的，往下滑</p>
+<p>充数的，往下滑</p>
+<p>充数的，往下滑</p>
+<p>充数的，往下滑</p>
+<p>充数的，往下滑</p>
+<p>充数的，往下滑</p>
+<p>充数的，往下滑</p>
+<p>充数的，往下滑</p>
+<p>充数的，往下滑</p>
+<p>充数的，往下滑</p>
+<p>继续往下滑</p>
+<p>继续往下滑</p>
+<p>继续往下滑</p>
+<p>继续往下滑</p>
+<p>继续往下滑</p>
+<p>继续往下滑</p>
+<p>继续往下滑</p>
+<p>继续往下滑</p>
+<p>继续往下滑</p>
+<p>继续往下滑</p>
+<p>继续往下滑</p>
+<p>继续往下滑</p>
+<p>继续往下滑</p>
+<p>↓↓↓↓↓↓↓↓↓↓↓↓</p>
+<p>↓↓↓↓↓↓↓↓↓↓↓↓</p>
+<p>↓↓↓↓↓↓↓↓↓↓↓↓</p>
+<p>↓↓↓↓↓↓↓↓↓↓↓↓</p>
+<p>↓↓↓↓↓↓↓↓↓↓↓↓</p>
+<p>↓↓↓↓↓↓↓↓↓↓↓↓</p>
+<p>↓↓↓↓↓↓↓↓↓↓↓↓</p>
+<p>↓↓↓↓↓↓↓↓↓↓↓↓</p>
+<p>↓↓↓↓↓↓↓↓↓↓↓↓</p>
+<p>↓↓↓↓↓↓↓↓↓↓↓↓</p>
+<p>↓↓↓↓↓↓↓↓↓↓↓↓</p>
+<p>↓↓↓↓↓↓↓↓↓↓↓↓</p>
+<p>↓↓↓↓↓↓↓↓↓↓↓↓</p>
+<p>↓↓↓↓↓↓↓↓↓↓↓↓</p>
+<p>↓↓↓↓↓↓↓↓↓↓↓↓</p>
+<p>↓↓↓↓↓↓↓↓↓↓↓↓</p>
+<p>↓↓↓↓↓↓↓↓↓↓↓↓</p>
+<p>↓↓↓↓↓↓↓↓↓↓↓↓</p>
+<p>↓↓↓↓↓↓↓↓↓↓↓↓</p>
+<p>↓↓↓↓↓↓↓↓↓↓↓↓</p>
+<p>↓↓↓↓↓↓↓↓↓↓↓↓</p>
+<p>↓↓↓↓↓↓↓↓↓↓↓↓</p>
+<p>↓↓↓↓↓↓↓↓↓↓↓↓</p>
+<p>↓↓↓↓↓↓↓↓↓↓↓↓</p>
+<p>↓↓↓↓↓↓↓↓↓↓↓↓</p>
+<p>↓↓↓↓↓↓↓↓↓↓↓↓</p>
+<p>↓↓↓↓↓↓↓↓↓↓↓↓</p>
+<p>↓↓↓↓↓↓↓↓↓↓↓↓</p>
+<p>↓↓↓↓↓↓↓↓↓↓↓↓</p>
+<p>↓↓↓↓↓↓↓↓↓↓↓↓</p>
+<p>↓↓↓↓↓↓↓↓↓↓↓↓</p>
+<p>↓↓↓↓↓↓↓↓↓↓↓↓</p>
+<p>↓↓↓↓↓↓↓↓↓↓↓↓</p>
+<p>↓↓↓↓↓↓↓↓↓↓↓↓</p>
+<p>↓↓↓↓↓↓↓↓↓↓↓↓</p>
+<p>↓↓↓↓↓↓↓↓↓↓↓↓</p>
+<p>↓↓↓↓↓↓↓↓↓↓↓↓</p>
+<p>↓↓↓↓↓↓↓↓↓↓↓↓</p>
+<p>↓↓↓↓↓↓↓↓↓↓↓↓</p>
+<p>↓↓↓↓↓↓↓↓↓↓↓↓</p>
+<p>↓↓↓↓↓↓↓↓↓↓↓↓</p>
+<p>↓↓↓↓↓↓↓↓↓↓↓↓</p>
+<p>↓↓↓↓↓↓↓↓↓↓↓↓</p>
+<p>↓↓↓↓↓↓↓↓↓↓↓↓</p>
+<p>↓↓↓↓↓↓↓↓↓↓↓↓</p>
+<p>↓↓↓↓↓↓↓↓↓↓↓↓</p>
+<p>坚持往下滑，加油！</p>
+<p>坚持往下滑，加油！</p>
+<p>坚持往下滑，加油！</p>
+<p>坚持往下滑，加油！</p>
+<p>坚持往下滑，加油！</p>
+<p>坚持往下滑，加油！</p>
+<p>坚持往下滑，加油！</p>
+<p>坚持往下滑，加油！</p>
+<p>坚持往下滑，加油！</p>
+<p>坚持往下滑，加油！</p>
+<p>坚持往下滑，加油！</p>
+<p>坚持往下滑，加油！</p>
+<p>坚持往下滑，加油！</p>
+<p>坚持往下滑，加油！</p>
+<p>坚持往下滑，加油！</p>
+<p>坚持往下滑，加油！</p>
+<p>坚持往下滑，加油！</p>
+<p>坚持往下滑，加油！</p>
+<p>坚持往下滑，加油！</p>
+<p>坚持往下滑，加油！</p>
+<p>坚持往下滑，加油！</p>
+<p>坚持往下滑，加油！</p>
+<p>坚持往下滑，加油！</p>
+<p>坚持往下滑，加油！</p>
+<p>坚持往下滑，加油！</p>
+<p>坚持往下滑，加油！</p>
+<p>坚持往下滑，加油！</p>
+<p>坚持往下滑，加油！</p>
+<p>坚持往下滑，加油！</p>
+<p>坚持往下滑，加油！</p>
+<p>↓↓↓↓↓↓↓↓↓↓↓↓</p>
+<p>↓↓↓↓↓↓↓↓↓↓↓↓</p>
+<p>↓↓↓↓↓↓↓↓↓↓↓↓</p>
+<p>到底了，弹弹弹</p>
+</div>
+<script>
+	window.onscroll = function () {
+		var scrollTop = getScrollTop();
+		var clientHeight = getClientHeight();
+		var scrollHeight = getScrollHeight();
+		var htm = "scrollTop="+scrollTop+"<br/>clientHeight="+clientHeight+"<br/>scrollHeight="+scrollHeight;
+		document.getElementById("idDivToast").innerHTML=htm;
+		if (scrollTop + clientHeight == scrollHeight) { 
+			alert("到达底部");
+		} 
+	} 
+</script>
+</body>
+</html>

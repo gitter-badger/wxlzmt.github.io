@@ -1,0 +1,61 @@
+<!DOCTYPE html> 
+<html ng-app="myApp" >
+<head>
+<meta charset='utf8' ></meta>
+<style>
+	ul{
+		list-style:none;
+	}
+	li{
+		margin-top:20px;
+		margin-left:10px;
+	}
+</style>
+
+<script src="/js/angular-1.4.6.js"></script>
+<script src="/js/angular-translate-2.7.2.js"></script>
+<script src="/js/angular-translate-loader-static-files-2.13.1.js"></script>
+
+<script type="text/javascript"> 
+
+	var app = angular.module('myApp', ['pascalprecht.translate']);
+	
+	app.config(function($translateProvider){
+		$translateProvider.useStaticFilesLoader({ 
+			prefix: '/pages/angularjs/i18n/test_i18n_asyn/', 
+			suffix: '.json' 
+		});
+		$translateProvider.preferredLanguage('zh_CN');
+	});
+	
+	app.controller("TranslateController",function($scope,$translate){
+		$scope.changeLanguage = function(langKey){
+			$translate.use(langKey);
+		}
+	});
+	
+
+</script> 
+
+</head> 
+<body > 
+	<ul>
+		<li ng-controller="TranslateController">
+			<table>
+				<tr><td>
+					<p>{{'TEST_KEY1' | translate}}</p>
+				</td></tr>
+				<tr><td>
+					<p>{{'TEST_KEY2' | translate}}</p>
+				</td></tr>
+				<tr><td>
+					<button ng-click="changeLanguage('en_US')" translate="CLICK_TO_CHANGE_ENGLISH" ></button>
+				</td></tr>
+				<tr><td>
+					<button ng-click="changeLanguage('zh_CN')" translate="CLICK_TO_CHANGE_CHINESE" ></button>
+				</td></tr>
+			</table>
+		</li>
+	</ul>   
+</body> 
+</html> 

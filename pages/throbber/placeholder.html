@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="zh">
+<head>
+	<meta charset="utf-8">
+	<title>进度圈</title>
+	<style type="text/css">
+		.throbber_icon{
+			background-image: url(throbber_small.svg);
+			background-repeat: no-repeat;
+		}
+	</style>
+	<script type="text/javascript">
+		var max_size = 300;
+		var min_size = 16;
+		var increase = 10;
+		function loadReady(){
+			document.addEventListener("mousewheel",function(event){
+				if(event instanceof WheelEvent){
+					var d = event.wheelDelta||event.detail;
+					if(d>0){
+						changeIconLagger();
+					}else{
+						changeIconSmaller();
+					}
+				}
+				console.log(event);
+			},true);
+		}
+		function changeIconLagger(){
+			changeSize(increase);
+		}
+		function changeIconSmaller(){
+			changeSize(-increase);
+		}
+		function changeSize(i){
+			if(i!= null && typeof(i)=="number"){
+				var div = document.getElementById("update_status_icon");
+				var width = toNumber(div.style.width);
+				var height = toNumber(div.style.height);
+				var size = width>height?height:width;//取最小值;
+				size = size + i;
+				if(size<min_size){
+					size=min_size;
+				}else if(size>max_size){
+					size = max_size;
+				}
+				//宽==高,确保是正方形;
+				div.style.width = size+"px";
+				div.style.height = size+"px";
+			}
+		}
+		//将带有 px 结尾的字符串,转换为数值; 例如 px="50px" ,return 50;
+		function toNumber(px){
+			var n = 0;
+			if(px!=null){
+				px = px.toLowerCase();
+				if(px.indexOf("px")>0){
+					n = parseInt(px.substring(0,px.length-2));
+				}
+			}
+			return n;
+		}
+	</script>
+</head>
+<body onload="loadReady();" style="width:100%;height: 100%; " >
+<div style="width:100%;height:100%;overflow: hidden;position: absolute;top: 0px;left: 0px;  " >
+<div style="display: table;width: 100%;height: 100%; ">
+<div align="center" style="display: table-cell; position: relative;vertical-align: middle; " >
+<!-- 左右上下 居中,由此开始 -->
+	<div style="position: absolute;top: 20px;width: 100%;text-align: center;" >滚动鼠标滚轮改变大小</div>
+	<div>
+		<div id="update_status_icon" class="throbber_icon" style="width: 16px;height: 16px; " ></div>
+	</div>
+</div>
+</div>		
+</div>
+</body>
+</html>
