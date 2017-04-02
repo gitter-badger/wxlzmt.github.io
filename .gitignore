@@ -1,0 +1,28 @@
+*.class
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+
+#自定义忽略文件--start
+index.js
+index_head.html
+log.txt
+main.html
+node.exe
+start.bat
+#自定义忽略文件--end
+
+#---------分割线---------
+
+#自定义忽略文件夹--start
+
+#自定义忽略文件夹--end
