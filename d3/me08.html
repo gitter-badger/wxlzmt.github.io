@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<meta charset="gbk">
+<meta charset="utf8">
 <style>
 .axis text {
   font: 10px sans-serif;
@@ -26,14 +26,14 @@ table td{
 		<div>
 			<div id="div_canvas" style="float:none;"></div>
 		</div>
-	<button id="bt_show_all_chart">È«²¿ÏÔÊ¾</button>
-	<button id="bt_hide_all_chart">È«²¿Òş²Ø</button>
-	<button id="bt_refresh" onclick="refresh();">½öÓÃÓÚ²âÊÔ:Ë¢ĞÂËæ»ú²âÊÔÊı¾İ</button>
-	<p>×¢:µã»÷ÕÛÏßÍ¼Ãû,ÏÔÊ¾/Òş²Ø</p>
+	<button id="bt_show_all_chart">å…¨éƒ¨æ˜¾ç¤º</button>
+	<button id="bt_hide_all_chart">å…¨éƒ¨éšè—</button>
+	<button id="bt_refresh" onclick="refresh();">ä»…ç”¨äºæµ‹è¯•:åˆ·æ–°éšæœºæµ‹è¯•æ•°æ®</button>
+	<p>æ³¨:ç‚¹å‡»æŠ˜çº¿å›¾å,æ˜¾ç¤º/éšè—</p>
 </body>
 <script src="/js/d3.min.js"></script>
 <script>
-//²âÊÔÊı¾İ;
+//æµ‹è¯•æ•°æ®;
 var data_json = {
 	"rangeX" : ["2010-01-01","2010-12-31"],
 	"rangeY" :[0,400],
@@ -63,29 +63,29 @@ var data_json = {
 
 console.log(data_json);
 
-//chartDataÊÇ¶à×éÕÛÏßÍ¼;
+//chartDataæ˜¯å¤šç»„æŠ˜çº¿å›¾;
 var chartData = eval(data_json);
 
-//×öÍ¼º¯Êı,·â×°;
-function d3Chart(id){//²ÎÊıÊÇÒ»¸öidÖµ
-	this._margin={left:30,right:30,top:60,bottom:60};//±ß¾àmargin
-	this._width=600;//¿í
-	this._height=400;//¸ß
-	this._id_canvas="div_canvas";//»­²¼ËùÔÚÈİÆ÷µÄidÖµ;
-	this._data={};//³õÊ¼Êı¾İÎª¿Õ;
-	this._xScale;//xÖádomainºÍrangeµÄ±ä»»
-	this._yScale;//yÖá,Í¬ÉÏ;
-	this._timeFormat=d3.time.format("%m-%d");//xÖáÊ±¼ä¸ñÊ½;
-	this._svg_data_canvas;//ÕâÊÇÒ»¸ög±êÇ©¶ÔÏó,ÄÚ ·ÅÖÃÕÛÏßÍ¼;
-	this._g_canvas;//ÕâÊÇsvg±êÇ©µÄ×Ó±êÇ©g
+//åšå›¾å‡½æ•°,å°è£…;
+function d3Chart(id){//å‚æ•°æ˜¯ä¸€ä¸ªidå€¼
+	this._margin={left:30,right:30,top:60,bottom:60};//è¾¹è·margin
+	this._width=600;//å®½
+	this._height=400;//é«˜
+	this._id_canvas="div_canvas";//ç”»å¸ƒæ‰€åœ¨å®¹å™¨çš„idå€¼;
+	this._data={};//åˆå§‹æ•°æ®ä¸ºç©º;
+	this._xScale;//xè½´domainå’Œrangeçš„å˜æ¢
+	this._yScale;//yè½´,åŒä¸Š;
+	this._timeFormat=d3.time.format("%m-%d");//xè½´æ—¶é—´æ ¼å¼;
+	this._svg_data_canvas;//è¿™æ˜¯ä¸€ä¸ªgæ ‡ç­¾å¯¹è±¡,å†… æ”¾ç½®æŠ˜çº¿å›¾;
+	this._g_canvas;//è¿™æ˜¯svgæ ‡ç­¾çš„å­æ ‡ç­¾g
 	this._hide_all_chart;//id
 	this._show_all_chart;//id
 	this._interpolateType ="linear";//"step-after" ;
-	if(id){//Èô´«ÈëidÖµ,Ôò¸³ĞÂÖµ;
+	if(id){//è‹¥ä¼ å…¥idå€¼,åˆ™èµ‹æ–°å€¼;
 		this._id_canvas=id;
 	}
 }
-//À©Õ¹ÄÚ²¿·½·¨;
+//æ‰©å±•å†…éƒ¨æ–¹æ³•;
 d3Chart.prototype={
 	width:function(w){
 		if(w){
@@ -117,13 +117,13 @@ d3Chart.prototype={
 	},
 	canvasId:function(i){
 		if(i){
-			d3.select("#"+this._id_canvas).html("");//ÏÈ,Çå¿ÕÔ­ÈİÆ÷ÄÚµÄ¶«Î÷;
-			this._id_canvas=i;//ÔÙ¸³ĞÂÖµ;
+			d3.select("#"+this._id_canvas).html("");//å…ˆ,æ¸…ç©ºåŸå®¹å™¨å†…çš„ä¸œè¥¿;
+			this._id_canvas=i;//å†èµ‹æ–°å€¼;
 		}else{
 			return this._id_canvas;
 		}
 	},
-	timeFormat:function(t){//ÉèÖÃ(»ñÈ¡)ºáÖáÊ±¼äµÄformat,²ÎÊıtÊÇÒ»¸öString
+	timeFormat:function(t){//è®¾ç½®(è·å–)æ¨ªè½´æ—¶é—´çš„format,å‚æ•°tæ˜¯ä¸€ä¸ªString
 		if(t){
 			this._timeFormat=d3.time.format(t);
 		}else{
@@ -137,28 +137,28 @@ d3Chart.prototype={
 			return this._interpolateType;
 		}
 	},
-	drawAxis:function(){//»­×ø±êÖá;
-		//ÏÈÒÆ³ısvg,³õ´ÎÖ´ĞĞÊ±,ÎŞĞ§;
+	drawAxis:function(){//ç”»åæ ‡è½´;
+		//å…ˆç§»é™¤svg,åˆæ¬¡æ‰§è¡Œæ—¶,æ— æ•ˆ;
 		var canvas = d3.select("#"+this._id_canvas);
 		canvas.selectAll("svg").remove();
 		
 		var width = this._width-this._margin.left-this._margin.right;
 		var height = this._height-this._margin.top-this._margin.bottom;
 		
-		var x_scale = this._data.rangeX;//ÕâÊÇ¸öÊı×é
-		var y_scale = this._data.rangeY;//È·¶¨ÉÏÏÂÏŞ;
+		var x_scale = this._data.rangeX;//è¿™æ˜¯ä¸ªæ•°ç»„
+		var y_scale = this._data.rangeY;//ç¡®å®šä¸Šä¸‹é™;
 
 		var t0 = new Date(x_scale[0]);
 		var t1 = new Date(x_scale[1]);
 		this._xScale = d3.time.scale().domain([t0,t1]).range([0,width]).clamp(true);
 		this._yScale = d3.scale.linear().domain(y_scale).range([height,0]).clamp(true);
 		
-		//×ø±êÖáÓëÊı¾İÓòÖ®¼äµÄÓ³Éä,½¨Á¢×ø±êÖá;
+		//åæ ‡è½´ä¸æ•°æ®åŸŸä¹‹é—´çš„æ˜ å°„,å»ºç«‹åæ ‡è½´;
 		var xAxis = d3.svg.axis().scale(this._xScale).tickFormat(this._timeFormat).orient("bottom");
 		//var xAxis = d3.svg.axis().scale(x).tickValues(x.domain()).orient("bottom");
 		var yAxis = d3.svg.axis().scale(this._yScale).orient("left");//.ticks(default=10);
 
-		//<svg>±êÇ©
+		//<svg>æ ‡ç­¾
 		var svg =d3.select("#"+this._id_canvas).append("svg");
 		
 		svg.append("g").append("rect")
@@ -173,41 +173,41 @@ d3Chart.prototype={
 			.style({'text-anchor': 'middle'});
 			
 		
-		//Éú³ÉÒ»¸ö<g>±êÇ©, ÊÇ<svg>¸ùµÄ×Ó±êÇ©
+		//ç”Ÿæˆä¸€ä¸ª<g>æ ‡ç­¾, æ˜¯<svg>æ ¹çš„å­æ ‡ç­¾
 		var g = svg.attr("width", width + this._margin.left + this._margin.right)
 			.attr("height", height + this._margin.top + this._margin.bottom)
 			.append("g")
 			.attr("transform","translate(" + this._margin.left + ","+this._margin.top+")");
-		this._g_canvas = g;//×¢²á¸øÀà±äÁ¿
+		this._g_canvas = g;//æ³¨å†Œç»™ç±»å˜é‡
 		
 		
-		//yÖá
+		//yè½´
 		var gy = g.append("g")
 			.attr("class","axis")
-			.attr("transform","translate(0,0)")//¸¸±êÇ©ÒÑ¾­translate,ËùÒÔÏà¶Ô²»ĞèÒªÔÙÒÆ¶¯;
+			.attr("transform","translate(0,0)")//çˆ¶æ ‡ç­¾å·²ç»translate,æ‰€ä»¥ç›¸å¯¹ä¸éœ€è¦å†ç§»åŠ¨;
 			.call(yAxis);
 			
-		//Éú³ÉxÖá	
+		//ç”Ÿæˆxè½´	
 		var gx = g.append("g")
 			.attr("class", "axis")
 			.attr("transform","translate(0,"+height+")")
 			.call(xAxis);
 			
-		//ºáÏßĞéÏß
-		gy.selectAll("g").classed("minor", true);//cssäÖÈ¾ÎªĞéÏß;
-		gy.selectAll("line").attr("x2",width);//ÕâÊÇÎÒÇ¿ÖÆ»­µÄĞéÏß
+		//æ¨ªçº¿è™šçº¿
+		gy.selectAll("g").classed("minor", true);//cssæ¸²æŸ“ä¸ºè™šçº¿;
+		gy.selectAll("line").attr("x2",width);//è¿™æ˜¯æˆ‘å¼ºåˆ¶ç”»çš„è™šçº¿
 		
-		//Éú³ÉÒ»¸ö·ÅÖÃÕÛÏßÍ¼µÄÈİÆ÷;
+		//ç”Ÿæˆä¸€ä¸ªæ”¾ç½®æŠ˜çº¿å›¾çš„å®¹å™¨;
 		this._svg_data_canvas = g.append("g").property("id","svg_data_canvas");
 	},
-	drawData:function(){//»­Í¼;
+	drawData:function(){//ç”»å›¾;
 		var x= this._xScale;
 		var y= this._yScale;
 		var width = this._width-this._margin.left-this._margin.right;
 		var height = this._height-this._margin.top-this._margin.bottom;
 		var svg_data_canvas = this._svg_data_canvas;
 		var interpolateType = this._interpolateType;//string
-		//ÏÈÉ¾µô,³õ´ÎÖ´ĞĞÊ±,ÎŞĞ§;
+		//å…ˆåˆ æ‰,åˆæ¬¡æ‰§è¡Œæ—¶,æ— æ•ˆ;
 		svg_data_canvas.selectAll("g").remove();
 
 		var values = this._data.values;
@@ -216,23 +216,23 @@ d3Chart.prototype={
 			var name = values[i].name;
 			var data_y=values[i].y;
 			var data_x=values[i].x;
-			//ÎªÁË°Ñ<path>ºÍ<circle>·â×°µ½Í¬Ò»¸ö<g>ÄÚ,²¢ÇÒ²»ÔÙÓĞÆäËüÔªËØ
+			//ä¸ºäº†æŠŠ<path>å’Œ<circle>å°è£…åˆ°åŒä¸€ä¸ª<g>å†…,å¹¶ä¸”ä¸å†æœ‰å…¶å®ƒå…ƒç´ 
 			var svg_canvas = svg_data_canvas.append("g").property("id",name).attr("opacity",1.0).style("display","block");
 			
-			//Ìí¼ÓÕÛÏß
+			//æ·»åŠ æŠ˜çº¿
 			var line = d3.svg.line()
-					.interpolate(interpolateType)//Á¬ĞøÕÛÏß
-					.x(function(d,i){return x(new Date(data_x[i]));})//xÊı¾İÉú³É²ßÂÔ,
-					.y(function(d,i){return y(d);});//yÊı¾İÉú³É²ßÂÔ,
+					.interpolate(interpolateType)//è¿ç»­æŠ˜çº¿
+					.x(function(d,i){return x(new Date(data_x[i]));})//xæ•°æ®ç”Ÿæˆç­–ç•¥,
+					.y(function(d,i){return y(d);});//yæ•°æ®ç”Ÿæˆç­–ç•¥,
 			//<path>
 			var path = svg_canvas.append("path")
-					.attr("d",line(data_y))//´«Èëline()ÖĞµÄÊı×é,Êı×éµÄÃ¿Ò»¸öÔªËØ¶ÔÓ¦ÓÚd
+					.attr("d",line(data_y))//ä¼ å…¥line()ä¸­çš„æ•°ç»„,æ•°ç»„çš„æ¯ä¸€ä¸ªå…ƒç´ å¯¹åº”äºd
 					.style("fill",color)
-					.style("fill","none")//²»·â±ÕÌî³ä
+					.style("fill","none")//ä¸å°é—­å¡«å……
 					.style("stroke-width",1)
 					.style("stroke",color);
 			
-			//Ìí¼ÓĞ¡Ô²µã
+			//æ·»åŠ å°åœ†ç‚¹
 			var g_circle =svg_canvas.append("g");
 			var circle = g_circle.selectAll("circle")
 				.data(data_y)
@@ -243,17 +243,17 @@ d3Chart.prototype={
 				.attr("r",4)
 				.attr("fill",color);
 
-			//Ìí¼Ó¸¡¶¯ÌáÊ¾
+			//æ·»åŠ æµ®åŠ¨æç¤º
 			circle.append("title")
 				.text(function(d,i){return name+"("+data_x[i]+","+d+")";});
 			
-			//»­¾¯¸æÏß
+			//ç”»è­¦å‘Šçº¿
 			//this._g_canvas.append("g")
 			
 			
 			
-			//±ê×¢Ò»ÏÂÑÕÉ«ºÍÍ¼µÄ¶ÔÓ¦¹ØÏµ;
-			//ÕâÊÇÒ»¸ö<g>
+			//æ ‡æ³¨ä¸€ä¸‹é¢œè‰²å’Œå›¾çš„å¯¹åº”å…³ç³»;
+			//è¿™æ˜¯ä¸€ä¸ª<g>
 			var info =this._g_canvas.append("g")
 						.attr("transform","translate("+0+","+height+")");
 						
@@ -263,7 +263,7 @@ d3Chart.prototype={
 					.attr('height','20')
 					.attr("x",lx)
 					.attr("y",20)
-					.text(name)//ÓÃÓÚ×¢²áµã»÷ÊÂ¼ş;
+					.text(name)//ç”¨äºæ³¨å†Œç‚¹å‡»äº‹ä»¶;
 					.attr("fill",color)
 					.style("cursor","pointer");
 			rect.on("click",function(){
@@ -286,7 +286,7 @@ d3Chart.prototype={
 				.style("stroke",color)
 				.text(name);
 		}
-		//µã»÷°´Å¥,Òş²Ø»òÏÔÊ¾µÄÊÂ¼ş¼àÌı;
+		//ç‚¹å‡»æŒ‰é’®,éšè—æˆ–æ˜¾ç¤ºçš„äº‹ä»¶ç›‘å¬;
 		/*
 		table.selectAll("td").on("click",function(){
 			var g = svg_data_canvas.select("#"+this.innerHTML);
@@ -303,7 +303,7 @@ d3Chart.prototype={
 		});
 		*/
 	},
-	showAll:function(id){//buttonµã»÷,ÏÔÊ¾ËùÓĞ;
+	showAll:function(id){//buttonç‚¹å‡»,æ˜¾ç¤ºæ‰€æœ‰;
 		if(id){
 			this._show_all_chart = id;
 		}
@@ -315,7 +315,7 @@ d3Chart.prototype={
 			g.selectAll("path").style("display","block");
 		});
 	},
-	hideAll:function(id){//buttonµã»÷,Òş²ØËùÓĞ
+	hideAll:function(id){//buttonç‚¹å‡»,éšè—æ‰€æœ‰
 		if(id){
 			this._hide_all_chart=id;
 		}
@@ -342,7 +342,7 @@ var myChart = new d3Chart("div_canvas");
 myChart.data(chartData);
 myChart.drawAxis();
 myChart.drawData();
-//×¢²áÊÂ¼ş¼àÌı
+//æ³¨å†Œäº‹ä»¶ç›‘å¬
 myChart.hideAll("bt_hide_all_chart");
 myChart.showAll("bt_show_all_chart");
 
@@ -351,9 +351,9 @@ function refresh(){
 	myChart.refresh(data);
 }
 
-//½ö½öÓÃÓÚ²âÊÔ:
+//ä»…ä»…ç”¨äºæµ‹è¯•:
 function _refresh(){
-//Ë¢ĞÂÊı¾İ
+//åˆ·æ–°æ•°æ®
 	var obj_data =[];
 	for(var i =0 ;i<chartData.values.length;i++){
 		var val = [];
@@ -375,7 +375,7 @@ function _refresh(){
 	obj.values = obj_data;
 	console.log(obj);
 	
-	//´ËÊ±obj¾ÍÊÇĞÂµÄjson¸ñÊ½Êı¾İ;
+	//æ­¤æ—¶objå°±æ˜¯æ–°çš„jsonæ ¼å¼æ•°æ®;
 	return obj;
 }
 

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html>
 <meta charset="utf-8">
 <style>
 .axis text {
@@ -33,69 +34,69 @@ var data_json = {
 };
 console.log(data_json);
 
-//chartDataÊÇ¶à×éÕÛÏßÍ¼;
+//chartDataæ˜¯å¤šç»„æŠ˜çº¿å›¾;
 var chartData = eval(data_json).charts;
 console.log("charData=");
 console.log(chartData);
 console.log(chartData[0]);
 
 
-//ÊÔ×Åµ÷ÓÃÒ»ÏÂ
+//è¯•ç€è°ƒç”¨ä¸€ä¸‹
 draw_init(chartData[0],"div_canvas",960,500);
 
-//selector_idÊÇidÑ¡ÔñÆ÷;w=960,h=500;
+//selector_idæ˜¯idé€‰æ‹©å™¨;w=960,h=500;
 function draw_init(data,selector_id,w,h){
-	var color = data.color;//ÕÛÏßÍ¼ÑÕÉ«;
-	var name =data.name;//ÕÛÏßÍ¼Ãû×Ö;
-	var dataX =data.x;//xÖáÊı¾İ,ÀëÉ¢Öµ,Êı×é;
-	var dataY =data.y;//yÖá;
+	var color = data.color;//æŠ˜çº¿å›¾é¢œè‰²;
+	var name =data.name;//æŠ˜çº¿å›¾åå­—;
+	var dataX =data.x;//xè½´æ•°æ®,ç¦»æ•£å€¼,æ•°ç»„;
+	var dataY =data.y;//yè½´;
 	var dataXY = d3.zip(dataX,dataY);
-	//×öÍ¼´óĞ¡,±ß¾à;
+	//åšå›¾å¤§å°,è¾¹è·;
 	var margin = {top: 30, right: 30, bottom: 30, left: 30},
     width = w - margin.left - margin.right,
     height = h - margin.top - margin.bottom;
 	
-	//Êı¾İÓò
+	//æ•°æ®åŸŸ
 	var x = d3.scale.ordinal().domain(dataX).rangePoints([0,width]);
 	var y = d3.scale.linear().domain([0,d3.max(dataY)]).range([height,0]);
 	
-	//×ø±êÖáÓëÊı¾İÓòÖ®¼äµÄÓ³Éä,½¨Á¢×ø±êÖá;
+	//åæ ‡è½´ä¸æ•°æ®åŸŸä¹‹é—´çš„æ˜ å°„,å»ºç«‹åæ ‡è½´;
 	var xAxis = d3.svg.axis().scale(x).tickValues(x.domain()).orient("bottom");
 	var yAxis = d3.svg.axis().scale(y).orient("left").ticks(20);//.ticks(default=10);
 	
-	//Éú³ÉÒ»¸ö<g>±êÇ©, ÆäÊµsvg±äÁ¿ÊÇÒ»¸ö<g>±êÇ©
+	//ç”Ÿæˆä¸€ä¸ª<g>æ ‡ç­¾, å…¶å®svgå˜é‡æ˜¯ä¸€ä¸ª<g>æ ‡ç­¾
 	var svg = d3.select("#"+selector_id).append("svg")
 		.attr("width", width + margin.left + margin.right)
 		.attr("height", height + margin.top + margin.bottom)
 		.append("g")
 		.attr("transform","translate(" + margin.left + ","+margin.top+")");
 	
-	//Éú³ÉxÖá	
+	//ç”Ÿæˆxè½´	
 	var gx = svg.append("g")
 		.attr("class", "x axis")
 		.attr("transform","translate(0,"+height+")")
 		.call(xAxis);	
-	//yÖá
+	//yè½´
 	var gy = svg.append("g")
 		.attr("class","y axis")
-		.attr("transform","translate(0,0)")//¸¸±êÇ©ÒÑ¾­translate,ËùÒÔÏà¶Ô²»ĞèÒªÔÙÒÆ¶¯;
+		.attr("transform","translate(0,0)")//çˆ¶æ ‡ç­¾å·²ç»translate,æ‰€ä»¥ç›¸å¯¹ä¸éœ€è¦å†ç§»åŠ¨;
 		.call(yAxis);
 	
-	//Ìí¼ÓÕÛÏß
+	//æ·»åŠ æŠ˜çº¿
 	var line = d3.svg.line()
-			.interpolate("linear")//Á¬ĞøÕÛÏß
-			.x(function(d,i){return x(d[0]);})//xÊı¾İÉú³É²ßÂÔ,
-			.y(function(d,i){return y(d[1]);});//yÊı¾İÉú³É²ßÂÔ,
+			.interpolate("linear")//è¿ç»­æŠ˜çº¿
+			.x(function(d,i){return x(d[0]);})//xæ•°æ®ç”Ÿæˆç­–ç•¥,
+			.y(function(d,i){return y(d[1]);});//yæ•°æ®ç”Ÿæˆç­–ç•¥,
 			
 	var path = svg.append("path")
-			.attr("d",line(dataXY))//´«Èëline()ÖĞµÄÊı×é,Êı×éµÄÃ¿Ò»¸öÔªËØ¶ÔÓ¦ÓÚd
+			.attr("d",line(dataXY))//ä¼ å…¥line()ä¸­çš„æ•°ç»„,æ•°ç»„çš„æ¯ä¸€ä¸ªå…ƒç´ å¯¹åº”äºd
 			.style("fill",color)
-			.style("fill","none")//²»·â±ÕÌî³ä
+			.style("fill","none")//ä¸å°é—­å¡«å……
 			.style("stroke-width",1)
 			.style("stroke",color)
 			//.style("stroke-opacity",0.9);
 
-	//Ìí¼ÓĞ¡Ô²µã
+	//æ·»åŠ å°åœ†ç‚¹
 	var circle = svg.selectAll("circle")
 		.data(dataXY)
 		.enter()
@@ -105,9 +106,10 @@ function draw_init(data,selector_id,w,h){
 		.attr("r",5)
 		.attr("fill",color);
 
-	//Ìí¼Ó¸¡¶¯ÌáÊ¾
+	//æ·»åŠ æµ®åŠ¨æç¤º
 	circle.append("title")
 		.text(function(d){return d[1];});
 }
 
 </script>
+</html>

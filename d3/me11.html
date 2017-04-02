@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="gbk" />
+<meta charset="utf8" />
 	<style>
 		.axis text {
 		  font: 10px sans-serif;
@@ -28,36 +28,36 @@
 		<div>
 				<div id="div_canvas" style="float:none;"></div>
 		</div>
-	<button id="bt_show_all_chart">È«²¿ÏÔÊ¾</button>
-	<button id="bt_hide_all_chart">È«²¿Òş²Ø</button>
-	<button id="bt_refresh" onclick="refresh();">²âÊÔ:Éú³ÉËæ»úÊı</button>
-	<button onclick="{myChart.haveCircle(!myChart.haveCircle());myChart.refresh();}">ÓĞÎŞĞ¡Ô²µã</button>
-	<button onclick="{myChart.haveThumbnail(!myChart.haveThumbnail());myChart.refresh();}">ÓĞÎŞËõÂÔÍ¼</button>
-	<button onclick="{myChart.haveDottedLine(!myChart.haveDottedLine());myChart.refresh();}">ÓĞÎŞĞéÏß</button>
+	<button id="bt_show_all_chart">å…¨éƒ¨æ˜¾ç¤º</button>
+	<button id="bt_hide_all_chart">å…¨éƒ¨éšè—</button>
+	<button id="bt_refresh" onclick="refresh();">æµ‹è¯•:ç”Ÿæˆéšæœºæ•°</button>
+	<button onclick="{myChart.haveCircle(!myChart.haveCircle());myChart.refresh();}">æœ‰æ— å°åœ†ç‚¹</button>
+	<button onclick="{myChart.haveThumbnail(!myChart.haveThumbnail());myChart.refresh();}">æœ‰æ— ç¼©ç•¥å›¾</button>
+	<button onclick="{myChart.haveDottedLine(!myChart.haveDottedLine());myChart.refresh();}">æœ‰æ— è™šçº¿</button>
 	<select onchange="{myChart.interpolateType(this.options[this.selectedIndex].value);myChart.refresh();}">
-		<option value="linear">ÕÛÏßÍ¼</option>
-		<option value="step-after">°¼Í¹ĞÍÍ¼</option>
+		<option value="linear">æŠ˜çº¿å›¾</option>
+		<option value="step-after">å‡¹å‡¸å‹å›¾</option>
 	</select>
 		<select onchange="{myChart.lineSize(this.options[this.selectedIndex].value);myChart.refresh();}">
-		<option value="1">ÏßÌõ¿í¶È:1px</option>
-		<option value="2">ÏßÌõ¿í¶È:2px</option>
-		<option value="3">ÏßÌõ¿í¶È:3px</option>
-		<option value="4">ÏßÌõ¿í¶È:4px</option>
-		<option value="5">ÏßÌõ¿í¶È:5px</option>
+		<option value="1">çº¿æ¡å®½åº¦:1px</option>
+		<option value="2">çº¿æ¡å®½åº¦:2px</option>
+		<option value="3">çº¿æ¡å®½åº¦:3px</option>
+		<option value="4">çº¿æ¡å®½åº¦:4px</option>
+		<option value="5">çº¿æ¡å®½åº¦:5px</option>
 	</select>
 </body>
 <script type="text/javascript" src="/js/d3.min.js"></script>
 <script type="text/javascript">
-//²âÊÔÊı¾İ;
+//æµ‹è¯•æ•°æ®;
 var data_json = {
-	"title":"ÕâÊÇÍ¼µÄ±êÌâ",
+	"title":"è¿™æ˜¯å›¾çš„æ ‡é¢˜",
 	"rangeX" : ["2010-01-01","2010-12-31"],
 	"rangeY" :[0,210],
 	"warning":173,
 	"threshold":195,
 	"lines":[
-		{"name":"¾¯¸æ","color":"#CC9933","value":173},
-		{"name":"·§Öµ","color":"#CC0000","value":195}
+		{"name":"è­¦å‘Š","color":"#CC9933","value":173},
+		{"name":"é˜€å€¼","color":"#CC0000","value":195}
 	],
 	"values" : [
       {
@@ -83,44 +83,44 @@ var data_json = {
 
 //console.log(data_json);
 
-//chartDataÊÇ¶à×éÕÛÏßÍ¼;
+//chartDataæ˜¯å¤šç»„æŠ˜çº¿å›¾;
 var chartData = eval(data_json);
 
-//×öÍ¼º¯Êı,·â×°;
-function d3Chart(id){//²ÎÊıÊÇÒ»¸öidÖµ
-	//ÍÆ¼öÖµ:{left:30,right:30,top:30,bottom:100} ;ÈôÃ»ÓĞËõÂÔÍ¼,Ôò bottomÖµ=50;
-	this._margin={left:30,right:30,top:30,bottom:100};//±ß¾àmargin
-	this._width=800;//È«²¿µÄ,×î´óµÄ¿í
-	this._height=500;//¸ß
-	this._x_scale_height = 20 ;//xÖáÕ¼ÓÃµÄ¸ß¶È, 20ÊÇ¹Ì¶¨Öµ,²»¿É±ä,d3×Ô¶¯Éú³ÉÊ±,¾ÍĞèÒªÕâÃ´¸ß;
-	this._circle_radius = 4;//ÕÛÏßÍ¼ÉÏµÄĞ¡Ô²È¦µÄ°ë¾¶
-	this._line_size = 1;//Í¼µÄÏßÌõ¿í¶È;
-	this._horizontal_line_size = 2;//Ë®Æ½"¾¯¸æ"ÏßµÄÏßÌõ¿í¶È;
-	this._font_size = 12;//"¾¯¸æ"×Ö µÄ³ß´ç
-	this._rect_width = 30; //Í¼Àı,·½¿éµÄ³ß´ç
-	this._rect_height = 20;//¸ß¶È;
-	this._id_canvas="div_canvas";//»­²¼ËùÔÚÈİÆ÷µÄidÖµ;ĞèÒª´«Èë,ÓĞÄ¬ÈÏÖµ
-	this._data;//´æ·ÅjsonÊı¾İ;
-	this._xScale;//xÖádomainºÍrangeµÄ±ä»»
-	this._yScale;//yÖá,Í¬ÉÏ;
-	this._xAxis;//xÖá d3.svg.axis()
-	this._timeFormat=d3.time.format("%Y-%m");//ËõÂÔÍ¼µÄxÖá Ê±¼ä¸ñÊ½;¿ÉÒÔÉèÖÃ;
-	this._svg;//ÕâÊÇ<svg>
-	this._g_data_canvas;//ÕâÊÇÒ»¸ög±êÇ©¶ÔÏó,ÄÚ ·ÅÖÃÕÛÏßÍ¼;
-	this._g_canvas;//ÕâÊÇ<svg>µÄ×Ó±êÇ©<g>
-	this._hide_all_chart;//id,´«Èë°ó¶¨ÊÂ¼ş¼àÌı
-	this._show_all_chart;//id,Í¬ÉÏ;
-	this._interpolateType ="linear";//"step-after" ; /*ÕâÊÇÕÛÏßÍ¼µÄÑùÊ½,¿ÉÒÔÉèÖÃ*/
-	this._display="block";//ÊÇ·ñÏÔÊ¾ÕÛÏßÍ¼;Ä¬ÈÏÏÔÊ¾;
-	this._data_path_line;//´æ·Å line¶ÔÏó+ path¶ÔÏó+ circle¶ÔÏó;
-	this._thumbnail=true; //ÊÇ·ñÓĞËõÂÔÍ¼?,Ä¬ÈÏÓĞ;
-	this._have_circle = true;//ÊÇ·ñÓĞĞ¡Ô²È¦?
-	this._have_dotted_line = true;//ÊÇ·ñÓĞĞéÏß?
-	if(id!=undefined){//Èô´«ÈëidÖµ,Ôò¸³ĞÂÖµ;
+//åšå›¾å‡½æ•°,å°è£…;
+function d3Chart(id){//å‚æ•°æ˜¯ä¸€ä¸ªidå€¼
+	//æ¨èå€¼:{left:30,right:30,top:30,bottom:100} ;è‹¥æ²¡æœ‰ç¼©ç•¥å›¾,åˆ™ bottomå€¼=50;
+	this._margin={left:30,right:30,top:30,bottom:100};//è¾¹è·margin
+	this._width=800;//å…¨éƒ¨çš„,æœ€å¤§çš„å®½
+	this._height=500;//é«˜
+	this._x_scale_height = 20 ;//xè½´å ç”¨çš„é«˜åº¦, 20æ˜¯å›ºå®šå€¼,ä¸å¯å˜,d3è‡ªåŠ¨ç”Ÿæˆæ—¶,å°±éœ€è¦è¿™ä¹ˆé«˜;
+	this._circle_radius = 4;//æŠ˜çº¿å›¾ä¸Šçš„å°åœ†åœˆçš„åŠå¾„
+	this._line_size = 1;//å›¾çš„çº¿æ¡å®½åº¦;
+	this._horizontal_line_size = 2;//æ°´å¹³"è­¦å‘Š"çº¿çš„çº¿æ¡å®½åº¦;
+	this._font_size = 12;//"è­¦å‘Š"å­— çš„å°ºå¯¸
+	this._rect_width = 30; //å›¾ä¾‹,æ–¹å—çš„å°ºå¯¸
+	this._rect_height = 20;//é«˜åº¦;
+	this._id_canvas="div_canvas";//ç”»å¸ƒæ‰€åœ¨å®¹å™¨çš„idå€¼;éœ€è¦ä¼ å…¥,æœ‰é»˜è®¤å€¼
+	this._data;//å­˜æ”¾jsonæ•°æ®;
+	this._xScale;//xè½´domainå’Œrangeçš„å˜æ¢
+	this._yScale;//yè½´,åŒä¸Š;
+	this._xAxis;//xè½´ d3.svg.axis()
+	this._timeFormat=d3.time.format("%Y-%m");//ç¼©ç•¥å›¾çš„xè½´ æ—¶é—´æ ¼å¼;å¯ä»¥è®¾ç½®;
+	this._svg;//è¿™æ˜¯<svg>
+	this._g_data_canvas;//è¿™æ˜¯ä¸€ä¸ªgæ ‡ç­¾å¯¹è±¡,å†… æ”¾ç½®æŠ˜çº¿å›¾;
+	this._g_canvas;//è¿™æ˜¯<svg>çš„å­æ ‡ç­¾<g>
+	this._hide_all_chart;//id,ä¼ å…¥ç»‘å®šäº‹ä»¶ç›‘å¬
+	this._show_all_chart;//id,åŒä¸Š;
+	this._interpolateType ="linear";//"step-after" ; /*è¿™æ˜¯æŠ˜çº¿å›¾çš„æ ·å¼,å¯ä»¥è®¾ç½®*/
+	this._display="block";//æ˜¯å¦æ˜¾ç¤ºæŠ˜çº¿å›¾;é»˜è®¤æ˜¾ç¤º;
+	this._data_path_line;//å­˜æ”¾ lineå¯¹è±¡+ pathå¯¹è±¡+ circleå¯¹è±¡;
+	this._thumbnail=true; //æ˜¯å¦æœ‰ç¼©ç•¥å›¾?,é»˜è®¤æœ‰;
+	this._have_circle = true;//æ˜¯å¦æœ‰å°åœ†åœˆ?
+	this._have_dotted_line = true;//æ˜¯å¦æœ‰è™šçº¿?
+	if(id!=undefined){//è‹¥ä¼ å…¥idå€¼,åˆ™èµ‹æ–°å€¼;
 		this._id_canvas=id;
 	}
 }
-//À©Õ¹ÄÚ²¿·½·¨;
+//æ‰©å±•å†…éƒ¨æ–¹æ³•;
 d3Chart.prototype={
 	width:function(w){
 		if(w!=undefined){
@@ -152,27 +152,27 @@ d3Chart.prototype={
 	},
 	canvasId:function(i){
 		if(i!=undefined){
-			d3.select("#"+this._id_canvas).html("");//ÏÈ,Çå¿ÕÔ­ÈİÆ÷ÄÚµÄ¶«Î÷;
-			this._id_canvas=i;//ÔÙ¸³ĞÂÖµ;
+			d3.select("#"+this._id_canvas).html("");//å…ˆ,æ¸…ç©ºåŸå®¹å™¨å†…çš„ä¸œè¥¿;
+			this._id_canvas=i;//å†èµ‹æ–°å€¼;
 		}else{
 			return this._id_canvas;
 		}
 	},
-	timeFormat:function(t){//ÉèÖÃ(»ñÈ¡)ºáÖáÊ±¼äµÄformat,²ÎÊıtÊÇÒ»¸öString;
+	timeFormat:function(t){//è®¾ç½®(è·å–)æ¨ªè½´æ—¶é—´çš„format,å‚æ•°tæ˜¯ä¸€ä¸ªString;
 		if(t!=undefined){
 			this._timeFormat=d3.time.format(t);
 		}else{
 			return this._timeFormat;
 		}
 	},
-	interpolateType:function(type){//²ÎÊıÊÇÒ»¸öString ,Ä¬ÈÏÖµ=linear ,±íÊ¾ÕÛÏßÍ¼)
+	interpolateType:function(type){//å‚æ•°æ˜¯ä¸€ä¸ªString ,é»˜è®¤å€¼=linear ,è¡¨ç¤ºæŠ˜çº¿å›¾)
 		if(type!=undefined){
 			this._interpolateType = type;
 		}else{
 			return this._interpolateType;
 		}
 	},
-	display:function(flag){//ÊÇ·ñÏÔÊ¾ÕÛÏßÍ¼,²ÎÊıÊÇbooleanÖµ;
+	display:function(flag){//æ˜¯å¦æ˜¾ç¤ºæŠ˜çº¿å›¾,å‚æ•°æ˜¯booleanå€¼;
 		if(flag==undefined){
 			return this._display;
 		}
@@ -182,7 +182,7 @@ d3Chart.prototype={
 			this._display="none";
 		}
 	},
-	haveThumbnail:function(flag){//ÊÇ·ñÓĞËõÂÔÍ¼? ²ÎÊıÊÇbooleanĞÍ
+	haveThumbnail:function(flag){//æ˜¯å¦æœ‰ç¼©ç•¥å›¾? å‚æ•°æ˜¯booleanå‹
 		if(flag==undefined){
 			return this._thumbnail;
 		}
@@ -219,8 +219,8 @@ d3Chart.prototype={
 			this._line_size=int;
 		}
 	},
-	formatDate:function(d){//¶Ô´ó×ø±êÖáµÄxÖáµÄÊ±¼ä½øĞĞformat
-		//²ÎÊıdµÄµÄ¸ñÊ½±¾À´ÊÇÕâÑùµÄ,Àı:Mon Feb 01 2010 00:00:00 GMT+0800 (ÖĞ¹ú±ê×¼Ê±¼ä)
+	formatDate:function(d){//å¯¹å¤§åæ ‡è½´çš„xè½´çš„æ—¶é—´è¿›è¡Œformat
+		//å‚æ•°dçš„çš„æ ¼å¼æœ¬æ¥æ˜¯è¿™æ ·çš„,ä¾‹:Mon Feb 01 2010 00:00:00 GMT+0800 (ä¸­å›½æ ‡å‡†æ—¶é—´)
 		 var format = d3.time.format.multi([
 				  //["%H:%M:%S",function(d){return d.getHours()+d.getMinutes()+d.getSeconds();}],
 				  //["%Y-%m-%d",function(d){return d.getYear()+d.getMonth()+d.getDate();}]
@@ -232,85 +232,85 @@ d3Chart.prototype={
 	strToDate:function(s){
 		return new Date(Date.parse(s.replace(/\-/g,"/")));
 	},
-	drawAxis:function(){//»­×ø±êÖá;
-		//ÏÈÒÆ³ısvg,³õ´ÎÖ´ĞĞÊ±,ÎŞĞ§;
+	drawAxis:function(){//ç”»åæ ‡è½´;
+		//å…ˆç§»é™¤svg,åˆæ¬¡æ‰§è¡Œæ—¶,æ— æ•ˆ;
 		var canvas = d3.select("#"+this._id_canvas);
 		canvas.selectAll("svg").remove();
 		
 		var width = this._width-this._margin.left-this._margin.right;
 		var height = this._height-this._margin.top-this._margin.bottom;
 		
-		var x_scale = this._data.rangeX;//ÕâÊÇ¸öÊı×é
-		var y_scale = this._data.rangeY;//È·¶¨ÉÏÏÂÏŞ;
+		var x_scale = this._data.rangeX;//è¿™æ˜¯ä¸ªæ•°ç»„
+		var y_scale = this._data.rangeY;//ç¡®å®šä¸Šä¸‹é™;
 
 		var t0 =this.strToDate(x_scale[0]);
 		var t1 =this.strToDate(x_scale[1]);
 		this._xScale = d3.time.scale().domain([t0,t1]).range([0,width]);
 		this._yScale = d3.scale.linear().domain(y_scale).range([height,0]);
 		
-		//×ø±êÖáÓëÊı¾İÓòÖ®¼äµÄÓ³Éä,½¨Á¢×ø±êÖá;
+		//åæ ‡è½´ä¸æ•°æ®åŸŸä¹‹é—´çš„æ˜ å°„,å»ºç«‹åæ ‡è½´;
 		var xAxis = d3.svg.axis().scale(this._xScale).tickFormat(this.formatDate).orient("bottom");
 		//var xAxis = d3.svg.axis().scale(x).tickValues(x.domain()).orient("bottom");
 		var yAxis = d3.svg.axis().scale(this._yScale).orient("left");//.ticks(default=10);
 
-		this._xAxis=xAxis;//×¢²á¸øÈ«¾Ö±äÁ¿
+		this._xAxis=xAxis;//æ³¨å†Œç»™å…¨å±€å˜é‡
 
-		//<svg>±êÇ©
+		//<svg>æ ‡ç­¾
 		var svg =d3.select("#"+this._id_canvas).append("svg").style("overflow","hidden");
-		this._svg=svg;//×¢²á¸øÈ«¾Ö±äÁ¿
+		this._svg=svg;//æ³¨å†Œç»™å…¨å±€å˜é‡
 
-		//±³¾°¿ò,×î´óµÄÄÇ¸ö¿ò
+		//èƒŒæ™¯æ¡†,æœ€å¤§çš„é‚£ä¸ªæ¡†
 		svg.append("g").append("rect")
 			.attr("width",this._width)
 			.attr("height",this._height)
 			.attr("fill","none")
 			.attr("stroke","#E7E7E7");
-		//±êÌâ,×îÉÏÃæµÄ
+		//æ ‡é¢˜,æœ€ä¸Šé¢çš„
 		if(this._data.title!=undefined && this._data.title!=""){
 		svg.append("g").append("text")
-			.attr("transform","translate("+this._width/2+","+this._margin.top/2+")")//¾ÓÖĞ
+			.attr("transform","translate("+this._width/2+","+this._margin.top/2+")")//å±…ä¸­
 			.text(this._data.title)
 			.style({'text-anchor': 'middle'});
 		}
 		
-		//Éú³ÉÒ»¸ö<g>±êÇ©, ÊÇ<svg>µÄ×Ó±êÇ©
+		//ç”Ÿæˆä¸€ä¸ª<g>æ ‡ç­¾, æ˜¯<svg>çš„å­æ ‡ç­¾
 		var g = svg.attr("width", width + this._margin.left + this._margin.right)
 			.attr("height", height + this._margin.top + this._margin.bottom)
 			.append("g")
 			.attr("transform","translate(" + this._margin.left + ","+this._margin.top+")");
-		this._g_canvas = g;//×¢²á¸øÈ«¾Ö±äÁ¿
+		this._g_canvas = g;//æ³¨å†Œç»™å…¨å±€å˜é‡
 		
 		
-		//yÖá
+		//yè½´
 		var gy = g.append("g")
 			.attr("class","y axis")
-			.attr("transform","translate(0,0)")//¸¸±êÇ©ÒÑ¾­translate,ËùÒÔÏà¶Ô²»ĞèÒªÔÙÒÆ¶¯;
+			.attr("transform","translate(0,0)")//çˆ¶æ ‡ç­¾å·²ç»translate,æ‰€ä»¥ç›¸å¯¹ä¸éœ€è¦å†ç§»åŠ¨;
 			.call(yAxis);
 			
-		//Éú³ÉxÖá	
+		//ç”Ÿæˆxè½´	
 		var gx = g.append("g")
 			.attr("class", "x axis")
 			.attr("transform","translate(0,"+height+")")
 			.call(xAxis);
 		if(this._have_dotted_line){
-			//ºáÏßĞéÏß
-			gy.selectAll("g").classed("minor", true);//cssäÖÈ¾ÎªĞéÏß;
-			gy.selectAll("line").attr("x2",width);//ÕâÊÇÎÒÇ¿ÖÆ»­µÄĞéÏß
-			//Í¬ÉÏ,ÊúÏòĞéÏß;
+			//æ¨ªçº¿è™šçº¿
+			gy.selectAll("g").classed("minor", true);//cssæ¸²æŸ“ä¸ºè™šçº¿;
+			gy.selectAll("line").attr("x2",width);//è¿™æ˜¯æˆ‘å¼ºåˆ¶ç”»çš„è™šçº¿
+			//åŒä¸Š,ç«–å‘è™šçº¿;
 			gx.selectAll("g").classed("minor",true);
 			gx.selectAll("line").attr("y2",-height);
 		}
-		//Ê±¼äÖá¸ñĞı×ª
+		//æ—¶é—´è½´æ ¼æ—‹è½¬
 		//gx.selectAll("text").attr("transform","rotate(45)");
 
-		//Éú³ÉÒ»¸ö·ÅÖÃÕÛÏßÍ¼µÄÈİÆ÷;
+		//ç”Ÿæˆä¸€ä¸ªæ”¾ç½®æŠ˜çº¿å›¾çš„å®¹å™¨;
 		this._g_data_canvas = g.append("svg")
 			.attr("width",width)
 			.attr("height",height)
-			.style("overflow","hidden");//²»¹ÜÓÃ
+			.style("overflow","hidden");//ä¸ç®¡ç”¨
 			//.property("id","svg_data_canvas");
 	},
-	drawData:function(){//»­Í¼;
+	drawData:function(){//ç”»å›¾;
 		var x= this._xScale;
 		var y= this._yScale;
 		var width = this._width-this._margin.left-this._margin.right;
@@ -318,10 +318,10 @@ d3Chart.prototype={
 		var svg_data_canvas = this._g_data_canvas;
 		var interpolateType = this._interpolateType;//string
 		var strToDate =this.strToDate;
-		//ÏÈÉ¾µô,³õ´ÎÖ´ĞĞÊ±,ÎŞĞ§;
+		//å…ˆåˆ æ‰,åˆæ¬¡æ‰§è¡Œæ—¶,æ— æ•ˆ;
 		svg_data_canvas.selectAll("g").remove();
 
-		//Í¼Àı´æ·ÅµÄµØ·½
+		//å›¾ä¾‹å­˜æ”¾çš„åœ°æ–¹
 		var g_legend = this._svg.append("g")
 			.attr("transform","translate("+this._margin.left+","+eval(this._height-this._margin.bottom+this._x_scale_height)+")");
 		var values = this._data.values;
@@ -331,7 +331,7 @@ d3Chart.prototype={
 			var name = values[i].name;
 			var data_y=values[i].y;
 			var data_x=values[i].x;
-			//ÎªÁË°Ñ<path>ºÍ<circle>·â×°µ½Í¬Ò»¸ö<g>ÄÚ,²¢ÇÒ²»ÔÙÓĞÆäËüÔªËØ
+			//ä¸ºäº†æŠŠ<path>å’Œ<circle>å°è£…åˆ°åŒä¸€ä¸ª<g>å†…,å¹¶ä¸”ä¸å†æœ‰å…¶å®ƒå…ƒç´ 
 			var svg_canvas = svg_data_canvas.append("g")
 				.attr("width",width)
 				.attr("height",height)
@@ -340,25 +340,25 @@ d3Chart.prototype={
 				.style("overflow","hidden")
 				.style("display",this._display);
 			
-			//Ìí¼ÓÕÛÏß
+			//æ·»åŠ æŠ˜çº¿
 			var line = d3.svg.line()
-					.interpolate(interpolateType)//Á¬ĞøÕÛÏß
+					.interpolate(interpolateType)//è¿ç»­æŠ˜çº¿
 					.x(function(d,i){
 						return x(strToDate(data_x[i]));
-						})//xÊı¾İÉú³É²ßÂÔ,
-					.y(function(d,i){return y(d);});//yÊı¾İÉú³É²ßÂÔ,
+						})//xæ•°æ®ç”Ÿæˆç­–ç•¥,
+					.y(function(d,i){return y(d);});//yæ•°æ®ç”Ÿæˆç­–ç•¥,
 			//<path>
 			var path = svg_canvas.append("path")
-					.attr("d",line(data_y))//´«Èëline()ÖĞµÄÊı×é,Êı×éµÄÃ¿Ò»¸öÔªËØ¶ÔÓ¦ÓÚd
+					.attr("d",line(data_y))//ä¼ å…¥line()ä¸­çš„æ•°ç»„,æ•°ç»„çš„æ¯ä¸€ä¸ªå…ƒç´ å¯¹åº”äºd
 					.style("fill",color)
-					.style("fill","none")//²»·â±ÕÌî³ä
+					.style("fill","none")//ä¸å°é—­å¡«å……
 					.style("stroke-width",this._line_size)
 					.style("stroke",color);
 			
 			var detail =[];
 			detail.push(line);
 			detail.push(path);
-			if(this._have_circle){//ÓĞÔ²µã
+			if(this._have_circle){//æœ‰åœ†ç‚¹
 				var g_circle =svg_canvas.append("g");
 				var circle = g_circle.selectAll("circle")
 					.data(data_y)
@@ -368,7 +368,7 @@ d3Chart.prototype={
 					.attr("cy",function(d,i){return y(d);})
 					.attr("r",this._circle_radius)
 					.attr("fill",color);
-				//Ìí¼Ó¸¡¶¯ÌáÊ¾
+				//æ·»åŠ æµ®åŠ¨æç¤º
 				circle.append("title")
 					.text(function(d,i){return name+"("+data_x[i]+","+d+")";});
 				detail.push(circle);
@@ -376,28 +376,28 @@ d3Chart.prototype={
 			obj.push(detail);
 
 			var position_height = 0;
-			if(this._thumbnail){//ÊÇ·ñÓĞËõÂÔÍ¼?
-				position_height =this._margin.bottom - this._x_scale_height*2-5;//ÏÂÒÆ¶àÒ»µã;
+			if(this._thumbnail){//æ˜¯å¦æœ‰ç¼©ç•¥å›¾?
+				position_height =this._margin.bottom - this._x_scale_height*2-5;//ä¸‹ç§»å¤šä¸€ç‚¹;
 			}else{
 				position_height = 0;
 			}
-			//Í¼Àı
-			var info =g_legend.append("g")//ÉèÖÃÆ«ÒÆÁ¿
+			//å›¾ä¾‹
+			var info =g_legend.append("g")//è®¾ç½®åç§»é‡
 						.attr("transform","translate("+0+","+position_height+")");
-			//ÏÈËãÒ»ÏÂÎ»ÖÃ			
+			//å…ˆç®—ä¸€ä¸‹ä½ç½®			
 			var lx =width/values.length*i;
-			//·½¿é
+			//æ–¹å—
 			var da = [];
-			da.push(svg_canvas);//ÓÉÓÚieµÄ¼æÈİĞÔ,idÖ»ÄÜ·ÅÈë.data()´«Èë;
+			da.push(svg_canvas);//ç”±äºieçš„å…¼å®¹æ€§,idåªèƒ½æ”¾å…¥.data()ä¼ å…¥;
 			var rect = info.append("rect")
 					.attr('width',this._rect_width)
 					.attr('height',this._rect_height)
 					.attr("x",lx)
 					.attr("y",0)
-					.data(da)//ÓÃÓÚ×¢²áµã»÷ÊÂ¼ş;
+					.data(da)//ç”¨äºæ³¨å†Œç‚¹å‡»äº‹ä»¶;
 					.attr("fill",color)
 					.style("cursor","pointer");
-			//ÊÂ¼ş¼àÌı,µã»÷ ÏÔÊ¾/Òş²Ø ÕÛÏß;
+			//äº‹ä»¶ç›‘å¬,ç‚¹å‡» æ˜¾ç¤º/éšè— æŠ˜çº¿;
 			rect.on("click",function(d,i){
 				var g =d;
 				var original = g.style("display");
@@ -411,7 +411,7 @@ d3Chart.prototype={
 					g.selectAll("g").style("display","block");
 				}
 			});
-			//ÎÄ×ÖÌáÊ¾
+			//æ–‡å­—æç¤º
 			info.append("text")
 				.attr("x",eval(lx+this._rect_width))
 				.attr("y",this._rect_height)
@@ -419,11 +419,11 @@ d3Chart.prototype={
 				.text(name);
 		}
 
-		//°ÑÕâ¼¸¸ö¶ÔÏó×¢²á¸øÈ«¾Ö±äÁ¿
+		//æŠŠè¿™å‡ ä¸ªå¯¹è±¡æ³¨å†Œç»™å…¨å±€å˜é‡
 		this._data_path_line = obj;
 
 		if(this._data.lines!=undefined && this._data.lines.length>0){
-			//»­Ïß
+			//ç”»çº¿
 			var lines  = this._data.lines;
 			for(var i = 0;i<lines.length;i++){
 				var g_line = this._g_canvas.append("g")
@@ -439,14 +439,14 @@ d3Chart.prototype={
 			}
 		}
 	},
-	drawOverView:function(){//»­Äñî«Í¼,ÓÃË¢×ÓË¢
-		var g_canvas = this._svg.append("g") ;//<g>±êÇ©;
+	drawOverView:function(){//ç”»é¸Ÿç°å›¾,ç”¨åˆ·å­åˆ·
+		var g_canvas = this._svg.append("g") ;//<g>æ ‡ç­¾;
 		var width = this._width-this._margin.left-this._margin.right;
-		//Äñî«Í¼µÄ¸ß¶È( = µ×¸ß-2¸ö×ø±êÖá¸ß¶È-rect¸ß¶È);
+		//é¸Ÿç°å›¾çš„é«˜åº¦( = åº•é«˜-2ä¸ªåæ ‡è½´é«˜åº¦-recté«˜åº¦);
 		var height = this._margin.bottom-this._x_scale_height*2 - this._rect_height-10;
-		var height2 = this._height-this._margin.top-this._margin.bottom;//ÊÇ´óÍ¼µÄ¸ß¶È;
-		var x_scale = this._data.rangeX;//ÕâÊÇ¸öÊı×é
-		var y_scale = this._data.rangeY;//È·¶¨ÉÏÏÂÏŞ;
+		var height2 = this._height-this._margin.top-this._margin.bottom;//æ˜¯å¤§å›¾çš„é«˜åº¦;
+		var x_scale = this._data.rangeX;//è¿™æ˜¯ä¸ªæ•°ç»„
+		var y_scale = this._data.rangeY;//ç¡®å®šä¸Šä¸‹é™;
 		var strToDate = this.strToDate;
 
 		var t0 = strToDate(x_scale[0]);
@@ -454,25 +454,25 @@ d3Chart.prototype={
 		var x = d3.time.scale().domain([t0,t1]).range([0,width]);
 		var y = d3.scale.linear().domain(y_scale).range([height,0]);
 
-		//xÖá
+		//xè½´
 		var xAxis = d3.svg.axis().scale(x).tickFormat(this._timeFormat).orient("bottom");
 		//brush
 		var xScale = this._xScale;
-		var gc=this._g_canvas;//ÕâÊÇ<svg>µÄ×Ó±êÇ©<g>;
+		var gc=this._g_canvas;//è¿™æ˜¯<svg>çš„å­æ ‡ç­¾<g>;
 		var xa = this._xAxis;
 		var obj =this._data_path_line;
 		var values =this._data.values;
 		var have_circle = this._have_circle;
 		var have_dotted_line=this._have_dotted_line;
 		var brush = d3.svg.brush().x(x)
-			.on("brush",function(){//Ë¢×ÓË¢¶¯ ÊÂ¼ş
+			.on("brush",function(){//åˆ·å­åˆ·åŠ¨ äº‹ä»¶
 				xScale.domain(brush.empty()? x.domain() : brush.extent()).range([0,width]);
 				var gx = gc.select(".x.axis").call(xa);
 				if(have_dotted_line){
 					gx.selectAll("g").classed("minor",true);
 					gx.selectAll("line").attr("y2",-height2);
 				}
-				//¶ÔÕÛÏßÍ¼½øĞĞµ÷Õû
+				//å¯¹æŠ˜çº¿å›¾è¿›è¡Œè°ƒæ•´
 				for(var i =0 ;i<obj.length;i++){
 					var line = obj[i][0];
 					var path = obj[i][1];
@@ -487,13 +487,13 @@ d3Chart.prototype={
 				}
 		});
 
-		//¿ªÊ¼×öÍ¼
+		//å¼€å§‹åšå›¾
 		g_canvas.attr("transform","translate("+this._margin.left+","+eval(this._height-this._margin.bottom+this._x_scale_height)+")");
-		//ºá×ø±êÖá
+		//æ¨ªåæ ‡è½´
 		g_canvas.append("g")
 			.attr("class","x axis").attr("transform","translate("+0+","+eval(height)+")")
 			.call(xAxis);
-		//Ë¢×Ó
+		//åˆ·å­
 		g_canvas.append("g")
 			.attr("class","x brush")
 			.call(brush)
@@ -501,28 +501,28 @@ d3Chart.prototype={
 			.attr("y",0)
 			.attr("height",height);
 
-		//»­Ğ¡Í¼,ÆäÊµ¾ÍÊÇÕÛÏßÖØĞÂ»­Ò»±é;
+		//ç”»å°å›¾,å…¶å®å°±æ˜¯æŠ˜çº¿é‡æ–°ç”»ä¸€é;
 		g_line_canvas = g_canvas.append("g");
-		var interpolateType = this._interpolateType;//string,ÀàĞÍ
+		var interpolateType = this._interpolateType;//string,ç±»å‹
 		var values = this._data.values;
 		(function draw_small(g_line_canvas,values,interpolateType,strToDate){
 			for(var i =0; i<values.length;i++){
-				//Ñ­»·»­Í¼;
+				//å¾ªç¯ç”»å›¾;
 				var color = values[i].color;
 				var name = values[i].name;
 				var data_y=values[i].y;
 				var data_x=values[i].x;
 
-				//Ìí¼ÓÕÛÏß
+				//æ·»åŠ æŠ˜çº¿
 				var line = d3.svg.line()
-						.interpolate(interpolateType)//Á¬ĞøÕÛÏß
-						.x(function(d,i){return x(strToDate(data_x[i]));})//xÊı¾İÉú³É²ßÂÔ,
-						.y(function(d,i){return y(d);});//yÊı¾İÉú³É²ßÂÔ,
+						.interpolate(interpolateType)//è¿ç»­æŠ˜çº¿
+						.x(function(d,i){return x(strToDate(data_x[i]));})//xæ•°æ®ç”Ÿæˆç­–ç•¥,
+						.y(function(d,i){return y(d);});//yæ•°æ®ç”Ÿæˆç­–ç•¥,
 				//<path>
 				var path = g_line_canvas.append("path")
-						.attr("d",line(data_y))//´«Èëline()ÖĞµÄÊı×é,Êı×éµÄÃ¿Ò»¸öÔªËØ¶ÔÓ¦ÓÚd
+						.attr("d",line(data_y))//ä¼ å…¥line()ä¸­çš„æ•°ç»„,æ•°ç»„çš„æ¯ä¸€ä¸ªå…ƒç´ å¯¹åº”äºd
 						.style("fill",color)
-						.style("fill","none")//²»·â±ÕÌî³ä
+						.style("fill","none")//ä¸å°é—­å¡«å……
 						.style("stroke-width",1)
 						.style("stroke",color);
 				
@@ -532,7 +532,7 @@ d3Chart.prototype={
 	reDraw:function(){
 		this.drawData();
 	},
-	showAll:function(id){//buttonµã»÷,ÏÔÊ¾ËùÓĞ;
+	showAll:function(id){//buttonç‚¹å‡»,æ˜¾ç¤ºæ‰€æœ‰;
 		if(id!=undefined){
 			this._show_all_chart = id;
 		}
@@ -544,7 +544,7 @@ d3Chart.prototype={
 			g.selectAll("path").style("display","block");
 		});
 	},
-	hideAll:function(id){//buttonµã»÷,Òş²ØËùÓĞ
+	hideAll:function(id){//buttonç‚¹å‡»,éšè—æ‰€æœ‰
 		if(id!=undefined){
 			this._hide_all_chart=id;
 		}
@@ -562,7 +562,7 @@ d3Chart.prototype={
 		}
 		this.drawAxis();
 		this.drawData();
-		this.hideAll();//×¢²áÊÂ¼ş¼àÌı
+		this.hideAll();//æ³¨å†Œäº‹ä»¶ç›‘å¬
 		this.showAll();
 		if(this._thumbnail){
 			this.drawOverView();
@@ -577,14 +577,14 @@ d3Chart.prototype={
 				this.drawOverView();
 			}
 		}else{
-			console.log("Ã»ÓĞÊı¾İÔ´,ÎŞ·¨¹¹Í¼");
+			console.log("æ²¡æœ‰æ•°æ®æº,æ— æ³•æ„å›¾");
 		}
 	}
 }
 
 var myChart = new d3Chart("div_canvas");
 myChart.init(chartData);
-//×¢²áÊÂ¼ş¼àÌı
+//æ³¨å†Œäº‹ä»¶ç›‘å¬
 myChart.hideAll("bt_hide_all_chart");
 myChart.showAll("bt_show_all_chart");
 
@@ -593,9 +593,9 @@ function refresh(){
 	myChart.refresh(data);
 }
 
-//½ö½öÓÃÓÚ²âÊÔ:
+//ä»…ä»…ç”¨äºæµ‹è¯•:
 function _refresh(){
-//Ë¢ĞÂÊı¾İ
+//åˆ·æ–°æ•°æ®
 	var obj_data =[];
 	for(var i =0 ;i<chartData.values.length;i++){
 		var val = [];
@@ -617,7 +617,7 @@ function _refresh(){
 	obj.values = obj_data;
 	console.log(obj);
 	
-	//´ËÊ±obj¾ÍÊÇĞÂµÄjson¸ñÊ½Êı¾İ;
+	//æ­¤æ—¶objå°±æ˜¯æ–°çš„jsonæ ¼å¼æ•°æ®;
 	return obj;
 }
 </script>

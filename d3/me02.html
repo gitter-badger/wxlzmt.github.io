@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html>
 <meta charset="utf-8">
 <style>
 .axis text {
@@ -51,74 +52,74 @@ var data_json = {
    ]
 };
 console.log(data_json);
-//chartDataÊÇ¶à×éÕÛÏßÍ¼;
+//chartDataæ˜¯å¤šç»„æŠ˜çº¿å›¾;
 var chartData = eval(data_json).charts;
 console.log("charData=");
 console.log(chartData);
 
-//x,y,È¡Öµ¶¼ÊÇÀëÉ¢Öµ;
+//x,y,å–å€¼éƒ½æ˜¯ç¦»æ•£å€¼;
 var data=[],data_x_value=[];
 for(var i=0;i<chartData[0].data.length;i++){
 	data.push(chartData[0].data[i]);
 	data_x_value.push(chartData[0].data[i].x_value);
 }
 
-//µÃµ½xÖáÊı¾İ,ºÍyÖáÊı¾İ;
+//å¾—åˆ°xè½´æ•°æ®,å’Œyè½´æ•°æ®;
 console.log("axis data ="+data);
 
-//xÊı¾İ Ó³Éä Óò
+//xæ•°æ® æ˜ å°„ åŸŸ
 var x = d3.scale.ordinal()
     .domain(data_x_value)
-    .rangePoints([0, width]);//ÓÃÉÏÃæµÄÀëÉ¢µÄµã,·Ö¸ô´ËÁ¬ĞøÇø¼ä;
+    .rangePoints([0, width]);//ç”¨ä¸Šé¢çš„ç¦»æ•£çš„ç‚¹,åˆ†éš”æ­¤è¿ç»­åŒºé—´;
 
-//x×ø±êÖá
+//xåæ ‡è½´
 var xAxis = d3.svg.axis()
-    .scale(x)//xÖá¶¨ÒåÓò;
+    .scale(x)//xè½´å®šä¹‰åŸŸ;
     .tickValues(x.domain())
     .orient("bottom");
 
-//yÖáÊı¾İÊÇÁ¬ĞøµÄ
+//yè½´æ•°æ®æ˜¯è¿ç»­çš„
 var y = d3.scale.linear()
-	//¶¯Ì¬¿ØÖÆyÖá·¶Î§,Ê¹µÃÕÛÏßÍ¼×ø±êÖáÀûÓÃÂÊ¸ü¸ß;
+	//åŠ¨æ€æ§åˆ¶yè½´èŒƒå›´,ä½¿å¾—æŠ˜çº¿å›¾åæ ‡è½´åˆ©ç”¨ç‡æ›´é«˜;
 	.domain([0,d3.max(data,function(d,i){return d.y_value;})])
 	.range([height,0]);
-//domainÓòÊÇÏÔÊ¾ÔÚ×ø±êÖáÉÏµÄ,rangeÓòÓÃÓÚ¿ØÖÆÊÓÍ¼³ß´çÓëÊı¾İÖ®¼äµÄ±ÈÀıÓ³Éä;
-var	yAxis = d3.svg.axis().scale(y).orient("left").ticks(20);//Ã¿¸ô20È¡Ò»¸öÖµ;
+//domainåŸŸæ˜¯æ˜¾ç¤ºåœ¨åæ ‡è½´ä¸Šçš„,rangeåŸŸç”¨äºæ§åˆ¶è§†å›¾å°ºå¯¸ä¸æ•°æ®ä¹‹é—´çš„æ¯”ä¾‹æ˜ å°„;
+var	yAxis = d3.svg.axis().scale(y).orient("left").ticks(20);//æ¯éš”20å–ä¸€ä¸ªå€¼;
 
-//svgÆäÊµÊÇ <svg>±êÇ©ÄÚµÄ<g>±êÇ©
+//svgå…¶å®æ˜¯ <svg>æ ‡ç­¾å†…çš„<g>æ ‡ç­¾
 var svg = d3.select("#div_canvas").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
 	.append("g")
 	.attr("transform","translate(" + margin.left + ","+margin.top+")");
 
-//Éú³ÉxÖá	
+//ç”Ÿæˆxè½´	
 var gx = svg.append("g")
     .attr("class", "x axis")
 	.attr("transform","translate(0,"+height+")")
     .call(xAxis);
 	
-//yÖá
+//yè½´
 var gy = svg.append("g")
 	.attr("class","y axis")
 	.attr("transform","translate(0,0)")
 	.call(yAxis);
 
-//Ìí¼ÓÕÛÏß
+//æ·»åŠ æŠ˜çº¿
 var line = d3.svg.line()
-        .interpolate("linear")//Á¬ĞøÕÛÏß
-		.x(function(d,i){return x(d.x_value);})//xÊı¾İÉú³É²ßÂÔ,
-        .y(function(d,i){return y(d.y_value);});//yÊı¾İÉú³É²ßÂÔ,
+        .interpolate("linear")//è¿ç»­æŠ˜çº¿
+		.x(function(d,i){return x(d.x_value);})//xæ•°æ®ç”Ÿæˆç­–ç•¥,
+        .y(function(d,i){return y(d.y_value);});//yæ•°æ®ç”Ÿæˆç­–ç•¥,
 		
 var path = svg.append("path")
-        .attr("d",line(data))//´«Èëline()ÖĞµÄÊı×é,Êı×éµÄÃ¿Ò»¸öÔªËØ¶ÔÓ¦ÓÚd
+        .attr("d",line(data))//ä¼ å…¥line()ä¸­çš„æ•°ç»„,æ•°ç»„çš„æ¯ä¸€ä¸ªå…ƒç´ å¯¹åº”äºd
 		.style("fill","#F00")
-		.style("fill","none")//²»·â±ÕÌî³ä
+		.style("fill","none")//ä¸å°é—­å¡«å……
 		.style("stroke-width",1)
 		.style("stroke","#F00")
 		.style("stroke-opacity",0.9);
 
-//Ìí¼ÓĞ¡Ô²µã
+//æ·»åŠ å°åœ†ç‚¹
 var circle = svg.selectAll("circle")
 	.data(data)
 	.enter()
@@ -128,8 +129,9 @@ var circle = svg.selectAll("circle")
 	.attr("r",5)
 	.attr("fill","#09F");
 
-//Ìí¼Ó¸¡¶¯ÌáÊ¾
+//æ·»åŠ æµ®åŠ¨æç¤º
 circle.append("title")
 	.text(function(d){return d.y_value;});
 
 </script>
+</html>

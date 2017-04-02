@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<meta charset="gbk">
+<meta charset="utf8">
 <style>
 .axis text {
   font: 10px sans-serif;
@@ -27,9 +27,9 @@ table td{
 			<div id="div_canvas" ></div>
 			<div id="div_notification"><table></table></div>
 		</div>
-	<button id="bt_show_all_chart">È«²¿ÏÔÊ¾</button>
-	<button id="bt_hide_all_chart">È«²¿Òş²Ø</button>
-	<button id="bt_refresh" onclick="refresh();">Ë¢ĞÂËæ»ú²âÊÔÊı¾İ</button>
+	<button id="bt_show_all_chart">å…¨éƒ¨æ˜¾ç¤º</button>
+	<button id="bt_hide_all_chart">å…¨éƒ¨éšè—</button>
+	<button id="bt_refresh" onclick="refresh();">åˆ·æ–°éšæœºæµ‹è¯•æ•°æ®</button>
 </body>
 <script src="/js/d3.min.js"></script>
 <script>
@@ -60,14 +60,14 @@ var data_json = {
 };
 console.log(data_json);
 
-//chartDataÊÇ¶à×éÕÛÏßÍ¼;
+//chartDataæ˜¯å¤šç»„æŠ˜çº¿å›¾;
 var chartData = eval(data_json);
 
-//Ö÷ÒªÊÇÎªÁË»ñÈ¡Ò»Ğ©²ÎÊı,ËùÒÔ·µ»ØµÄÊÇÒ»¸öº¯Êı;
+//ä¸»è¦æ˜¯ä¸ºäº†è·å–ä¸€äº›å‚æ•°,æ‰€ä»¥è¿”å›çš„æ˜¯ä¸€ä¸ªå‡½æ•°;
 var _refresh = canvas_init("div_canvas",chartData,960,500);
 
 function refresh(){
-//Ë¢ĞÂÊı¾İ
+//åˆ·æ–°æ•°æ®
 	var obj_data =[];
 	for(var i =0 ;i<chartData.values.length;i++){
 		var val = [];
@@ -86,9 +86,9 @@ function refresh(){
 	
 }
 
-//³õÊ¼»¯,²ÎÊı:(1 ·ÅÈëidÖµÎªdiv_canvasµÄÈİÆ÷ÖĞ,2 xÖáÊı¾İÃ¶¾Ù,3 yÖáÖµ·¶Î§,4¿í,5¸ß);
+//åˆå§‹åŒ–,å‚æ•°:(1 æ”¾å…¥idå€¼ä¸ºdiv_canvasçš„å®¹å™¨ä¸­,2 xè½´æ•°æ®æšä¸¾,3 yè½´å€¼èŒƒå›´,4å®½,5é«˜);
 function canvas_init(selector_id,data,w,h){
-	var x_scale = data.rangeX;//ÕâÊÇ¸öÊı×é
+	var x_scale = data.rangeX;//è¿™æ˜¯ä¸ªæ•°ç»„
 	var y_scale = data.rangeY;
 	
 	var margin = {top: 30, right: 30, bottom: 30, left: 30},
@@ -102,71 +102,71 @@ function canvas_init(selector_id,data,w,h){
 	//var x = d3.scale.ordinal().domain(x_scale).rangePoints([0,width]);
 	var y = d3.scale.linear().domain(y_scale).range([height,0]).clamp(true);
 	
-	//×ø±êÖáÓëÊı¾İÓòÖ®¼äµÄÓ³Éä,½¨Á¢×ø±êÖá;
+	//åæ ‡è½´ä¸æ•°æ®åŸŸä¹‹é—´çš„æ˜ å°„,å»ºç«‹åæ ‡è½´;
 	var xAxis = d3.svg.axis().scale(x).tickFormat(timeFormat).orient("bottom");
 	//var xAxis = d3.svg.axis().scale(x).tickValues(x.domain()).orient("bottom");
 	var yAxis = d3.svg.axis().scale(y).orient("left");//.ticks(default=10);
 
-	//Éú³ÉÒ»¸ö<g>±êÇ©, ÆäÊµsvg±äÁ¿ÊÇ<svg>¸ù ,µÄ×Ó±êÇ©<g>
+	//ç”Ÿæˆä¸€ä¸ª<g>æ ‡ç­¾, å…¶å®svgå˜é‡æ˜¯<svg>æ ¹ ,çš„å­æ ‡ç­¾<g>
 	var svg = d3.select("#"+selector_id).append("svg")
 		.attr("width", width + margin.left + margin.right)
 		.attr("height", height + margin.top + margin.bottom)
 		.append("g")
 		.attr("transform","translate(" + margin.left + ","+margin.top+")");
 	
-	//yÖá
+	//yè½´
 	var gy = svg.append("g")
 		.attr("class","axis")
-		.attr("transform","translate(0,0)")//¸¸±êÇ©ÒÑ¾­translate,ËùÒÔÏà¶Ô²»ĞèÒªÔÙÒÆ¶¯;
+		.attr("transform","translate(0,0)")//çˆ¶æ ‡ç­¾å·²ç»translate,æ‰€ä»¥ç›¸å¯¹ä¸éœ€è¦å†ç§»åŠ¨;
 		.call(yAxis);
 		
-	//Éú³ÉxÖá	
+	//ç”Ÿæˆxè½´	
 	var gx = svg.append("g")
 		.attr("class", "axis")
 		.attr("transform","translate(0,"+height+")")
 		.call(xAxis);	
 
 	
-	//ºáÏßĞéÏß
-	gy.selectAll("g").classed("minor", true);//cssäÖÈ¾ÎªĞéÏß;
-	gy.selectAll("line").attr("x2",width);//ÕâÊÇÎÒÇ¿ÖÆ»­µÄĞéÏß
+	//æ¨ªçº¿è™šçº¿
+	gy.selectAll("g").classed("minor", true);//cssæ¸²æŸ“ä¸ºè™šçº¿;
+	gy.selectAll("line").attr("x2",width);//è¿™æ˜¯æˆ‘å¼ºåˆ¶ç”»çš„è™šçº¿
 	
-	//»­ÕÛÏß
+	//ç”»æŠ˜çº¿
 	draw_data(data.values,svg.append("g").property("id","svg_data_canvas_refresh"),x,y);
 	
-	//Ë¢ĞÂÊı¾İ
+	//åˆ·æ–°æ•°æ®
 	var refresh = function(arr){
-		d3.select("#svg_data_canvas_refresh").remove();//É¾µô
-		d3.select("#div_notification").select("table").selectAll("td").remove();//É¾µôÌáÊ¾;
-		draw_data(arr,svg.append("g").property("id","svg_data_canvas_refresh"),x,y);//ÔÙ»­
+		d3.select("#svg_data_canvas_refresh").remove();//åˆ æ‰
+		d3.select("#div_notification").select("table").selectAll("td").remove();//åˆ æ‰æç¤º;
+		draw_data(arr,svg.append("g").property("id","svg_data_canvas_refresh"),x,y);//å†ç”»
 	}
 	return refresh;
 }
 
-//»­ÕÛÏß
+//ç”»æŠ˜çº¿
 function draw_data(values,svg,x,y){
 	for(var i=0;i<values.length;i++){
 		var color = values[i].color;
 		var name = values[i].name;
 		var data_y=values[i].y;
 		var data_x=values[i].x;
-		//ÎªÁË°Ñ<path>ºÍ<circle>·â×°µ½Í¬Ò»¸ö<g>ÄÚ,²¢ÇÒ²»ÔÙÓĞÆäËüÔªËØ
+		//ä¸ºäº†æŠŠ<path>å’Œ<circle>å°è£…åˆ°åŒä¸€ä¸ª<g>å†…,å¹¶ä¸”ä¸å†æœ‰å…¶å®ƒå…ƒç´ 
 		var svg_canvas = svg.append("g").property("id",name).attr("opacity",1.0).style("display","block");
 		
-		//Ìí¼ÓÕÛÏß
+		//æ·»åŠ æŠ˜çº¿
 		var line = d3.svg.line()
-				.interpolate("linear")//Á¬ĞøÕÛÏß
-				.x(function(d,i){return x(new Date(data_x[i]));})//xÊı¾İÉú³É²ßÂÔ,
-				.y(function(d,i){return y(d);});//yÊı¾İÉú³É²ßÂÔ,
+				.interpolate("linear")//è¿ç»­æŠ˜çº¿
+				.x(function(d,i){return x(new Date(data_x[i]));})//xæ•°æ®ç”Ÿæˆç­–ç•¥,
+				.y(function(d,i){return y(d);});//yæ•°æ®ç”Ÿæˆç­–ç•¥,
 				
 		var path = svg_canvas.append("path")
-				.attr("d",line(data_y))//´«Èëline()ÖĞµÄÊı×é,Êı×éµÄÃ¿Ò»¸öÔªËØ¶ÔÓ¦ÓÚd
+				.attr("d",line(data_y))//ä¼ å…¥line()ä¸­çš„æ•°ç»„,æ•°ç»„çš„æ¯ä¸€ä¸ªå…ƒç´ å¯¹åº”äºd
 				.style("fill",color)
-				.style("fill","none")//²»·â±ÕÌî³ä
+				.style("fill","none")//ä¸å°é—­å¡«å……
 				.style("stroke-width",1)
 				.style("stroke",color);
 		
-		//Ìí¼ÓĞ¡Ô²µã
+		//æ·»åŠ å°åœ†ç‚¹
 		var circle = svg_canvas.append("g").selectAll("circle")
 			.data(data_y)
 			.enter()
@@ -176,34 +176,34 @@ function draw_data(values,svg,x,y){
 			.attr("r",4)
 			.attr("fill",color);
 
-		//Ìí¼Ó¸¡¶¯ÌáÊ¾
+		//æ·»åŠ æµ®åŠ¨æç¤º
 		circle.append("title")
 			.text(function(d,i){return name+"("+data_x[i]+","+d+")";});
 		
-		//Ğ´Ò»ÏÂÌáÊ¾
+		//å†™ä¸€ä¸‹æç¤º
 		note(name,color);
 	}
 		
-	//buttonµã»÷,ÏÔÊ¾ËùÓĞ;
+	//buttonç‚¹å‡»,æ˜¾ç¤ºæ‰€æœ‰;
 	d3.select("#bt_show_all_chart").on("click",function(){
 		d3.select("#svg_data_canvas_refresh").selectAll("g").style("display",function(){return"block";});
 	});
 	
-	//buttonµã»÷,Òş²ØËùÓĞ
+	//buttonç‚¹å‡»,éšè—æ‰€æœ‰
 	d3.select("#bt_hide_all_chart").on("click",function(){
 		d3.select("#svg_data_canvas_refresh").selectAll("g")
 			.style("display",function(){return "none";})
 	});
 }
 
-//±ê×¢Ò»ÏÂÑÕÉ«ºÍÍ¼µÄ¶ÔÓ¦¹ØÏµ;
+//æ ‡æ³¨ä¸€ä¸‹é¢œè‰²å’Œå›¾çš„å¯¹åº”å…³ç³»;
 function note(name,color){
 	var div_note = d3.select("#div_notification").select("table");
 	var td = div_note.append("td")
 		.style({'width':'100px','height':'20px','background-color':color})
 		.html(name);
 	
-	//µã»÷Òş²Ø»òÏÔÊ¾µÄÊÂ¼ş¼àÌı;
+	//ç‚¹å‡»éšè—æˆ–æ˜¾ç¤ºçš„äº‹ä»¶ç›‘å¬;
 	div_note.selectAll("td").on("click",function(){
 		var g = d3.select("#svg_data_canvas_refresh").select("#"+this.innerHTML);
 		var original = g.style("display");

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html>
 <meta charset="utf-8">
 <style>
 .axis text {
@@ -19,28 +20,28 @@ var margin = {top: 30, right: 30, bottom: 30, left: 30},
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 	
-//xÖá¼ä¸ô;
-var x_data_length=26;//xÖáÈ¡Öµ¸öÊı;
+//xè½´é—´éš”;
+var x_data_length=26;//xè½´å–å€¼ä¸ªæ•°;
 
-//ÓÃÓÚÏŞÖÆËæ»úÉú³ÉµÄyÖáÊı¾İµÄ·¶Î§;
+//ç”¨äºé™åˆ¶éšæœºç”Ÿæˆçš„yè½´æ•°æ®çš„èŒƒå›´;
 var y_data_max=height/10;
 
-//xÊı¾İ Ó³Éä Óò
-var x = d3.scale.ordinal()//ÀëÉ¢±ä»»
+//xæ•°æ® æ˜ å°„ åŸŸ
+var x = d3.scale.ordinal()//ç¦»æ•£å˜æ¢
     .domain("ABCDEFGHIJKLMNOPQRSTUVWXYZ".split(""))
-    .rangePoints([0, width]);//ÓÃÉÏÃæµÄÀëÉ¢µÄµã,·Ö¸ô´ËÁ¬ĞøÇø¼ä;
+    .rangePoints([0, width]);//ç”¨ä¸Šé¢çš„ç¦»æ•£çš„ç‚¹,åˆ†éš”æ­¤è¿ç»­åŒºé—´;
 	
-//x×ø±êÖá	
+//xåæ ‡è½´	
 var xAxis = d3.svg.axis()
-    .scale(x)//xÖá¶¨ÒåÓò;
-    .tickValues(x.domain())//²ÎÊıÊÇÀëÉ¢Öµ,
+    .scale(x)//xè½´å®šä¹‰åŸŸ;
+    .tickValues(x.domain())//å‚æ•°æ˜¯ç¦»æ•£å€¼,
     .orient("bottom");
 
-//yÖáÊı¾İÊÇÁ¬ĞøµÄ
+//yè½´æ•°æ®æ˜¯è¿ç»­çš„
 var y = d3.scale.linear().domain([0,y_data_max]).range([height,0]);
-//domainÓòÊÇÏÔÊ¾ÔÚ×ø±êÖáÉÏµÄ,rangeÓòÓÃÓÚ¿ØÖÆÊÓÍ¼³ß´çÓëÊı¾İÖ®¼äµÄ±ÈÀıÓ³Éä;
+//domainåŸŸæ˜¯æ˜¾ç¤ºåœ¨åæ ‡è½´ä¸Šçš„,rangeåŸŸç”¨äºæ§åˆ¶è§†å›¾å°ºå¯¸ä¸æ•°æ®ä¹‹é—´çš„æ¯”ä¾‹æ˜ å°„;
 
-var	yAxis = d3.svg.axis().scale(y).orient("left").ticks(20);//Ã¿¸ô20È¡Ò»¸öÖµ;
+var	yAxis = d3.svg.axis().scale(y).orient("left").ticks(20);//æ¯éš”20å–ä¸€ä¸ªå€¼;
 
 var svg = d3.select("body").append("svg")
     .attr("width", width + margin.left + margin.right)
@@ -48,48 +49,49 @@ var svg = d3.select("body").append("svg")
 	.append("g")
 	.attr("transform","translate(" + margin.left + ","+margin.top+")");
 
-//Éú³ÉxÖá	
+//ç”Ÿæˆxè½´	
 var gx = svg.append("g")
     .attr("class", "x axis")
 	.attr("transform","translate(0,"+height+")")
     .call(xAxis);
 	
-//yÖá
+//yè½´
 var gy = svg.append("g")
 	.attr("class","y axis")
 	.attr("transform","translate(0,0)")
 	.call(yAxis);
 
-//Ëæ»úÉú³ÉÒ»Ğ©²âÊÔÊı¾İ,·¶Î§ÊÇ[0,y_data_max],
+//éšæœºç”Ÿæˆä¸€äº›æµ‹è¯•æ•°æ®,èŒƒå›´æ˜¯[0,y_data_max],
 getRandomData();
 console.log(dataset);
 
 
-//Ìí¼ÓÕÛÏß
+//æ·»åŠ æŠ˜çº¿
 	var line = d3.svg.line()
-        .interpolate("linear")//Á¬ĞøÕÛÏß
-		.x(function(d,i){return x.range()[i];})//xÊı¾İÉú³É²ßÂÔ,´Órange»ñÈ¡
-        .y(function(d){return y(d);});//yÊı¾İÉú³É²ßÂÔ,Ö®¼ä·µ»Ø;
+        .interpolate("linear")//è¿ç»­æŠ˜çº¿
+		.x(function(d,i){return x.range()[i];})//xæ•°æ®ç”Ÿæˆç­–ç•¥,ä»rangeè·å–
+        .y(function(d){return y(d);});//yæ•°æ®ç”Ÿæˆç­–ç•¥,ä¹‹é—´è¿”å›;
 		
 	var path=svg.append("path")
-        .attr("d",line(dataset))//´«Èëline()ÖĞµÄÊı×é,Êı×éµÄÃ¿Ò»¸öÔªËØ¶ÔÓ¦ÓÚd
+        .attr("d",line(dataset))//ä¼ å…¥line()ä¸­çš„æ•°ç»„,æ•°ç»„çš„æ¯ä¸€ä¸ªå…ƒç´ å¯¹åº”äºd
 		.style("fill","#F00")
-		.style("fill","none")//²»·â±ÕÌî³ä
+		.style("fill","none")//ä¸å°é—­å¡«å……
 		.style("stroke-width",1)
 		.style("stroke","#F00")
 		.style("stroke-opacity",0.9);
 
-//´æ´¢Ëæ»úÉú³ÉµÄÊı¾İ;
+//å­˜å‚¨éšæœºç”Ÿæˆçš„æ•°æ®;
 var dataset =[];
 function getRandomData(){
 	var dataNum=x_data_length;
 	dataset=[];
 	var i=1;
 	for(i=0;i<dataNum;i++){
-		//È¡ÖµÊÇ[0,y_data_max];
+		//å–å€¼æ˜¯[0,y_data_max];
 		dataset.push(Math.round(Math.random()*y_data_max));
 	}
 }
 
 
 </script>
+</html>

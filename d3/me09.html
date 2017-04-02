@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<meta charset="gbk">
+<meta charset="utf8">
 <style>
 .axis text {
   font: 10px sans-serif;
@@ -26,19 +26,19 @@ table td{
 		<div>
 			<div id="div_canvas" style="float:none;"></div>
 		</div>
-	<button id="bt_show_all_chart">È«²¿ÏÔÊ¾</button>
-	<button id="bt_hide_all_chart">È«²¿Òş²Ø</button>
-	<button id="bt_refresh" onclick="refresh();">½öÓÃÓÚ²âÊÔ:Ë¢ĞÂËæ»ú²âÊÔÊı¾İ</button>
+	<button id="bt_show_all_chart">å…¨éƒ¨æ˜¾ç¤º</button>
+	<button id="bt_hide_all_chart">å…¨éƒ¨éšè—</button>
+	<button id="bt_refresh" onclick="refresh();">ä»…ç”¨äºæµ‹è¯•:åˆ·æ–°éšæœºæµ‹è¯•æ•°æ®</button>
 </body>
 <script src="/js/d3.min.js"></script>
 <script>
-//²âÊÔÊı¾İ;
+//æµ‹è¯•æ•°æ®;
 var data_json = {
 	"rangeX" : ["2010-01-01","2010-12-31"],
 	"rangeY" :[0,210],
 	"warning":173,
 	"threshold":195,
-	"title":"ÕâÊÇÍ¼µÄ±êÌâ",
+	"title":"è¿™æ˜¯å›¾çš„æ ‡é¢˜",
 	"values" : [
       {
 		"name" : "myChart1",
@@ -63,32 +63,32 @@ var data_json = {
 
 console.log(data_json);
 
-//chartDataÊÇ¶à×éÕÛÏßÍ¼;
+//chartDataæ˜¯å¤šç»„æŠ˜çº¿å›¾;
 var chartData = eval(data_json);
 
-//×öÍ¼º¯Êı,·â×°;
-function d3Chart(id){//²ÎÊıÊÇÒ»¸öidÖµ
-	this._margin={left:30,right:30,top:60,bottom:150};//±ß¾àmargin
-	this._width=600;//È«²¿µÄ,×î´óµÄ¿í
-	this._height=500;//¸ß
-	this._id_canvas="div_canvas";//»­²¼ËùÔÚÈİÆ÷µÄidÖµ;ĞèÒª´«Èë,ÓĞÄ¬ÈÏÖµ
-	this._data={};//³õÊ¼jsonÊı¾İÎª¿Õ;
-	this._xScale;//xÖádomainºÍrangeµÄ±ä»»
-	this._yScale;//yÖá,Í¬ÉÏ;
-	this._timeFormat=d3.time.format("%m-%d");//xÖáÊ±¼ä¸ñÊ½;¿ÉÒÔÉèÖÃ;
-	this._svg;//ÕâÊÇ<svg>
-	this._svg_data_canvas;//ÕâÊÇÒ»¸ög±êÇ©¶ÔÏó,ÄÚ ·ÅÖÃÕÛÏßÍ¼;
-	this._g_canvas;//ÕâÊÇ<svg>µÄ×Ó±êÇ©<g>
-	this._hide_all_chart;//id,´«Èë°ó¶¨ÊÂ¼ş¼àÌı
-	this._show_all_chart;//id,Í¬ÉÏ;
-	this._interpolateType ="linear";//"step-after" ; /*ÕâÊÇÕÛÏßÍ¼µÄÑùÊ½,¿ÉÒÔÉèÖÃ*/
-	this._legend_height=20;//Í¼ÀıµÄ¸ß¶ÈÖµ;
-	this._display="block";//ÊÇ·ñÏÔÊ¾ÕÛÏßÍ¼;Ä¬ÈÏÏÔÊ¾;
-	if(id){//Èô´«ÈëidÖµ,Ôò¸³ĞÂÖµ;
+//åšå›¾å‡½æ•°,å°è£…;
+function d3Chart(id){//å‚æ•°æ˜¯ä¸€ä¸ªidå€¼
+	this._margin={left:30,right:30,top:60,bottom:150};//è¾¹è·margin
+	this._width=600;//å…¨éƒ¨çš„,æœ€å¤§çš„å®½
+	this._height=500;//é«˜
+	this._id_canvas="div_canvas";//ç”»å¸ƒæ‰€åœ¨å®¹å™¨çš„idå€¼;éœ€è¦ä¼ å…¥,æœ‰é»˜è®¤å€¼
+	this._data={};//åˆå§‹jsonæ•°æ®ä¸ºç©º;
+	this._xScale;//xè½´domainå’Œrangeçš„å˜æ¢
+	this._yScale;//yè½´,åŒä¸Š;
+	this._timeFormat=d3.time.format("%m-%d");//xè½´æ—¶é—´æ ¼å¼;å¯ä»¥è®¾ç½®;
+	this._svg;//è¿™æ˜¯<svg>
+	this._svg_data_canvas;//è¿™æ˜¯ä¸€ä¸ªgæ ‡ç­¾å¯¹è±¡,å†… æ”¾ç½®æŠ˜çº¿å›¾;
+	this._g_canvas;//è¿™æ˜¯<svg>çš„å­æ ‡ç­¾<g>
+	this._hide_all_chart;//id,ä¼ å…¥ç»‘å®šäº‹ä»¶ç›‘å¬
+	this._show_all_chart;//id,åŒä¸Š;
+	this._interpolateType ="linear";//"step-after" ; /*è¿™æ˜¯æŠ˜çº¿å›¾çš„æ ·å¼,å¯ä»¥è®¾ç½®*/
+	this._legend_height=20;//å›¾ä¾‹çš„é«˜åº¦å€¼;
+	this._display="block";//æ˜¯å¦æ˜¾ç¤ºæŠ˜çº¿å›¾;é»˜è®¤æ˜¾ç¤º;
+	if(id){//è‹¥ä¼ å…¥idå€¼,åˆ™èµ‹æ–°å€¼;
 		this._id_canvas=id;
 	}
 }
-//À©Õ¹ÄÚ²¿·½·¨;
+//æ‰©å±•å†…éƒ¨æ–¹æ³•;
 d3Chart.prototype={
 	width:function(w){
 		if(w){
@@ -120,65 +120,65 @@ d3Chart.prototype={
 	},
 	canvasId:function(i){
 		if(i){
-			d3.select("#"+this._id_canvas).html("");//ÏÈ,Çå¿ÕÔ­ÈİÆ÷ÄÚµÄ¶«Î÷;
-			this._id_canvas=i;//ÔÙ¸³ĞÂÖµ;
+			d3.select("#"+this._id_canvas).html("");//å…ˆ,æ¸…ç©ºåŸå®¹å™¨å†…çš„ä¸œè¥¿;
+			this._id_canvas=i;//å†èµ‹æ–°å€¼;
 		}else{
 			return this._id_canvas;
 		}
 	},
-	timeFormat:function(t){//ÉèÖÃ(»ñÈ¡)ºáÖáÊ±¼äµÄformat,²ÎÊıtÊÇÒ»¸öString;
+	timeFormat:function(t){//è®¾ç½®(è·å–)æ¨ªè½´æ—¶é—´çš„format,å‚æ•°tæ˜¯ä¸€ä¸ªString;
 		if(t){
 			this._timeFormat=d3.time.format(t);
 		}else{
 			return this._timeFormat;
 		}
 	},
-	interpolateType:function(type){//²ÎÊıÊÇÒ»¸öString ,Ä¬ÈÏÖµ=linear ,±íÊ¾ÕÛÏßÍ¼)
+	interpolateType:function(type){//å‚æ•°æ˜¯ä¸€ä¸ªString ,é»˜è®¤å€¼=linear ,è¡¨ç¤ºæŠ˜çº¿å›¾)
 		if(type){
 			this._interpolateType = type;
 		}else{
 			return this._interpolateType;
 		}
 	},
-	display:function(flag){//²ÎÊıÊÇbooleanÖµ;
+	display:function(flag){//å‚æ•°æ˜¯booleanå€¼;
 		if(flag==true){
 			this._display="block";
 		}else{
 			this._display="none";
 		}
 	},
-	drawAxis:function(){//»­×ø±êÖá;
-		//ÏÈÒÆ³ısvg,³õ´ÎÖ´ĞĞÊ±,ÎŞĞ§;
+	drawAxis:function(){//ç”»åæ ‡è½´;
+		//å…ˆç§»é™¤svg,åˆæ¬¡æ‰§è¡Œæ—¶,æ— æ•ˆ;
 		var canvas = d3.select("#"+this._id_canvas);
 		canvas.selectAll("svg").remove();
 		
 		var width = this._width-this._margin.left-this._margin.right;
 		var height = this._height-this._margin.top-this._margin.bottom;
 		
-		var x_scale = this._data.rangeX;//ÕâÊÇ¸öÊı×é
-		var y_scale = this._data.rangeY;//È·¶¨ÉÏÏÂÏŞ;
+		var x_scale = this._data.rangeX;//è¿™æ˜¯ä¸ªæ•°ç»„
+		var y_scale = this._data.rangeY;//ç¡®å®šä¸Šä¸‹é™;
 
 		var t0 = new Date(x_scale[0]);
 		var t1 = new Date(x_scale[1]);
 		this._xScale = d3.time.scale().domain([t0,t1]).range([0,width]).clamp(true);
 		this._yScale = d3.scale.linear().domain(y_scale).range([height,0]).clamp(true);
 		
-		//×ø±êÖáÓëÊı¾İÓòÖ®¼äµÄÓ³Éä,½¨Á¢×ø±êÖá;
+		//åæ ‡è½´ä¸æ•°æ®åŸŸä¹‹é—´çš„æ˜ å°„,å»ºç«‹åæ ‡è½´;
 		var xAxis = d3.svg.axis().scale(this._xScale).tickFormat(this._timeFormat).orient("bottom");
 		//var xAxis = d3.svg.axis().scale(x).tickValues(x.domain()).orient("bottom");
 		var yAxis = d3.svg.axis().scale(this._yScale).orient("left");//.ticks(default=10);
 
-		//<svg>±êÇ©
+		//<svg>æ ‡ç­¾
 		var svg =d3.select("#"+this._id_canvas).append("svg");
-		this._svg=svg;//×¢²á¸øÈ«¾Ö±äÁ¿
+		this._svg=svg;//æ³¨å†Œç»™å…¨å±€å˜é‡
 
-		//±³¾°¿ò,×î´óµÄÄÇ¸ö¿ò
+		//èƒŒæ™¯æ¡†,æœ€å¤§çš„é‚£ä¸ªæ¡†
 		svg.append("g").append("rect")
 			.attr("width",this._width)
 			.attr("height",this._height)
 			.attr("fill","none")
 			.attr("stroke","#E7E7E7");
-		//±êÌâ,×îÉÏÃæµÄ
+		//æ ‡é¢˜,æœ€ä¸Šé¢çš„
 		if(this._data.title){
 		svg.append("g").append("text")
 			.attr("transform","translate("+this._width/2+","+this._margin.top/2+")")
@@ -186,48 +186,48 @@ d3Chart.prototype={
 			.style({'text-anchor': 'middle'});
 		}
 		
-		//Éú³ÉÒ»¸ö<g>±êÇ©, ÊÇ<svg>µÄ×Ó±êÇ©
+		//ç”Ÿæˆä¸€ä¸ª<g>æ ‡ç­¾, æ˜¯<svg>çš„å­æ ‡ç­¾
 		var g = svg.attr("width", width + this._margin.left + this._margin.right)
 			.attr("height", height + this._margin.top + this._margin.bottom)
 			.append("g")
 			.attr("transform","translate(" + this._margin.left + ","+this._margin.top+")");
-		this._g_canvas = g;//×¢²á¸øÈ«¾Ö±äÁ¿
+		this._g_canvas = g;//æ³¨å†Œç»™å…¨å±€å˜é‡
 		
 		
-		//yÖá
+		//yè½´
 		var gy = g.append("g")
 			.attr("class","axis")
-			.attr("transform","translate(0,0)")//¸¸±êÇ©ÒÑ¾­translate,ËùÒÔÏà¶Ô²»ĞèÒªÔÙÒÆ¶¯;
+			.attr("transform","translate(0,0)")//çˆ¶æ ‡ç­¾å·²ç»translate,æ‰€ä»¥ç›¸å¯¹ä¸éœ€è¦å†ç§»åŠ¨;
 			.call(yAxis);
 			
-		//Éú³ÉxÖá	
+		//ç”Ÿæˆxè½´	
 		var gx = g.append("g")
 			.attr("class", "axis")
 			.attr("transform","translate(0,"+height+")")
 			.call(xAxis);
 			
-		//ºáÏßĞéÏß
-		gy.selectAll("g").classed("minor", true);//cssäÖÈ¾ÎªĞéÏß;
-		gy.selectAll("line").attr("x2",width);//ÕâÊÇÎÒÇ¿ÖÆ»­µÄĞéÏß
-		//Í¬ÉÏ,ÊúÏòĞéÏß;
+		//æ¨ªçº¿è™šçº¿
+		gy.selectAll("g").classed("minor", true);//cssæ¸²æŸ“ä¸ºè™šçº¿;
+		gy.selectAll("line").attr("x2",width);//è¿™æ˜¯æˆ‘å¼ºåˆ¶ç”»çš„è™šçº¿
+		//åŒä¸Š,ç«–å‘è™šçº¿;
 		gx.selectAll("g").classed("minor",true);
 		gx.selectAll("line").attr("y2",-height);
 
 
-		//Éú³ÉÒ»¸ö·ÅÖÃÕÛÏßÍ¼µÄÈİÆ÷;
+		//ç”Ÿæˆä¸€ä¸ªæ”¾ç½®æŠ˜çº¿å›¾çš„å®¹å™¨;
 		this._svg_data_canvas = g.append("g");//.property("id","svg_data_canvas");
 	},
-	drawData:function(){//»­Í¼;
+	drawData:function(){//ç”»å›¾;
 		var x= this._xScale;
 		var y= this._yScale;
 		var width = this._width-this._margin.left-this._margin.right;
 		var height = this._height-this._margin.top-this._margin.bottom;
 		var svg_data_canvas = this._svg_data_canvas;
 		var interpolateType = this._interpolateType;//string
-		//ÏÈÉ¾µô,³õ´ÎÖ´ĞĞÊ±,ÎŞĞ§;
+		//å…ˆåˆ æ‰,åˆæ¬¡æ‰§è¡Œæ—¶,æ— æ•ˆ;
 		svg_data_canvas.selectAll("g").remove();
 
-		//Í¼Àı´æ·ÅµÄµØ·½
+		//å›¾ä¾‹å­˜æ”¾çš„åœ°æ–¹
 		var g_legend = this._svg.append("g")
 			.attr("transform","translate("+this._margin.left+","+eval(this._height-this._margin.bottom+20)+")");
 
@@ -237,23 +237,23 @@ d3Chart.prototype={
 			var name = values[i].name;
 			var data_y=values[i].y;
 			var data_x=values[i].x;
-			//ÎªÁË°Ñ<path>ºÍ<circle>·â×°µ½Í¬Ò»¸ö<g>ÄÚ,²¢ÇÒ²»ÔÙÓĞÆäËüÔªËØ
+			//ä¸ºäº†æŠŠ<path>å’Œ<circle>å°è£…åˆ°åŒä¸€ä¸ª<g>å†…,å¹¶ä¸”ä¸å†æœ‰å…¶å®ƒå…ƒç´ 
 			var svg_canvas = svg_data_canvas.append("g").property("id",name).attr("opacity",1.0).style("display",this._display);
 			
-			//Ìí¼ÓÕÛÏß
+			//æ·»åŠ æŠ˜çº¿
 			var line = d3.svg.line()
-					.interpolate(interpolateType)//Á¬ĞøÕÛÏß
-					.x(function(d,i){return x(new Date(data_x[i]));})//xÊı¾İÉú³É²ßÂÔ,
-					.y(function(d,i){return y(d);});//yÊı¾İÉú³É²ßÂÔ,
+					.interpolate(interpolateType)//è¿ç»­æŠ˜çº¿
+					.x(function(d,i){return x(new Date(data_x[i]));})//xæ•°æ®ç”Ÿæˆç­–ç•¥,
+					.y(function(d,i){return y(d);});//yæ•°æ®ç”Ÿæˆç­–ç•¥,
 			//<path>
 			var path = svg_canvas.append("path")
-					.attr("d",line(data_y))//´«Èëline()ÖĞµÄÊı×é,Êı×éµÄÃ¿Ò»¸öÔªËØ¶ÔÓ¦ÓÚd
+					.attr("d",line(data_y))//ä¼ å…¥line()ä¸­çš„æ•°ç»„,æ•°ç»„çš„æ¯ä¸€ä¸ªå…ƒç´ å¯¹åº”äºd
 					.style("fill",color)
-					.style("fill","none")//²»·â±ÕÌî³ä
+					.style("fill","none")//ä¸å°é—­å¡«å……
 					.style("stroke-width",1)
 					.style("stroke",color);
 			
-			//Ìí¼ÓĞ¡Ô²µã
+			//æ·»åŠ å°åœ†ç‚¹
 			var g_circle =svg_canvas.append("g");
 			var circle = g_circle.selectAll("circle")
 				.data(data_y)
@@ -264,25 +264,25 @@ d3Chart.prototype={
 				.attr("r",4)
 				.attr("fill",color);
 
-			//Ìí¼Ó¸¡¶¯ÌáÊ¾
+			//æ·»åŠ æµ®åŠ¨æç¤º
 			circle.append("title")
 				.text(function(d,i){return name+"("+data_x[i]+","+d+")";});
 
-			//Í¼Àı
+			//å›¾ä¾‹
 			var info =g_legend.append("g")
 						.attr("transform","translate("+0+","+0+")");
-			//ÏÈËãÒ»ÏÂÎ»ÖÃ			
+			//å…ˆç®—ä¸€ä¸‹ä½ç½®			
 			var lx =width/values.length*i;
-			//·½¿é
+			//æ–¹å—
 			var rect = info.append("rect")
 					.attr('width','20')
 					.attr('height',this._legend_height)
 					.attr("x",lx)
 					.attr("y",0)
-					.text(name)//ÓÃÓÚ×¢²áµã»÷ÊÂ¼ş;
+					.text(name)//ç”¨äºæ³¨å†Œç‚¹å‡»äº‹ä»¶;
 					.attr("fill",color)
 					.style("cursor","pointer");
-			//ÊÂ¼ş¼àÌı,µã»÷ ÏÔÊ¾/Òş²Ø ÕÛÏß;
+			//äº‹ä»¶ç›‘å¬,ç‚¹å‡» æ˜¾ç¤º/éšè— æŠ˜çº¿;
 			rect.on("click",function(){
 				var id =this.innerHTML;
 				var g =svg_data_canvas.select("#"+id);
@@ -297,7 +297,7 @@ d3Chart.prototype={
 					g.selectAll("g").style("display","block");
 				}
 			});
-			//ÎÄ×ÖÌáÊ¾
+			//æ–‡å­—æç¤º
 			info.append("text")
 				.attr("x",eval(lx+22))
 				.attr("y",20)
@@ -305,7 +305,7 @@ d3Chart.prototype={
 				.text(name);
 		}
 
-		//»­¾¯¸æÏß
+		//ç”»è­¦å‘Šçº¿
 		if(this._data.warning){
 		var g_warn = this._g_canvas.append("g")
 			.attr("transform","translate(0,"+y(this._data.warning)+")");
@@ -313,11 +313,11 @@ d3Chart.prototype={
 			.style({'stroke':'#CC9933','stroke-width':2})
 			.attr("x2",width).attr("y2",0);
 		g_warn.append("title").text(this._data.warning);
-		g_warn.append("text").text("¾¯¸æ").style({'font-size':'8px'}).attr("x",width).attr("y",4)
+		g_warn.append("text").text("è­¦å‘Š").style({'font-size':'8px'}).attr("x",width).attr("y",4)
 			.attr("fill","#CC9933")
 			.append("title").text(this._data.warning);
 		}
-		//»­·§ÖµÏß
+		//ç”»é˜€å€¼çº¿
 		if(this._data.threshold){
 		var g_threshold = this._g_canvas.append("g")
 			.attr("transform","translate(0,"+y(this._data.threshold)+")");
@@ -325,12 +325,12 @@ d3Chart.prototype={
 			.style({'stroke':'#CC0000','stroke-width':2})
 			.attr("x2",width).attr("y2",0);
 		g_threshold.append("title").text(this._data.threshold);
-		g_threshold.append("text").text("·§Öµ").style({'font-size':'8px'}).attr("x",width).attr("y",4)
+		g_threshold.append("text").text("é˜€å€¼").style({'font-size':'8px'}).attr("x",width).attr("y",4)
 			.attr("fill","#CC0000")
 			.append("title").text(this._data.threshold);
 		}
 	},
-	showAll:function(id){//buttonµã»÷,ÏÔÊ¾ËùÓĞ;
+	showAll:function(id){//buttonç‚¹å‡»,æ˜¾ç¤ºæ‰€æœ‰;
 		if(id){
 			this._show_all_chart = id;
 		}
@@ -342,7 +342,7 @@ d3Chart.prototype={
 			g.selectAll("path").style("display","block");
 		});
 	},
-	hideAll:function(id){//buttonµã»÷,Òş²ØËùÓĞ
+	hideAll:function(id){//buttonç‚¹å‡»,éšè—æ‰€æœ‰
 		if(id){
 			this._hide_all_chart=id;
 		}
@@ -359,7 +359,7 @@ d3Chart.prototype={
 			this.data(data);
 			this.drawAxis();
 			this.drawData();
-			this.hideAll();//×¢²áÊÂ¼ş¼àÌı
+			this.hideAll();//æ³¨å†Œäº‹ä»¶ç›‘å¬
 			this.showAll();
 		}
 	}
@@ -369,7 +369,7 @@ var myChart = new d3Chart("div_canvas");
 myChart.data(chartData);
 myChart.drawAxis();
 myChart.drawData();
-//×¢²áÊÂ¼ş¼àÌı
+//æ³¨å†Œäº‹ä»¶ç›‘å¬
 myChart.hideAll("bt_hide_all_chart");
 myChart.showAll("bt_show_all_chart");
 
@@ -378,9 +378,9 @@ function refresh(){
 	myChart.refresh(data);
 }
 
-//½ö½öÓÃÓÚ²âÊÔ:
+//ä»…ä»…ç”¨äºæµ‹è¯•:
 function _refresh(){
-//Ë¢ĞÂÊı¾İ
+//åˆ·æ–°æ•°æ®
 	var obj_data =[];
 	for(var i =0 ;i<chartData.values.length;i++){
 		var val = [];
@@ -403,7 +403,7 @@ function _refresh(){
 	obj.values = obj_data;
 	console.log(obj);
 	
-	//´ËÊ±obj¾ÍÊÇĞÂµÄjson¸ñÊ½Êı¾İ;
+	//æ­¤æ—¶objå°±æ˜¯æ–°çš„jsonæ ¼å¼æ•°æ®;
 	return obj;
 }
 
