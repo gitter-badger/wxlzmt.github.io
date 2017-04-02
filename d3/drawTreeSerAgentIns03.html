@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head>
+<style>
+.divCanvas{
+  float:none;width:1500px;height:1000px;margin:5px;border:1px solid blue;
+}
+</style>
+<script src="/js/d3.min.js"></script>
+<script src="/js/jquery-2.1.1.js"></script>
+<script>
+var data = 
+{
+ "children" : [
+ {
+   "children" : [
+   {
+     "children" : [
+     {
+       "desInstance" : "读取实例消息的代理",
+       "id" : 4,
+       "idnInstance" : "EP_RTMSG",
+       "indAvailability" : 0,
+       "label" : "读取实例消息的代理",
+       "type" : "instance"
+     }
+     ],
+     "desTypagent" : "实时日志代理",
+     "id" : 3,
+     "idnMaster" : "MASTER04",
+     "indState" : 1,
+     "label" : "实时日志代理",
+     "typAgent" : "RTMSG001",
+     "type" : "agent"
+   },
+   {
+     "children" : [
+     {
+       "desInstance" : "测试，请勿修改",
+       "id" : 6,
+       "idnInstance" : "tm1",
+       "indAvailability" : 0,
+       "label" : "测试，请勿修改",
+       "type" : "instance"
+     }
+     ],
+     "desTypagent" : "Tomcat Agent",
+     "id" : 5,
+     "idnMaster" : "MASTER04",
+     "indState" : 1,
+     "label" : "Tomcat Agent",
+     "typAgent" : "TOMCAT01",
+     "type" : "agent"
+   },
+   {
+     "children" : [],
+     "desTypagent" : "UEPWEB01 Agent",
+     "id" : 7,
+     "idnMaster" : "MASTER04",
+     "indState" : 1,
+     "label" : "UEPWEB01 Agent",
+     "typAgent" : "UEPWEB01",
+     "type" : "agent"
+   },
+   {
+     "children" : [
+     {
+       "desInstance" : "YX",
+       "id" : 9,
+       "idnInstance" : "EP_YX",
+       "indAvailability" : 0,
+       "label" : "YX",
+       "type" : "instance"
+     },
+     {
+       "desInstance" : "YY",
+       "id" : 10,
+       "idnInstance" : "EP_YY",
+       "indAvailability" : 0,
+       "label" : "YY",
+       "type" : "instance"
+     }
+     ],
+     "desTypagent" : "YX000001",
+     "id" : 8,
+     "idnMaster" : "MASTER04",
+     "indState" : 1,
+     "label" : "YX000001",
+     "typAgent" : "YX000001",
+     "type" : "agent"
+   }
+   ],
+   "hstName" : "admin-PC",
+   "id" : 2,
+   "idnMaster" : "MASTER04",
+   "indState" : 1,
+   "ipaMaster" : "172.20.182.42",
+   "label" : "admin-PC",
+   "pxyName" : "admin-PC",
+   "type" : "master"
+ },
+ {
+   "children" : [
+   {
+     "children" : [],
+     "desTypagent" : "IP Agent",
+     "id" : 12,
+     "idnMaster" : "MASTER05",
+     "indState" : 1,
+     "label" : "IP Agent",
+     "typAgent" : "IPINST01",
+     "type" : "agent"
+   },
+
+   ],
+   "hstName" : "TJ-PC252",
+   "id" : 11,
+   "idnMaster" : "MASTER05",
+   "indState" : 0,
+   "ipaMaster" : "172.20.182.252",
+   "label" : "TJ-PC252",
+   "pxyName" : "TJ-PC252",
+   "type" : "master"
+ },
+ {
+   "children" : [
+   {
+     "children" : [],
+     "desTypagent" : "IP Agent",
+     "id" : 25,
+     "idnMaster" : "MASTER01",
+     "indState" : 1,
+     "label" : "IP Agent",
+     "typAgent" : "IPINST01",
+     "type" : "agent"
+   },
+   {
+     "children" : [],
+     "desTypagent" : "Linux via SSH Agent",
+     "id" : 26,
+     "idnMaster" : "MASTER01",
+     "indState" : 1,
+     "label" : "Linux via SSH Agent",
+     "typAgent" : "LINUXSSH",
+     "type" : "agent"
+   },
+   {
+     "children" : [],
+     "desTypagent" : "Log Text File Agent",
+     "id" : 27,
+     "idnMaster" : "MASTER01",
+     "indState" : 1,
+     "label" : "Log Text File Agent",
+     "typAgent" : "LOG00001",
+     "type" : "agent"
+   },
+   {
+     "children" : [],
+     "desTypagent" : "IIS\n 6.0",
+     "id" : 28,
+     "idnMaster" : "MASTER01",
+     "indState" : 1,
+     "label" : "IIS 6.0",
+     "typAgent" : "MSIISV60",
+     "type" : "agent"
+   },
+   {
+     "children" : [],
+     "desTypagent" : "MySql Database Agent",
+     "id" : 29,
+     "idnMaster" : "MASTER01",
+     "indState" : 1,
+     "label" : "MySql Database Agent",
+     "typAgent" : "MYSQL001",
+     "type" : "agent"
+   },
+   {
+     "children" : [
+     {
+       "desInstance" : "读取实例消息的代理",
+       "id" : 31,
+       "idnInstance" : "EP_RTMSG",
+       "indAvailability" : 0,
+       "label" : "读取实例消息的代理",
+       "type" : "instance"
+     }
+     ],
+     "desTypagent" : "实时日志代理",
+     "id" : 30,
+     "idnMaster" : "MASTER01",
+     "indState" : 1,
+     "label" : "实时日志代理",
+     "typAgent" : "RTMSG001",
+     "type" : "agent"
+   },
+   {
+     "children" : [
+     {
+       "desInstance" : "测试，请勿修改",
+       "id" : 33,
+       "idnInstance" : "tm1",
+       "indAvailability" : 0,
+       "label" : "测试，请勿修改",
+       "type" : "instance"
+     }
+     ],
+     "desTypagent" : "Tomcat Agent",
+     "id" : 32,
+     "idnMaster" : "MASTER01",
+     "indState" : 1,
+     "label" : "Tomcat Agent",
+     "typAgent" : "TOMCAT01",
+     "type" : "agent"
+   },
+   {
+     "children" : [],
+     "desTypagent" : "UEPWEB01 Agent",
+     "id" : 34,
+     "idnMaster" : "MASTER01",
+     "indState" : 1,
+     "label" : "UEPWEB01 Agent",
+     "typAgent" : "UEPWEB01",
+     "type" : "agent"
+   },
+   {
+     "children" : [],
+     "desTypagent" : "Web Agent",
+     "id" : 35,
+     "idnMaster" : "MASTER01",
+     "indState" : 1,
+     "label" : "Web Agent",
+     "typAgent" : "WEB00001",
+     "type" : "agent"
+   },
+   {
+     "children" : [
+     {
+       "desInstance" : "weblogic_local",
+       "id" : 37,
+       "idnInstance" : "weblgc01",
+       "indAvailability" : 0,
+       "label" : "weblogic_local",
+       "type" : "instance"
+     }
+     ],
+     "desTypagent" : "Weblogic Agent",
+     "id" : 36,
+     "idnMaster" : "MASTER01",
+     "indState" : 1,
+     "label" : "Weblogic Agent",
+     "typAgent" : "WEBLOGIC",
+     "type" : "agent"
+   },
+   {
+     "children" : [],
+     "desTypagent" : "Windows Agent",
+     "id" : 38,
+     "idnMaster" : "MASTER01",
+     "indState" : 1,
+     "label" : "Windows Agent",
+     "typAgent" : "WINDOWS1",
+     "type" : "agent"
+   },
+   {
+     "children" : [],
+     "desTypagent" : "Windows WMI Agent",
+     "id" : 39,
+     "idnMaster" : "MASTER01",
+     "indState" : 1,
+     "label" : "Windows WMI Agent",
+     "typAgent" : "WINDOWS2",
+     "type" : "agent"
+   },
+   {
+     "children" : [],
+     "desTypagent" : "银电联网",
+     "id" : 40,
+     "idnMaster" : "MASTER01",
+     "indState" : 1,
+     "label" : "银电联网",
+     "typAgent" : "YDLW0001",
+     "type" : "agent"
+   }
+   ],
+   "hstName" : "yinshuwei-PC",
+   "id" : 24,
+   "idnMaster" : "MASTER01",
+   "indState" : 0,
+   "ipaMaster" : "172.20.182.208",
+   "label" : "yinshuwei-PC",
+   "pxyName" : "yinshuwei-PC",
+   "type" : "master"
+ },
+ {
+   "children" : [
+   {
+     "children" : [],
+     "desTypagent" : "Apache Web Server Ag\nent",
+     "id" : 42,
+     "idnMaster" : "MASTER02",
+     "indState" : 1,
+     "label" : "Apache Web Server Agent",
+     "typAgent" : "APACHE01",
+     "type" : "agent"
+   },
+   {
+     "children" : [],
+     "desTypagent" : "IP Agent",
+     "id" : 43,
+     "idnMaster" : "MASTER02",
+     "indState" : 1,
+     "label" : "IP Agent",
+     "typAgent" : "IPINST01",
+     "type" : "agent"
+   },
+   {
+     "children" : [],
+     "desTypagent" : "Linux via SSH Agent",
+     "id" : 44,
+     "idnMaster" : "MASTER02",
+     "indState" : 1,
+     "label" : "Linux via SSH Agent",
+     "typAgent" : "LINUXSSH",
+     "type" : "agent"
+   },
+   {
+     "children" : [],
+     "desTypagent" : "MySql Database Agent",
+     "id" : 45,
+     "idnMaster" : "MASTER02",
+     "indState" : 1,
+     "label" : "MySql Database Agent",
+     "typAgent" : "MYSQL001",
+     "type" : "agent"
+   },
+   {
+     "children" : [
+     {
+       "desInstance" : "南网营销EJB125实例",
+       "id" : 47,
+       "idnInstance" : "YXEJB125",
+       "indAvailability" : 0,
+       "label" : "南网营销EJB125实例",
+       "type" : "instance"
+     }
+     ],
+     "desTypagent" : "南网营销EJB端代理",
+     "id" : 46,
+     "idnMaster" : "MASTER02",
+     "indState" : 1,
+     "label" : "南网营销EJB端代理",
+     "typAgent" : "NWYXEJB1",
+     "type" : "agent"
+   },
+   {
+     "children" : [
+     {
+       "desInstance" : "南网web125实例",
+       "id" : 49,
+       "idnInstance" : "YXWEB125",
+       "indAvailability" : 0,
+       "label" : "南网web125实例",
+       "type" : "instance"
+     }
+     ],
+     "desTypagent" : "南网营销web端代理",
+     "id" : 48,
+     "idnMaster" : "MASTER02",
+     "indState" : 1,
+     "label" : "南网营销web端代理",
+     "typAgent" : "NWYXWEB1",
+     "type" : "agent"
+   },
+   {
+     "children" : [],
+     "desTypagent" : "实时日志代理",
+     "id" : 50,
+     "idnMaster" : "MASTER02",
+     "indState" : 1,
+     "label" : "实时日志代理",
+     "typAgent" : "RTMSG001",
+     "type" : "agent"
+   },
+   {
+     "children" : [],
+     "desTypagent" : "Tomcat Agent",
+     "id" : 51,
+     "idnMaster" : "MASTER02",
+     "indState" : 1,
+     "label" : "Tomcat Agent",
+     "typAgent" : "TOMCAT01",
+     "type" : "agent"
+   },
+   {
+     "children" : [],
+     "desTypagent" : "UEPWEB01 Agent",
+     "id" : 52,
+     "idnMaster" : "MASTER02",
+     "indState" : 1,
+     "label" : "UEPWEB01 Agent",
+     "typAgent" : "UEPWEB01",
+     "type" : "agent"
+   },
+   {
+     "children" : [],
+     "desTypagent" : "Web Agent",
+     "id" : 53,
+     "idnMaster" : "MASTER02",
+     "indState" : 1,
+     "label" : "Web Agent",
+     "typAgent" : "WEB00001",
+     "type" : "agent"
+   },
+   {
+     "children" : [],
+     "desTypagent" : "Weblogic Agent",
+     "id" : 54,
+     "idnMaster" : "MASTER02",
+     "indState" : 1,
+     "label" : "Weblogic Agent",
+     "typAgent" : "WEBLOGIC",
+     "type" : "agent"
+   },
+   {
+     "children" : [],
+     "desTypagent" : "Windows Agent",
+     "id" : 55,
+     "idnMaster" : "MASTER02",
+     "indState" : 1,
+     "label" : "Windows Agent",
+     "typAgent" : "WINDOWS1",
+     "type" : "agent"
+   },
+   {
+     "children" : [],
+     "desTypagent" : "Windows WMI A\ngent",
+     "id" : 56,
+     "idnMaster" : "MASTER02",
+     "indState" : 1,
+     "label" : "Windows WMI Agent",
+     "typAgent" : "WINDOWS2",
+     "type" : "agent"
+   },
+   {
+     "children" : [
+     {
+       "desInstance" : "测试银电联网，请勿修改",
+       "id" : 58,
+       "idnInstance" : "ydlw_t1",
+       "indAvailability" : 0,
+       "label" : "测试银电联网，请勿修改",
+       "type" : "instance"
+     }
+     ],
+     "desTypagent" : "银电联网",
+     "id" : 57,
+     "idnMaster" : "MASTER02",
+     "indState" : 1,
+     "label" : "银电联网",
+     "typAgent" : "YDLW0001",
+     "type" : "agent"
+   },
+   {
+     "children" : [
+     {
+       "desInstance" : "YX",
+       "id" : 60,
+       "idnInstance" : "EP_YX",
+       "indAvailability" : 0,
+       "label" : "YX",
+       "type" : "instance"
+     }
+     ],
+     "desTypagent" : "YX000001",
+     "id" : 59,
+     "idnMaster" : "MASTER02",
+     "indState" : 1,
+     "label" : "YX000001",
+     "typAgent" : "YX000001",
+     "type" : "agent"
+   }
+   ],
+   "hstName" : "TJ-PC",
+   "id" : 41,
+   "idnMaster" : "MASTER02",
+   "indState" : 0,
+   "ipaMaster" : "172.20.182.54",
+   "label" : "TJ-PC",
+   "pxyName" : "TJ-PC",
+   "type" : "master"
+ }
+ ],
+ "data" : [
+ {
+   "exeProcess" : "osm_central_server",
+   "indState" : 1,
+   "label" : "主代理进程"
+ },
+ {
+   "exeProcess" : "osm_task_manager",
+   "indState" : 1,
+   "label" : "任务管理进程"
+ },
+ {
+   "exeProcess" : "osm_notifi_manager",
+   "indState" : 1,
+   "label" : "消息管理进程"
+ },
+ {
+   "exeProcess" : "osm_state_manager",
+   "indState" : 1,
+   "label" : "状态管理进程"
+ },
+ {
+   "exeProcess" : "osm_trap_manager",
+   "indState" : 1,
+   "label" : "trap管理器"
+ }
+ ],
+ "id" : 1,
+ "ipsdcm" : "127.0.0.1",
+ "label" : "中央服务器",
+ "type" : "root"
+}
+;
+
+function d3TreeChart(idVal){
+  var _id_canvas;
+  if (idVal != null) {
+    _id_canvas = idVal;
+  }
+  this.idCanvas = function(d) {
+    if (d != null) {
+      _id_canvas = d;
+    } else {
+      return _id_canvas;
+    }
+  };
+  var _data;
+  this.data = function(d) {
+    if (d != null) {
+      _data = d;
+    } else {
+      return _data;
+    }
+  };
+  var _width = 2000;
+  var _height = 2000;
+  var _rect_width = 200;
+  var _rect_height = 20;
+  var _rect_margin_height = 5;
+  var _rect_margin_width = 200;
+  var _rotate = 0;
+  var _rect_inner_margin_top = 50;//masterAgent节点,top预留空间,
+  var _rect_inner_margin_left_right = 20;////masterAgent节点,左右边界的预留空间,
+  var _arrow_space = 8;//从agent指向instance的箭头,预留的一个小空间
+  var _line_path_width = 4;
+  //节点边框
+  var _color_rect_stroke_leave = "#99ffff";//应该依次加深
+  var _color_rect_stroke_on = "#33cccc";
+  var _color_rect_stroke_pressed = "#009966";
+  //节点
+  var _color_node_depth1_yes="#66ffcc";//深度1节点,可用
+  var _color_node_depth1_no="#ff6600";//深度1节点,不可用
+  var _color_node_depth2_yes="#00ff66";//深度2节点,可用
+  var _color_node_depth2_no="#ff0000";//深度2节点,不可用
+  var _color_node_depth3_yes="#66cc33";//深度3节点,可用
+  var _color_node_depth3_no="#ff0000";//深度3节点,不可用
+  var _color_node_depth4_yes="#cccc66";//深度4节点,可用
+  var _color_node_depth4_no="#ff0000";//深度4节点,不可用
+  var _color_node_default = "#ffcc99";//默认节点颜色;
+  var _color_node_root_son_no="#ff0000";//root节点内的小节点,不可用
+  var _color_node_root_son_yes="#99cc00";//root节点内的小节点,可用
+
+  var _base_path = "C:/Users/zdd/Desktop/d3";//$$pageContextPath+"images/mon";
+
+  var setSvgSize = function(w, h) {//给定可能正确的宽度和高度,作判断处理,然后设置给画布
+    if (w && h) {
+      var numReg = new RegExp("\\d+");
+      try {
+        var a = parseInt(w.match(numReg));
+        var b = parseInt(h.match(numReg));
+        if (a > 0 && b > 0) {
+          _width = a;
+          _height = b;
+        }
+      } catch(e) {
+        console.log(e);
+      }
+    }
+  };
+  this.draw = function(){
+    var canvas = d3.select("#" + _id_canvas);
+    canvas.selectAll("svg").remove();
+    setSvgSize(canvas.style("width"), canvas.style("height"));
+    //nodeSize([参数1,参数2]);参数1表示兄弟节点的间隔,参数2代表父子节点的间隔;
+    var tree = d3.layout.tree().size(null).nodeSize([_rect_height+_rect_margin_height,_rect_width+_rect_margin_width]);
+    //计算弧
+    var diagonal = d3.svg.diagonal().projection(function(d) {return [d.y, d.x];});
+    var svg = d3.select("#" + _id_canvas).append("svg").attr({"width":_width,"height":_height}).style({'overflow':'hidden'});
+    //定义一些shape
+    svg.append("defs").append("marker").attr({'id':'idSvgDefsMarkerArrow','markerUnits':'strokeWidth','markerWidth':3,'markerHeight':3,'viewBox':'0 0 6 6','refX':3,'refY':3,'orient':'auto'})
+    .append("path").attr({'d':"M0,0 L6,3 L0,6 Z"}).style({"fill":"#adcbe9"});
+    //缩放
+    var zoom = d3.behavior.zoom().scaleExtent([0.1,8]).on("zoom",function(){
+      g_canvas.attr("transform","translate("+d3.event.translate+")scale("+d3.event.scale+")");});
+    var g_background = svg.append("g").attr("name","g_background")
+    .attr("transform","translate(0,"+eval(_height/2)+")rotate("+_rotate+")").call(zoom);
+    //背景框
+    var g_canvas = g_background.append("g").attr("name","g_canvas");
+    var rect_background = g_canvas.append("rect").attr("name","rect_background")
+    .attr("width",99999).attr("height",99999).attr("transform","translate(-44444,-44444)")
+    .style({'fill':'none','pointer-events':'all'});
+    var g_links = g_canvas.append("g").attr("name", "g_links");
+    var g_nodes = g_canvas.append("g").attr("name", "g_nodes");
+    //鼠标mouseover事件
+    g_canvas.on("mouseover",function(){d3.select(this).style({'cursor':'move'})});
+    //计算节点信息
+    var nodes = tree.nodes(_data);
+
+    nodes=nodes.map(function(d,i){
+      if(d.depth==0){
+        var sum = 0;
+        for(var i=0;d.children!=null && i<d.children.length;i++){
+          var masterAgentNode = d.children[i];
+          sum = (i+1)*_rect_inner_margin_top;
+          masterAgentNode.x = masterAgentNode.x+(i+1)*_rect_inner_margin_top;
+        }
+        for(var i=0;d.children!=null && i<d.children.length;i++){
+          var masterAgentNode = d.children[i];
+          masterAgentNode.x = masterAgentNode.x-sum/2;
+        }
+      }else if(d.depth==1){//主代理
+      }else if(d.depth==2){//代理
+        d.y=d.y-(_rect_width);
+      }else if(d.depth==3){//实例
+        d.y=d.y-(_rect_width);
+      }
+      return d;
+    });
+    //计算连接信息
+    var links = tree.links(nodes);
+
+    //画连接线
+    var link = g_links.selectAll("path").data(links).enter().append("path").attr({'d': diagonal})
+    .attr("from",function(d,i){return d.source.id;})
+    .attr("to",function(d,i){return d.target.id;})
+    .attr("depth",function(d,i){return d.source.depth;}).attr({'marker-end':"url('#idSvgDefsMarkerArrow')"})
+        .style({'stroke' :'#adcbe9','fill' : 'none','stroke-width':_line_path_width,'display':'block'});//线条样式
+    //移除无用线条
+    g_links.selectAll("path[depth='1']").remove();
+    g_links.selectAll("path[depth='2']").remove();
+    //节点的容器
+    var node = g_nodes.selectAll("g").data(nodes).enter().append("g")
+    .attr("node_id",function(d,i){return d.id;})
+    .attr("parent",function(d,i){if(d.type=="root"){return null;}else return d.parent.id;})
+    .attr("depth",function(d,i){return d.depth;})
+    .attr("transform", function(d, i) {return "translate(" + d.y + "," + d.x + ")";})
+    .style({'display':'block'});
+    //移除无用节点
+    g_nodes.selectAll("g[depth='2']").remove();
+    g_nodes.selectAll("g[depth='3']").remove();
+    //节点
+    var g_node = node.append("g").attr("name","g_node_details").attr("transform",function(d,i){if(d.depth==1){return "translate("+_arrow_space+",0)";}else return null;});
+    //绑定事件
+    g_node.on("mouseover",function(d,i){//鼠标放上去
+      d3.select(this).style({'cursor':'pointer'});
+      d3.select(this).select("rect[name='background']").style({'stroke':_color_rect_stroke_on});
+    });
+    g_node.on("mouseout",function(d,i){//鼠标挪开
+      var this_rect =d3.select(this).select("rect[name='background']");
+      this_rect.style({'stroke':_color_rect_stroke_leave});
+    });
+
+    g_node.on("mousedown",function(d,i){//鼠标按下
+      d3.select(this).select("rect[name='background']").style({'stroke':_color_rect_stroke_pressed});
+      var clientX = d3.event.clientX;
+      var clientY = d3.event.clientY;
+      d3.select(this).on("mouseup",null).on("mouseup",function(d,i){//鼠标弹起
+        d3.select(this).select("rect[name='background']").style({'stroke':_color_rect_stroke_on});
+        if(clientX==d3.event.clientX && clientY==d3.event.clientY){//按下并弹起,而且没有移动
+          if(d3.event.button==0){//左键弹起
+
+          }else if(d3.event.button==2){//右键
+            console.log(d);
+          }
+        }
+      });
+      d3.event.stopPropagation();
+    });
+    //丰富节点内容
+    g_node.append("title").text(function(d, i) {
+      var str = "label : "+d.label;
+      for(var item in d){
+        //if(!(item=="children"||item=="label"||item=="parent"||item=="depth"||item=="x"||item=="y")){
+          if(typeof(d[item])!="object"){
+            str=str+"\r\n"+item+" : "+d[item];
+          }
+        //}
+      }
+      return str;
+    });
+    g_node.each(function(d,i){
+      var type = d.type.toLowerCase();
+      if(type=="root"){//此处,处理root节点
+        var root_width = 150;
+        var root_height = 250;
+        var g_svg_container = d3.select(this).append("g").attr({"name":"g_root_1","transform":"translate("+0+","+eval(-root_height/2)+")"});
+          //svg
+          var svg_details = g_svg_container.append("svg").attr({'name':'svg_details','width':root_width,'height':root_height})
+          .style({'overflow':'hidden'});
+          //rect
+          svg_details.append("rect").attr({"name":"background","transform":"translate(0.5,0.5)","width": root_width-1,"height": root_height-1,"rx":20,"ry":20})
+          .style({'fill' : '#b7d2ee','stroke' :_color_rect_stroke_leave,'stroke-width':'2'});
+          //text
+          svg_details.append("text").attr({'x':root_width/2,'y':20,'dy':'3.5','dx':'1'})
+          .style({'text-anchor': 'middle','font':'15px sans-serif','fill':'#000000'}).text(function(d,i){return d.label;});
+          //text //ip
+          svg_details.append("text").attr({'x':root_width/2,'y':40,'dy':'3.5','dx':'1'})
+          .style({'text-anchor': 'middle','font':'15px sans-serif','fill':'#000000'}).text(function(d,i){return d.ipsdcm;});
+          //root节点内的小节点
+          var g_root_node_sons = svg_details.append("g").attr({"name":"g_root_node_sons","transform":"translate(0,50)"});
+          var length = d.data.length>0?d.data.length:1;
+          var rootSonNodeMarginY = 5;
+          var rootSonNodeMarginX = 5;
+          var rootSonNodeHeight = (root_height-50-10)/length - rootSonNodeMarginY;
+          for(var i = 0;i<d.data.length;i++){//遍历小节点
+            var sonNodeData = d.data[i];
+            var exeProcess = sonNodeData.exeProcess;
+            var son_g_container = g_root_node_sons.append("g").attr({"name":exeProcess,"transform":"translate("+rootSonNodeMarginX+","+eval(i*(rootSonNodeHeight+rootSonNodeMarginY))+")"});
+            var sonCanvas = son_g_container.append("svg").attr({"width":root_width-2*rootSonNodeMarginX,"height":rootSonNodeHeight});
+            var fillColor = sonNodeData.indState==0?_color_node_root_son_no:_color_node_root_son_yes;
+            sonCanvas.append("rect").attr({width:root_width-2*rootSonNodeMarginX,height:rootSonNodeHeight,'rx':5,'ry':5,'name':'background'}).style({'fill':fillColor,'stroke':_color_rect_stroke_leave,'stroke-width':2});
+            sonCanvas.append("text").attr({'x':eval((root_width-2*rootSonNodeMarginX)/2),'y':rootSonNodeHeight/2,'dy':'5','dx':'1'}).style({'text-anchor': 'middle','font':'15px sans-serif','fill':'#000000'}).text(sonNodeData.label);
+            //若要增加click事件监听,则需要阻止事件冒泡
+            son_g_container.on("mouseover",function(d,i){//鼠标放上去
+              d3.select(this).style({'cursor':'pointer'});
+              d3.select(this).select("rect[name='background']").style({'stroke':_color_rect_stroke_on});
+            });
+            son_g_container.on("mouseout",function(d,i){//鼠标挪开
+              var this_rect =d3.select(this).select("rect[name='background']");
+              this_rect.style({'stroke':_color_rect_stroke_leave});
+            });
+          }
+          //image:控制台,DB
+          var g_console_icon = d3.select(this).append("g").attr({"name":"g_root_2","transform":"translate("+-300+","+0+")"});
+          g_console_icon.append("g").append("image").attr({'xlink:href':_base_path+"/chart/mon_console.png","width":190,"height":166});
+          g_console_icon.append("g").attr({"transform":"translate(250,250)"}).append("image").attr({'xlink:href':_base_path+"/chart/mon_db.png","width":82,"height":53});
+          g_console_icon.append("g").append("line").attr({'name':'line_arrow_1','x1':100,'y1':166,'x2':245,'y2':245,'marker-end':"url('#idSvgDefsMarkerArrow')"}).style({"stroke":"#adcbe9","stroke-width":"8","fill":"none"});
+          g_svg_container.append("g").append("line").attr({'name':'line_arrow_2','x1':root_width/4,'y1':root_height,'x2':0,'y2':eval(root_height/2+235),'marker-end':"url('#idSvgDefsMarkerArrow')"}).style({"stroke":"#adcbe9","stroke-width":"8",'fill':'none'});
+        }else if(type=="master"){
+          var maxPos = d.x;
+          var minPos = d.x;
+          for(var i =0;d.children!=null && i<d.children.length;i++){
+            var nodeAgent = d.children[i];
+            maxPos=nodeAgent.x>maxPos?nodeAgent.x:maxPos;
+            minPos=nodeAgent.x<minPos?nodeAgent.x:minPos;
+            for(var j=0;nodeAgent.children!=null && j<nodeAgent.children.length;j++){
+              var nodeIns = nodeAgent.children[j];
+              maxPos=nodeIns.x>maxPos?nodeIns.x:maxPos;
+              minPos=nodeIns.x<minPos?nodeIns.x:minPos;
+            }
+          }
+          var node_width = _rect_width*2+_rect_margin_width+ _rect_inner_margin_left_right*2+_arrow_space;
+          var node_height = maxPos-minPos+_rect_height*2+_rect_inner_margin_top;
+          var node_color = d.indState==0?_color_node_depth1_no:_color_node_depth1_yes;
+        //svg
+        var svg_details = d3.select(this).append("g").attr({"transform":"translate("+0+","+eval(-node_height/2)+")"})
+        .append("svg").attr({'name':'svg_details','width':node_width+1,'height':node_height+1})
+        .style({'overflow':'hidden'});
+        //rect
+        svg_details.append("rect").attr({"name":"background","transform":"translate(0.5,0.5)","width": node_width,"height": node_height,"rx":2,"ry":2,'original_fill':node_color}).style({'fill' :node_color,'stroke' :_color_rect_stroke_leave,'stroke-width':'2'});
+        //masterAgent
+        var g_masterNode =svg_details.append("g").attr({});
+        //(主代理)
+        g_masterNode.append("text").attr({'x':2,'y':'10','dy':'5'}).style({'text-anchor':'start','font':'15px sans-serif'}).text("(主代理)");
+        //idnMaster
+        g_masterNode.append("text").attr({'x':node_width/2,'y':'10','dy':'5'}).style({'text-anchor':'middle','font':'15px sans-serif'}).text(d.idnMaster);
+        //ipaMaster
+        g_masterNode.append("text").attr({'x':node_width/2,'y':'30','dy':'3.5'}).style({'text-anchor':'middle','font':'15px sans-serif'}).text(d.ipaMaster);
+        //状态
+        g_masterNode.append("text").attr({'x':node_width/2,'y':'50','dy':'3.5'}).style({'text-anchor':'middle','font':'15px sans-serif','fill':'red'}).text(function(){if(d.indState==0){return "【无法连接】"}else{return "";}});
+
+        //插入子节点
+        var g_agent_canvas = svg_details.append("g").attr({'name':'son_node_and_link','transform':"translate("+eval(-_rect_width- _rect_margin_width+_rect_inner_margin_left_right)+","+eval((node_height+_rect_inner_margin_top)/2)+")"});
+        var g_links  = g_agent_canvas.append("g").attr({'name':'g_agent_canvas_line'});
+        var g_nodes  = g_agent_canvas.append("g").attr({'name':'g_agent_canvas_node'});
+        //重新设计tree
+        var master_son_nodes = tree.nodes(d);
+        var master_son_links = tree.links(master_son_nodes);
+        var link = g_links.selectAll("path").data(master_son_links).enter().append("path").attr({'d': diagonal})
+        .attr("from",function(d,i){return d.source.id;})
+        .attr("to",function(d,i){return d.target.id;})
+        .attr("depth",function(d,i){return d.source.depth;})
+        .attr({'marker-end':"url('#idSvgDefsMarkerArrow')"})
+        .style({'stroke' : '#adcbe9','fill' : 'none','stroke-width':_line_path_width,'display':'block'});//线条样式
+        g_links.selectAll("path[depth='0']").remove();
+        //节点的容器
+        var node = g_nodes.selectAll("g").data(master_son_nodes).enter().append("g")
+        .attr("node_id",function(d,i){return d.id;})
+        .attr("parent",function(d,i){if(d.type=="root"){return null;}else return d.parent.id;})
+        .attr("depth",function(d,i){return d.depth;})
+        .attr("transform", function(d, i) {return "translate(" + d.y + "," + d.x + ")";})
+        .style({'display':'block'});
+        var g_node = node.append("g").attr("name","g_node_details");
+        //绑定事件
+        g_node.on("mouseover",function(d,i){//鼠标放上去
+          d3.select(this).style({'cursor':'pointer'});
+          d3.select(this).select("rect[name='background']").style({'stroke':_color_rect_stroke_on});
+        });
+        g_node.on("mouseout",function(d,i){//鼠标挪开
+          var this_rect =d3.select(this).select("rect[name='background']");
+          this_rect.style({'stroke':_color_rect_stroke_leave});
+        });
+
+        g_node.on("mousedown",function(d,i){//鼠标按下
+          d3.select(this).select("rect[name='background']").style({'stroke':_color_rect_stroke_pressed});
+          var clientX = d3.event.clientX;
+          var clientY = d3.event.clientY;
+          d3.select(this).on("mouseup",null).on("mouseup",function(d,i){//鼠标弹起
+            d3.select(this).select("rect[name='background']").style({'stroke':_color_rect_stroke_on});
+            if(clientX==d3.event.clientX && clientY==d3.event.clientY){//按下并弹起,而且没有移动
+              if(d3.event.button==0){//左键弹起
+
+              }else if(d3.event.button==2){//右键
+                console.log(d);
+              }
+            }
+          });
+          d3.event.stopPropagation();
+        });
+        //丰富节点内容
+        g_node.append("title").text(function(d, i) {
+          var str = "label : "+d.label;
+          for(var item in d){
+            //if(!(item=="children"||item=="label"||item=="parent"||item=="depth"||item=="x"||item=="y")){
+              if(typeof(d[item])!="object"){
+                str=str+"\r\n"+item+" : "+d[item];
+              }
+            //}
+          }
+          return str;
+        });
+
+        g_node.each(function(d,i){
+          var type = d.type;
+          if(type=="agent"){
+            var node_width = _rect_width;
+            var node_height = _rect_height;
+            var node_color = d.indState==0?_color_node_depth2_no:_color_node_depth2_yes;
+            //svg
+            var svg_details = d3.select(this).append("g").attr({"transform":"translate("+0+","+eval(-node_height/2)+")"})
+            .append("svg").attr({'name':'svg_details','width':node_width+1,'height':node_height+1})
+            .style({'overflow':'hidden'});
+            //rect
+            svg_details.append("rect").attr({"name":"background","transform":"translate(0.5,0.5)","width": node_width,"height": node_height,"rx":2,"ry":2,'original_fill':node_color}).style({'fill' :node_color,'stroke' :_color_rect_stroke_leave,'stroke-width':'2'});
+            //text
+            svg_details.append("text").attr({'y':node_height/2,'dy':'3.5','dx':node_width/2})
+            .style({'text-anchor': 'middle','font':'10px sans-serif'}).text(function(d,i){return d.label;});
+          }else if(type=="instance"){
+            var node_width = _rect_width;
+            var node_height = _rect_height;
+            var node_color =d.indAvailability==0?_color_node_depth3_no:_color_node_depth3_yes;
+            //svg
+            var svg_details = d3.select(this).append("g").attr({"transform":"translate("+_arrow_space+","+eval(-node_height/2)+")"})
+            .append("svg").attr({'name':'svg_details','width':node_width+1,'height':node_height+1})
+            .style({'overflow':'hidden'});
+            //rect
+            svg_details.append("rect").attr({"name":"background","transform":"translate(0.5,0.5)","width": node_width,"height": node_height,"rx":2,"ry":2,'original_fill':node_color}).style({'fill' :node_color,'stroke' :_color_rect_stroke_leave,'stroke-width':'2'});
+            //text
+            svg_details.append("text").attr({'y':node_height/2,'dy':'3.5','dx':node_width/2})
+            .style({'text-anchor': 'middle','font':'10px sans-serif'}).text(function(d,i){return d.label;});
+          }
+        });
+      }else{//其它的node
+        var node_width = _rect_width;
+        var node_height = _rect_height;
+        var node_color = (function(){
+          if(d.depth==1){
+            return d.indState==0?_color_node_depth1_no:_color_node_depth1_yes;
+          }else if(d.depth==2){
+            return d.indState==0?_color_node_depth2_no:_color_node_depth2_yes;
+          }else if(d.depth==3){
+            return d.indAvailability==0?_color_node_depth3_no:_color_node_depth3_yes;
+          }else if(d.depth==4){
+            return _color_node_depth4_yes;
+          }else{
+            return _color_node_default;
+          }
+        })();
+          //svg
+          var svg_details = d3.select(this).append("g").attr({"transform":"translate("+0+","+eval(-node_height/2)+")"})
+          .append("svg").attr({'name':'svg_details','width':node_width+1,'height':node_height+1})
+          .style({'overflow':'hidden'});
+          //rect
+          svg_details.append("rect").attr({"name":"background","transform":"translate(0.5,0.5)","width": node_width,"height": node_height,"rx":2,"ry":2,'original_fill':node_color}).style({'fill' :node_color,'stroke' :_color_rect_stroke_leave,'stroke-width':'2'});
+          //text
+          svg_details.append("text").attr({'y':node_height/2,'dy':'3.5','dx':node_width/2})
+          .style({'text-anchor': 'middle','font':'10px sans-serif'}).text(function(d,i){return d.label;});
+        }
+      });
+  };
+}
+
+
+
+
+
+function load(){
+  var chart = new d3TreeChart();
+  chart.idCanvas("div_canvas1");
+  chart.data(data);
+  chart.draw();
+}
+</script>
+</head>
+<body onload="load();" >
+<div style="float:left;">
+<div id="div_canvas1" class="divCanvas"></div>
+<div id="div_canvas2" class="divCanvas"></div>
+<div id="div_canvas3" class="divCanvas"></div>
+</div>
+</body>
+</html>

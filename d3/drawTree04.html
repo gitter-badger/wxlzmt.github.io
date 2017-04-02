@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head>
+<style>
+.divCanvas{
+  float:none;width:1000px;height:500px;margin:5px;border:1px solid blue;;
+}
+</style>
+<script src="/js/d3.min.js"></script>
+<script>
+
+var data1 ={"id":"idConsoleRoot","children":[{"id":"v3","desService":"this is v3","children":[{"id":"11","desInstance":"11","typInstance":"LINUX001","idnInstance":"11","label":"11","dtiCreated":"2015-03-18 14:25:35","type":"instance","availability":0}],"label":"this is v3","type":"service","idnService":"v3","availability":0},{"id":"test1","desService":"ttttt","children":[{"id":"EP_RTMSG","desInstance":"读取实例消息的代理","typInstance":"RTMSG001","idnInstance":"EP_RTMSG","label":"读取实例消息的代理","dtiCreated":"2015-03-19 08:54:29","type":"instance","availability":0},{"id":"EP_YX","desInstance":"YX","typInstance":"YX000001","idnInstance":"EP_YX","label":"YX","dtiCreated":"2015-03-18 16:51:55","type":"instance","availability":0},{"id":"apache10","desInstance":"z","typInstance":"APACHE01","idnInstance":"apache10","label":"z","dtiCreated":"2015-01-07 16:39:31","type":"instance","availability":0},{"id":"uep_mon","desInstance":"监控APP","typInstance":"UEPWEB01","idnInstance":"uep_mon","label":"监控APP","dtiCreated":"2015-03-18 14:26:19","type":"instance","availability":0},{"id":"ydlw_t1","desInstance":"测试银电联网，请勿修改","typInstance":"YDLW0001","idnInstance":"ydlw_t1","label":"测试银电联网，请勿修改","dtiCreated":"2015-03-18 14:26:17","type":"instance","availability":1}],"label":"ttttt","type":"service","idnService":"test1","availability":0},{"id":"5345435","desService":"5tgt","children":[{"id":"apache10","desInstance":"z","typInstance":"APACHE01","idnInstance":"apache10","label":"z","dtiCreated":"2015-01-07 16:39:31","type":"instance","availability":0},{"id":"nw_log","desInstance":"nw_log desc","typInstance":"WINDOWS2","idnInstance":"nw_log","label":"nw_log desc","dtiCreated":"2015-01-19 13:50:34","type":"instance","availability":0},{"id":"nw_param","desInstance":"nw   param   desc","typInstance":"WINDOWS1","idnInstance":"nw_param","label":"nw   param   desc","dtiCreated":"2015-01-19 13:48:57","type":"instance","availability":0}],"label":"5tgt","type":"service","idnService":"5345435","availability":1},{"id":"as","desService":"as","children":[{"id":"apache10","desInstance":"z","typInstance":"APACHE01","idnInstance":"apache10","label":"z","dtiCreated":"2015-01-07 16:39:31","type":"instance","availability":0},{"id":"nw_param","desInstance":"nw   param   desc","typInstance":"WINDOWS1","idnInstance":"nw_param","label":"nw   param   desc","dtiCreated":"2015-01-19 13:48:57","type":"instance","availability":0}],"label":"as","type":"service","idnService":"as","availability":1},{"id":"v1","desService":"this v1","children":[{"id":"localPC","desInstance":"本地机器监控，请勿修改","typInstance":"UEPWEB01","idnInstance":"localPC","label":"本地机器监控，请勿修改","dtiCreated":"2015-03-18 14:25:49","type":"instance","availability":0},{"id":"nw_log","desInstance":"nw_log desc","typInstance":"WINDOWS2","idnInstance":"nw_log","label":"nw_log desc","dtiCreated":"2015-01-19 13:50:34","type":"instance","availability":0},{"id":"nw_param","desInstance":"nw   param   desc","typInstance":"WINDOWS1","idnInstance":"nw_param","label":"nw   param   desc","dtiCreated":"2015-01-19 13:48:57","type":"instance","availability":0},{"id":"tm1","desInstance":"测试，请勿修改","typInstance":"TOMCAT01","idnInstance":"tm1","label":"测试，请勿修改","dtiCreated":"2015-03-18 14:25:37","type":"instance","availability":0},{"id":"uep_mon","desInstance":"监控APP","typInstance":"UEPWEB01","idnInstance":"uep_mon","label":"监控APP","dtiCreated":"2015-03-18 14:26:19","type":"instance","availability":0},{"id":"w","desInstance":"w","typInstance":"LOG00001","idnInstance":"w","label":"w","dtiCreated":"2015-03-19 08:49:09","type":"instance","availability":0},{"id":"weblgc01","desInstance":"weblogic_local","typInstance":"WEBLOGIC","idnInstance":"weblgc01","label":"weblogic_local","dtiCreated":"2015-03-19 08:54:22","type":"instance","availability":0},{"id":"ydlw_t1","desInstance":"测试银电联网，请勿修改","typInstance":"YDLW0001","idnInstance":"ydlw_t1","label":"测试银电联网，请勿修改","dtiCreated":"2015-03-18 14:26:17","type":"instance","availability":0},{"id":"z","desInstance":"z","typInstance":"APACHE01","idnInstance":"z","label":"z","dtiCreated":"2015-01-07 16:39:31","type":"instance","availability":0},{"id":"zzz","desInstance":"zzz","typInstance":"UEPWEB01","idnInstance":"zzz","label":"zzz","dtiCreated":"2015-03-18 14:25:40","type":"instance","availability":0}],"label":"this v1","type":"service","idnService":"v1","availability":0},{"id":"v2","desService":"this is v22","children":[{"id":"localPC","desInstance":"本地机器监控，请勿修改","typInstance":"UEPWEB01","idnInstance":"localPC","label":"本地机器监控，请勿修改","dtiCreated":"2015-03-18 14:25:49","type":"instance","availability":0},{"id":"tm1","desInstance":"测试，请勿修改","typInstance":"TOMCAT01","idnInstance":"tm1","label":"测试，请勿修改","dtiCreated":"2015-03-18 14:25:37","type":"instance","availability":0},{"id":"uep_mon","desInstance":"监控APP","typInstance":"UEPWEB01","idnInstance":"uep_mon","label":"监控APP","dtiCreated":"2015-03-18 14:26:19","type":"instance","availability":0},{"id":"weblgc01","desInstance":"weblogic_local","typInstance":"WEBLOGIC","idnInstance":"weblgc01","label":"weblogic_local","dtiCreated":"2015-03-19 08:54:22","type":"instance","availability":0},{"id":"ydlw_t1","desInstance":"测试银电联网，请勿修改","typInstance":"YDLW0001","idnInstance":"ydlw_t1","label":"测试银电联网，请勿修改","dtiCreated":"2015-03-18 14:26:17","type":"instance","availability":0},{"id":"z","desInstance":"z","typInstance":"APACHE01","idnInstance":"z","label":"z","dtiCreated":"2015-01-07 16:39:31","type":"instance","availability":0},{"id":"zzz","desInstance":"zzz","typInstance":"UEPWEB01","idnInstance":"zzz","label":"zzz","dtiCreated":"2015-03-18 14:25:40","type":"instance","availability":0}],"label":"this is v22","type":"service","idnService":"v2","availability":0}],"label":"监控控制台","type":"root"}
+var data2 ={"id":"idConsoleRoot","children":[{"id":"27","children":[{"id":"11","desInstance":"11","typInstance":"LINUX001","idnInstance":"11","label":"11","dtiCreated":"2015-03-18 14:25:35","type":"instance","availability":0},{"id":"A","desInstance":"A","typInstance":"YX000001","idnInstance":"A","label":"A","dtiCreated":"2015-03-19 09:06:41","type":"instance","availability":0},{"id":"NWEJB125","desInstance":"南网后台125","typInstance":"YX000001","idnInstance":"NWEJB125","label":"南网后台125","dtiCreated":"2015-03-19 14:22:13","type":"instance","availability":0},{"id":"YX54","desInstance":"yx54","typInstance":"YX000001","idnInstance":"YX54","label":"yx54","dtiCreated":"2015-03-19 09:04:49","type":"instance","availability":0},{"id":"df","desInstance":"df","typInstance":"LOG00001","idnInstance":"df","label":"df","dtiCreated":"2015-03-19 08:44:53","type":"instance","availability":0}],"label":"test","idnGroup":"27","type":"group"},{"id":"00000000","children":[{"id":"11","desInstance":"11","typInstance":"LINUX001","idnInstance":"11","label":"11","dtiCreated":"2015-03-18 14:25:35","type":"instance","availability":0},{"id":"A","desInstance":"A","typInstance":"YX000001","idnInstance":"A","label":"A","dtiCreated":"2015-03-19 09:06:41","type":"instance","availability":0},{"id":"EP_RTMSG","desInstance":"读取实例消息的代理","typInstance":"RTMSG001","idnInstance":"EP_RTMSG","label":"读取实例消息的代理","dtiCreated":"2015-03-19 08:54:29","type":"instance","availability":0},{"id":"EP_YX","desInstance":"YX","typInstance":"YX000001","idnInstance":"EP_YX","label":"YX","dtiCreated":"2015-03-18 16:51:55","type":"instance","availability":0},{"id":"NWEJB125","desInstance":"南网后台125","typInstance":"YX000001","idnInstance":"NWEJB125","label":"南网后台125","dtiCreated":"2015-03-19 14:22:13","type":"instance","availability":0},{"id":"YX54","desInstance":"yx54","typInstance":"YX000001","idnInstance":"YX54","label":"yx54","dtiCreated":"2015-03-19 09:04:49","type":"instance","availability":0},{"id":"df","desInstance":"df","typInstance":"LOG00001","idnInstance":"df","label":"df","dtiCreated":"2015-03-19 08:44:53","type":"instance","availability":0},{"id":"localPC","desInstance":"本地机器监控，请勿修改","typInstance":"UEPWEB01","idnInstance":"localPC","label":"本地机器监控，请勿修改","dtiCreated":"2015-03-18 14:25:49","type":"instance","availability":0},{"id":"nw_log","desInstance":"nw_log desc","typInstance":"WINDOWS2","idnInstance":"nw_log","label":"nw_log desc","dtiCreated":"2015-01-19 13:50:34","type":"instance","availability":0},{"id":"nw_param","desInstance":"nw   param   desc","typInstance":"WINDOWS1","idnInstance":"nw_param","label":"nw   param   desc","dtiCreated":"2015-01-19 13:48:57","type":"instance","availability":0},{"id":"tm1","desInstance":"测试，请勿修改","typInstance":"TOMCAT01","idnInstance":"tm1","label":"测试，请勿修改","dtiCreated":"2015-03-18 14:25:37","type":"instance","availability":0},{"id":"uep_mon","desInstance":"监控APP","typInstance":"UEPWEB01","idnInstance":"uep_mon","label":"监控APP","dtiCreated":"2015-03-18 14:26:19","type":"instance","availability":0},{"id":"w","desInstance":"w","typInstance":"LOG00001","idnInstance":"w","label":"w","dtiCreated":"2015-03-19 08:49:09","type":"instance","availability":0},{"id":"weblgc01","desInstance":"weblogic_local","typInstance":"WEBLOGIC","idnInstance":"weblgc01","label":"weblogic_local","dtiCreated":"2015-03-19 08:54:22","type":"instance","availability":0},{"id":"ydlw_t1","desInstance":"测试银电联网，请勿修改","typInstance":"YDLW0001","idnInstance":"ydlw_t1","label":"测试银电联网，请勿修改","dtiCreated":"2015-03-18 14:26:17","type":"instance","availability":0},{"id":"zzz","desInstance":"zzz","typInstance":"UEPWEB01","idnInstance":"zzz","label":"zzz","dtiCreated":"2015-03-18 14:25:40","type":"instance","availability":0}],"label":"Default Instance Group","idnGroup":"00000000","type":"group"},{"id":"Discover","children":[],"label":"New discovered Instances","idnGroup":"Discover","type":"group"},{"id":"OsmGroup","children":[{"id":"EP_RTMSG","desInstance":"读取实例消息的代理","typInstance":"RTMSG001","idnInstance":"EP_RTMSG","label":"读取实例消息的代理","dtiCreated":"2015-03-19 08:54:29","type":"instance","availability":0}],"label":"Osmius Group","idnGroup":"OsmGroup","type":"group"},{"id":"11","children":[{"id":"EP_YX","desInstance":"YX","typInstance":"YX000001","idnInstance":"EP_YX","label":"YX","dtiCreated":"2015-03-18 16:51:55","type":"instance","availability":0},{"id":"localPC","desInstance":"本地机器监控，请勿修改","typInstance":"UEPWEB01","idnInstance":"localPC","label":"本地机器监控，请勿修改","dtiCreated":"2015-03-18 14:25:49","type":"instance","availability":0},{"id":"tm1","desInstance":"测试，请勿修改","typInstance":"TOMCAT01","idnInstance":"tm1","label":"测试，请勿修改","dtiCreated":"2015-03-18 14:25:37","type":"instance","availability":0},{"id":"uep_mon","desInstance":"监控APP","typInstance":"UEPWEB01","idnInstance":"uep_mon","label":"监控APP","dtiCreated":"2015-03-18 14:26:19","type":"instance","availability":0},{"id":"w","desInstance":"w","typInstance":"LOG00001","idnInstance":"w","label":"w","dtiCreated":"2015-03-19 08:49:09","type":"instance","availability":0},{"id":"weblgc01","desInstance":"weblogic_local","typInstance":"WEBLOGIC","idnInstance":"weblgc01","label":"weblogic_local","dtiCreated":"2015-03-19 08:54:22","type":"instance","availability":0},{"id":"ydlw_t1","desInstance":"测试银电联网，请勿修改","typInstance":"YDLW0001","idnInstance":"ydlw_t1","label":"测试银电联网，请勿修改","dtiCreated":"2015-03-18 14:26:17","type":"instance","availability":0},{"id":"zzz","desInstance":"zzz","typInstance":"UEPWEB01","idnInstance":"zzz","label":"zzz","dtiCreated":"2015-03-18 14:25:40","type":"instance","availability":0}],"label":"测试组","idnGroup":"11","type":"group"}],"label":"监控控制台","type":"root"}
+var data3 ={"id":"idConsoleRoot","children":[{"id":"YX000001","typInstance":"YX000001","children":[{"id":"EP_YX","desInstance":"YX","typInstance":"YX000001","idnInstance":"EP_YX","label":"YX","dtiCreated":"2015-03-18 16:51:55","type":"instance","availability":0},{"id":"NWEJB125","desInstance":"南网后台125","typInstance":"YX000001","idnInstance":"NWEJB125","label":"南网后台125","dtiCreated":"2015-03-19 14:22:13","type":"instance","availability":0},{"id":"YX54","desInstance":"yx54","typInstance":"YX000001","idnInstance":"YX54","label":"yx54","dtiCreated":"2015-03-19 09:04:49","type":"instance","availability":0},{"id":"A","desInstance":"A","typInstance":"YX000001","idnInstance":"A","label":"A","dtiCreated":"2015-03-19 09:06:41","type":"instance","availability":0}],"label":"南网营销代理","type":"type"},{"id":"RTMSG001","typInstance":"RTMSG001","children":[{"id":"EP_RTMSG","desInstance":"读取实例消息的代理","typInstance":"RTMSG001","idnInstance":"EP_RTMSG","label":"读取实例消息的代理","dtiCreated":"2015-03-19 08:54:29","type":"instance","availability":0}],"label":"realtime message  ","type":"type"},{"id":"LINUX001","typInstance":"LINUX001","children":[{"id":"11","desInstance":"11","typInstance":"LINUX001","idnInstance":"11","label":"11","dtiCreated":"2015-03-18 14:25:35","type":"instance","availability":0}],"label":"Linux Host","type":"type"},{"id":"LINUXSSH","typInstance":"LINUXSSH","children":[],"label":"Linux via SSH Host","type":"type"},{"id":"LOG00001","typInstance":"LOG00001","children":[{"id":"df","desInstance":"df","typInstance":"LOG00001","idnInstance":"df","label":"df","dtiCreated":"2015-03-19 08:44:53","type":"instance","availability":0},{"id":"w","desInstance":"w","typInstance":"LOG00001","idnInstance":"w","label":"w","dtiCreated":"2015-03-19 08:49:09","type":"instance","availability":0}],"label":"Log File","type":"type"},{"id":"MYSQL001","typInstance":"MYSQL001","children":[],"label":"MySql Database","type":"type"},{"id":"OSMIUSAG","typInstance":"OSMIUSAG","children":[],"label":"Represents Osmius agents and master agents","type":"type"},{"id":"TOMCAT01","typInstance":"TOMCAT01","children":[{"id":"tm1","desInstance":"测试，请勿修改","typInstance":"TOMCAT01","idnInstance":"tm1","label":"测试，请勿修改","dtiCreated":"2015-03-18 14:25:37","type":"instance","availability":0}],"label":"Tomcat Web servers","type":"type"},{"id":"UEPWEB01","typInstance":"UEPWEB01","children":[{"id":"localPC","desInstance":"本地机器监控，请勿修改","typInstance":"UEPWEB01","idnInstance":"localPC","label":"本地机器监控，请勿修改","dtiCreated":"2015-03-18 14:25:49","type":"instance","availability":0},{"id":"zzz","desInstance":"zzz","typInstance":"UEPWEB01","idnInstance":"zzz","label":"zzz","dtiCreated":"2015-03-18 14:25:40","type":"instance","availability":0},{"id":"uep_mon","desInstance":"监控APP","typInstance":"UEPWEB01","idnInstance":"uep_mon","label":"监控APP","dtiCreated":"2015-03-18 14:26:19","type":"instance","availability":0}],"label":"UEPWEB实例类型","type":"type"},{"id":"WEBLOGIC","typInstance":"WEBLOGIC","children":[{"id":"weblgc01","desInstance":"weblogic_local","typInstance":"WEBLOGIC","idnInstance":"weblgc01","label":"weblogic_local","dtiCreated":"2015-03-19 08:54:22","type":"instance","availability":0}],"label":"Weblogic Web servers","type":"type"},{"id":"WINDOWS2","typInstance":"WINDOWS2","children":[{"id":"nw_log","desInstance":"nw_log desc","typInstance":"WINDOWS2","idnInstance":"nw_log","label":"nw_log desc","dtiCreated":"2015-01-19 13:50:34","type":"instance","availability":0}],"label":"WINDOWS 2000/XP/2003/Vista/7","type":"type"},{"id":"YDLW0001","typInstance":"YDLW0001","children":[{"id":"ydlw_t1","desInstance":"测试银电联网，请勿修改","typInstance":"YDLW0001","idnInstance":"ydlw_t1","label":"测试银电联网，请勿修改","dtiCreated":"2015-03-18 14:26:17","type":"instance","availability":0}],"label":"银电联网","type":"type"}],"label":"监控控制台","type":"root"}
+
+
+//点击node(2级节点)的事件监听
+function clickNode(d){
+  if(typeof(d)=="object"){
+    console.log(d);
+  }
+}
+//叶子节点的事件监听
+function clickNodeIns(d){
+  if(typeof(d)=="object"){
+    console.log(d);
+  }
+}
+
+/**
+ *参数是画布的id,用于id选择器处理;
+ * @param {Object} idVal
+ */
+function d3TreeChart(idVal) {
+  var _id_canvas;
+  if (idVal != null) {
+    _id_canvas = idVal;
+  }
+  this.idCanvas = function(d) {
+    if (d != null) {
+      _id_canvas = d;
+    } else {
+      return _id_canvas;
+    }
+  };
+  var _data;
+  this.data = function(d) {
+    if (d != null) {
+      _data = d;
+    } else {
+      return _data;
+    }
+  };
+  var _width = 2000;
+  var _height = 2000;
+  var _rect_width = 120;
+  var _rect_height = 20;
+  var _rect_margin_height = 3;
+  var _rect_margin_width = 150;
+  var _rotate = 0;
+
+  var _color_rect_stroke_leave = "#99ffff";//应该依次加深
+  var _color_rect_stroke_on = "#33cccc";
+  var _color_rect_stroke_pressed = "#009966";
+
+  var _color_ins_not_available = "#ff6600";//实例不可用
+  var _color_ins_available ="#33FF66";//实例可用
+
+  var _color_not_available = "#ff6600";//2级节点不可用
+  var _color_available ="#66ffcc";//2级节点可用
+
+  var setSvgSize = function(w, h) {//给定可能正确的宽度和高度,作判断处理,然后设置给画布
+    if (w && h) {
+      var numReg = new RegExp("\\d+");
+      try {
+        var a = parseInt(w.match(numReg));
+        var b = parseInt(h.match(numReg));
+        if (a > 0 && b > 0) {
+          _width = a;
+          _height = b;
+        }
+      } catch(e) {
+        console.log(e);
+      }
+    }
+  };
+  this.draw = function() {
+    //document.getElementById(_id_canvas).oncontextmenu=function(e){return false;};
+    //准备画布,参数
+    var canvas = d3.select("#" + _id_canvas);
+    canvas.selectAll("svg").remove();
+    setSvgSize(canvas.style("width"), canvas.style("height"));
+    //nodeSize([参数1,参数2]);参数1表示兄弟节点的间隔,参数2代表父子节点的间隔;
+    var tree = d3.layout.tree().size(null).nodeSize([_rect_height+_rect_margin_height,_rect_width+_rect_margin_width]);
+    //计算弧
+    var diagonal = d3.svg.diagonal().projection(function(d) {return [d.y, d.x];});
+    var svg = d3.select("#" + _id_canvas).append("svg").attr({"width":_width,"height":_height}).style({'overflow':'hidden'});
+    //缩放
+    var zoom = d3.behavior.zoom().scaleExtent([0.1,8]).on("zoom",function(){
+          g_canvas.attr("transform","translate("+d3.event.translate+")scale("+d3.event.scale+")");});
+    var g_background = svg.append("g").attr("name","g_background")
+          .attr("transform","translate(0,"+eval(_height/2)+")rotate("+_rotate+")").call(zoom);
+    //背景框
+    var g_canvas = g_background.append("g").attr("name","g_canvas");
+    var rect_background = g_canvas.append("rect").attr("name","rect_background")
+          .attr("width",99999).attr("height",99999).attr("transform","translate(-44444,-44444)")
+          .style({'fill':'none','pointer-events':'all'});
+    var g_links = g_canvas.append("g").attr("name", "g_links");
+    var g_nodes = g_canvas.append("g").attr("name", "g_nodes");
+    //鼠标mouseover事件
+    g_canvas.on("mouseover",function(){d3.select(this).style({'cursor':'move'})});
+    //计算节点信息
+    var nodes = tree.nodes(_data);
+
+    //计算连接信息
+    var links = tree.links(nodes);
+    //画连接线
+    var link = g_links.selectAll("path").data(links).enter().append("path").attr({'d': diagonal})
+        .attr("from",function(d,i){return d.source.id;})
+        .attr("to",function(d,i){return d.target.id;})
+        .attr("depth",function(d,i){return d.source.depth;})
+        .style({'stroke' : '#333333','fill' : 'none','stroke-width':'0.5','display':'block'});//线条样式
+    //画节点
+    var node = g_nodes.selectAll("g").data(nodes).enter().append("g")
+        .attr("parent",function(d,i){if(d.type=="root"){return null;}else return d.parent.id;})
+        .attr("depth",function(d,i){return d.depth;})
+        .attr("transform", function(d, i) {return "translate(" + d.y + "," + d.x + ")";})
+        .style({'display':'block'});
+    //节点
+    var g_node = node.append("g").attr("name","g_node_details");
+    //绑定事件
+    g_node.on("mouseover",function(d,i){//鼠标放上去
+      if(d.type.toLowerCase()=="root")return;
+      d3.select(this).style({'cursor':'pointer'});
+      d3.select(this).select("rect[name='background']").style({'stroke':_color_rect_stroke_on});
+    });
+    g_node.on("mouseout",function(d,i){//鼠标挪开
+      if(d.type.toLowerCase()=="root")return;
+      var this_rect =d3.select(this).select("rect[name='background']");
+      this_rect.style({'stroke':_color_rect_stroke_leave});
+    });
+    g_node.on("mousedown",function(d,i){//鼠标按下
+      if(d.type.toLowerCase()=="root")return;
+      d3.select(this).select("rect[name='background']").style({'stroke':_color_rect_stroke_pressed});
+      var clientX = d3.event.clientX;
+      var clientY = d3.event.clientY;
+      d3.select(this).on("mouseup",null).on("mouseup",function(d,i){//鼠标弹起
+        d3.select(this).select("rect[name='background']").style({'stroke':_color_rect_stroke_on});
+        if(clientX==d3.event.clientX && clientY==d3.event.clientY){//按下并弹起,而且没有移动
+          if(d3.event.button==0){//左键
+            if(d.depth==1){
+              var nodeId = d.id;//被点击的节点的id
+              var selPath = g_links.selectAll("path[from='"+nodeId+"'][depth='1']");//本节点引出的线
+              if(selPath[0].length>0){
+                var selNode = g_nodes.selectAll("g[depth='2'][parent='"+nodeId+"']");//本节点的子节点
+                var original_style_display = selPath.style("display");
+                if(original_style_display!="block"){
+                  selPath.transition().duration(200).style({'display':'block'});
+                  selNode.transition().duration(200).style({'display':'block'});
+                }else{
+                  selPath.transition().duration(200).style({'display':'none'});
+                  selNode.transition().duration(200).style({'display':'none'});
+                }
+              }
+            }
+          }else if(d3.event.button==2){//右键
+            if(d.depth==1){
+              clickNode(d);
+            }else if(d.depth==2){
+              clickNodeIns(d);
+            }
+          }
+        }
+      });
+    });
+    //丰富节点内容
+    g_node.append("title").text(function(d, i) {
+      var str = "label : "+d.label;
+      for(var item in d){
+        if(!(item=="children"||item=="label"||item=="parent"||item=="depth"||item=="x"||item=="y")){
+          str=str+"\r\n"+item+" : "+d[item];
+        }
+      }
+      return str;
+    });
+    g_node.each(function(d,i){
+      var type = d.type.toLowerCase();
+      if(type=="root"){//此处,处理root节点
+          var root_width = 100;
+          var root_height = 100;
+          //svg
+          var svg_details = d3.select(this).append("g").attr({"transform":"translate("+0+","+eval(-root_height/2)+")"})
+              .append("svg").attr({'name':'svg_details','width':root_width,'height':root_height})
+              .style({'overflow':'hidden'});
+          //rect
+          svg_details.append("rect").attr({"transform":"translate(0.5,0.5)","width": root_width-1,"height": root_height-1,"rx":2,"ry":2})
+              .style({'fill' : '#a2c3e3','stroke' : '#739CC3','stroke-width':'2'});
+          svg_details.append("rect").attr({"transform":"translate(5.5,5.5)","width":root_width-11,"height":root_height-21})
+              .style({"fill":"#99ffff","stroke":"none"});
+          //text
+          svg_details.append("text").attr({'x':root_width/2,'y':root_height/3,'dy':'3.5','dx':'1'})
+              .style({'text-anchor': 'middle','font':'15px sans-serif','fill':'#800080'}).text(function(d,i){return d.label;});
+          svg_details.append("text").attr({'x':root_width/2,'y':root_height/3*2,'dy':'3.5','dx':'1'})
+              .style({'text-anchor': 'middle','font':'10px sans-serif','fill':'#ff0000'}).text("【您当前位置】");
+      }else if(type=="instance"){
+          var node_width = _rect_width/2*3;
+          var node_height = _rect_height;
+          var node_color = d.availability==1?_color_ins_available:_color_ins_not_available;
+          //svg
+          var svg_details = d3.select(this).append("g").attr({"transform":"translate("+0+","+eval(-node_height/2)+")"})
+              .append("svg").attr({'name':'svg_details','width':node_width+1,'height':node_height+1})
+              .style({'overflow':'hidden'});
+          //rect
+          svg_details.append("rect").attr({"name":"background","transform":"translate(0.5,0.5)","width": node_width,"height": node_height,"rx":2,"ry":2,'original_fill':node_color})
+              .style({'fill':node_color,'stroke' :_color_rect_stroke_leave,'stroke-width':'2'});
+          //text
+          svg_details.append("text").attr({'y':node_height/2,'dy':'3.5','dx':node_width/2})
+              .style({'text-anchor': 'middle','font':'10px sans-serif'}).text(function(d,i){return d.label;});
+      }else{//其它的node
+          var node_width = _rect_width;
+          var node_height = _rect_height;
+          var node_color =(function(){if(d.type!="service"){return _color_available;}else{
+            return d.availability==1?_color_available:_color_not_available;};})();
+          //svg
+          var svg_details = d3.select(this).append("g").attr({"transform":"translate("+0+","+eval(-node_height/2)+")"})
+              .append("svg").attr({'name':'svg_details','width':node_width+1,'height':node_height+1})
+              .style({'overflow':'hidden'});
+          //rect
+          svg_details.append("rect").attr({"name":"background","transform":"translate(0.5,0.5)","width": node_width,"height": node_height,"rx":2,"ry":2,'original_fill':node_color}).style({'fill' :node_color,'stroke' :_color_rect_stroke_leave,'stroke-width':'2'});
+          //text
+          svg_details.append("text").attr({'y':node_height/2,'dy':'3.5','dx':node_width/2})
+              .style({'text-anchor': 'middle','font':'10px sans-serif'}).text(function(d,i){return d.label;});
+      }
+    });
+
+    var g_legend = g_canvas.append("g").attr({'name':'g_legend'});
+    //二级节点图例
+    var node_depth1 = g_nodes.select("g[depth='1']");
+    var g_legend_depth1 = g_legend.append("g").attr({'transform':node_depth1.attr("transform")}).append("g")
+          .attr({'transform':"translate(0,"+-(_rect_height/2+50)+")"}).data(node_depth1.data());
+    g_legend_depth1.each(function(d,i){
+      var type  = d.type.toLowerCase();
+      if(type=="service"){
+        d3.select(this).append("rect").attr({"width":_rect_width,"height":45,})
+              .style({'stroke':'#E7E7E7','fill':'none','pointer-events':'all'});
+        d3.select(this).append("g").attr({"name":"node_type","transform":"translate(0,0)"}).append("text").attr({'y':10,'dy':3.5})
+              .style({'font':'15px sans-serif'}).text("服务:");
+        var g_legend_depth1_rect_text = d3.select(this).append("g").attr({"name":"图例-文字","transform":"translate(0,"+20+")"});
+        g_legend_depth1_rect_text.append("rect").attr({'width':20,'height':20,"rx":2,"ry":2}).style({'fill':_color_available});
+        g_legend_depth1_rect_text.append("text").attr({'transform':"translate("+20+",0)",'y':10,'dy':3.5})
+              .style({'font':'10px sans-serif'}).text("可用");
+        g_legend_depth1_rect_text.append("rect").attr({'transform':"translate("+_rect_width/2+",0)",'width':20,'height':20,"rx":2,"ry":2})
+              .style({'fill':_color_not_available});
+        g_legend_depth1_rect_text.append("text").attr({'transform':"translate("+(_rect_width/2+20)+",0)",'y':10,'dy':3.5})
+              .style({'font':'10px sans-serif'}).text("不可用");
+      }else if(type=="group"){
+        d3.select(this).append("rect").attr({"width":70,"height":20,})
+              .style({'stroke':'#E7E7E7','fill':'none','pointer-events':'all'});
+        d3.select(this).append("g").attr({"name":"node_type","transform":"translate(0,0)"}).append("text").attr({'y':10,'dy':3.5})
+              .style({'font':'15px sans-serif'}).text("实例分组:");
+      }else if(type=="type"){
+        d3.select(this).append("rect").attr({"width":70,"height":20,})
+              .style({'stroke':'#E7E7E7','fill':'none','pointer-events':'all'});
+        d3.select(this).append("g").attr({"name":"node_type","transform":"translate(0,0)"}).append("text").attr({'y':10,'dy':3.5})
+              .style({'font':'15px sans-serif'}).text("实例类型:");
+      }
+    });
+    //叶子节点图例
+    var node_depth2 = g_nodes.select("g[depth='2']");
+    var g_legend_depth2 = g_legend.append("g").attr({'transform':node_depth2.attr("transform")}).append("g")
+          .attr({'transform':"translate(0,"+-(_rect_height/2+50)+")"}).data(node_depth2.data());
+    g_legend_depth2.each(function(d,i){
+        d3.select(this).append("rect").attr({"width":_rect_width,"height":45,})
+              .style({'stroke':'#E7E7E7','fill':'none','pointer-events':'all'});
+        d3.select(this).append("g").attr({"name":"node_type","transform":"translate(0,0)"}).append("text").attr({'y':10,'dy':3.5})
+              .style({'font':'15px sans-serif'}).text("实例:");
+        var g_legend_depth2_rect_text = d3.select(this).append("g").attr({"name":"图例-文字","transform":"translate(0,"+20+")"});
+        g_legend_depth2_rect_text.append("rect").attr({'width':20,'height':20,"rx":2,"ry":2}).style({'fill':_color_ins_available});
+        g_legend_depth2_rect_text.append("text").attr({'transform':"translate("+20+",0)",'y':10,'dy':3.5})
+              .style({'font':'10px sans-serif'}).text("可用");
+        g_legend_depth2_rect_text.append("rect").attr({'transform':"translate("+_rect_width/2+",0)",'width':20,'height':20,"rx":2,"ry":2})
+              .style({'fill':_color_ins_not_available});
+        g_legend_depth2_rect_text.append("text").attr({'transform':"translate("+(_rect_width/2+20)+",0)",'y':10,'dy':3.5})
+              .style({'font':'10px sans-serif'}).text("不可用");
+    });
+  };
+}
+
+
+
+
+
+  function load(){
+
+      var treeChart = new d3TreeChart();
+
+      treeChart.idCanvas("div_canvas1");
+      treeChart.data(data1);
+      treeChart.draw();
+
+      treeChart.idCanvas("div_canvas2");
+      treeChart.data(data2);
+      treeChart.draw();
+
+      treeChart.idCanvas("div_canvas3");
+      treeChart.data(data3);
+      treeChart.draw();
+
+  }
+</script>
+</head>
+<body onload="load();" >
+  <div style="float:left;">
+    <div id="div_canvas1" class="divCanvas"></div>
+    <div id="div_canvas2" class="divCanvas"></div>
+    <div id="div_canvas3" class="divCanvas"></div>
+  </div>
+</body>
+</html>

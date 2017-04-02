@@ -1,0 +1,215 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>架构图</title>
+<script type="text/javascript" src="/js/d3.min.js"></script>
+<script type="text/javascript" src="/js/jquery-1.7.js"></script>
+<script type="text/javascript">
+//注:(0,1,2,3)代表方向性;
+//relation->ft:取值0,1,2,3;分别代表:右上左下;起始点位置;
+//relation->tt:取值,同ft;终点位置;
+//relation->type:取值0,代表点对点直线,不曲折;取值2位数时,第一位代表起始点位置(0,1,2,3),第二位代表打折方向(0,1,2,3);所以type not in(02,13,20,31,00,11,22,33);
+var data = {
+		points:[
+			{id:"jgt_02",name:"1",src:"02.png",width:75,height:75,x:5,y:40,code:'',label:'',url:'.do'},
+			{id:"jgt_04",name:"2",src:"04.png",width:75,height:75,x:180,y:40,code:'',label:'',url:'.do'},
+			{id:"jgt_09",name:"3",src:"09.png",width:75,height:75,x:340,y:165,code:'',label:'',url:'.do'},
+			{id:"jgt_11",name:"4",src:"11.png",width:73,height:72,x:660,y:165,code:'',label:'',url:'.do'},
+			{id:"jgt_16",name:"5",src:"16.png",width:73,height:75,x:180,y:315,code:'',label:'',url:'.do'},
+			{id:"jgt_19",name:"6",src:"19.png",width:86,height:75,x:340,y:315,code:'',label:'',url:'.do'},
+			{id:"jgt_21",name:"7",src:"21.png",width:73,height:69,x:660,y:315,code:'',label:'',url:'.do'},
+			{id:"jgt_28",name:"8",src:"28.png",width:86,height:73,x:340,y:470,code:'',label:'',url:'.do'},
+			{id:"jgt_26",name:"9",src:"26.png",width:82,height:77,x:510,y:470,code:'',label:'',url:'.do'},
+			{id:"jgt_32",name:"10",src:"32.png",width:73,height:73,x:510,y:620,code:'',label:'',url:'.do'},
+			{id:"jgt_35",name:"11",src:"35.png",width:75,height:73,x:340,y:620,code:'',label:'',url:'.do'},
+			{id:"jgt_39",name:"12",src:"39.png",width:73,height:81,x:680,y:620,code:'',label:'',url:'.do'},
+			{id:"jgt_40",name:"13",src:"40.png",width:81,height:72,x:840,y:620,code:'',label:'',url:'.do'}
+			],
+		relation:[
+		  	{from:"jgt_02",to:"jgt_04",ft:"0",tt:"2",type:"0",color:"#f39800"},
+		  	{from:"jgt_04",to:"jgt_09",ft:"0",tt:"1",type:"03",color:"#f39800"},
+		  	{from:"jgt_09",to:"jgt_16",ft:"2",tt:"1",type:"23",color:"#f39800"},
+		  	{from:"jgt_09",to:"jgt_19",ft:"3",tt:"1",type:"0",color:"#f39800"},
+		  	{from:"jgt_09",to:"jgt_26",ft:"0",tt:"1",type:"03",color:"#f39800"},
+		  	{from:"jgt_09",to:"jgt_11",ft:"0",tt:"2",type:"0",color:"#f39800"},
+		  	{from:"jgt_28",to:"jgt_16",ft:"2",tt:"3",type:"21",color:"#f39800"},
+		  	{from:"jgt_28",to:"jgt_19",ft:"1",tt:"3",type:"0",color:"#f39800"},
+		  	{from:"jgt_28",to:"jgt_26",ft:"0",tt:"2",type:"0",color:"#f39800"},
+		  	{from:"jgt_21",to:"jgt_11",ft:"1",tt:"3",type:"0",color:"#f39800"},
+		  	{from:"jgt_21",to:"jgt_26",ft:"3",tt:"0",type:"32",color:"#f39800"},
+		  	{from:"jgt_35",to:"jgt_28",ft:"1",tt:"3",type:"0",color:"#611985"},
+		  	{from:"jgt_32",to:"jgt_35",ft:"2",tt:"0",type:"0",color:"#611985"},
+		  	{from:"jgt_32",to:"jgt_39",ft:"0",tt:"2",type:"0",color:"#611985"},
+		  	{from:"jgt_39",to:"jgt_40",ft:"0",tt:"2",type:"0",color:"#611985"}
+		  	],
+		colors:[
+			{id:"color_01",color:"#f39800"},
+			{id:"color_02",color:"#611985"}
+		]
+};
+//初始化参数;
+function init(){
+	console.log($.browser);
+	var marker_size;
+	if($.browser.msie || ($.browser.mozilla && $.browser.version=="11.0")){
+		marker_size = '4';//ie=4;
+	}else{
+		marker_size = '8';
+	}
+	var width = 960;
+	var height= 740;
+	var $1 = $("#idSvgBackground");
+	$1.attr({"width":width,"height":height});
+	var $2 = $("#idRectBackground");
+	$2.attr({"width":width,"height":height});
+	$("#idDivBackground").css({"width":eval(width+100),"height":eval(height+100)});
+	var colors = data.colors;
+	for(var i=0;i<colors.length;i++){
+		var obj = colors[i];
+		d3.select("#idSvgBackground").append("defs").append("marker")
+		.attr({'orient':'auto','refX':'0.5','refY':'3','viewBox':'0 -3 12 12','markerHeight':marker_size,'markerWidth':marker_size,'markerUnits':'strokeWidth','id':'idSvgDefsMarkerArrow'+obj.id})
+		.append("path").style({'fill':obj.color}).attr({'d':'M0,0 L6,3 L0,6 Z'});
+	}
+	draw2();
+}
+//页面初始化时运行;
+$(function(){
+	init();
+});
+//打开页面
+function timyClick(code,label,url,clickfunc,parentIndex,sonIndex){
+   eval(clickfunc+"('"+code+"','"+label+"','"+url+"')");
+}
+//打开标签页
+function openTask(code,label,url){
+	var deskframe = parent.document.getElementById("deskframe");
+	deskframe.src = url;
+}
+function clear(){
+	var svg = $("#idSvgBackground");
+	svg.selectAll("defs").remove();
+	svg.selectAll("g[name='point_g_canvas']").remove();
+	svg.selectAll("g[name='lines_g_canvas']").remove();
+}
+function reDraw(){
+	clear();
+	draw();
+}
+function draw2(){
+	//var basePath = $$pageContextPath+"images/";
+	var basePath = "";
+	var g = d3.select("#idG_back");
+	var g_points = g.append("g").attr({'name':'point_g_canvas'});
+	var dpsArr = data.points;
+	var pointMap = {};
+	for(var i=0;i<dpsArr.length;i++){
+		var point = dpsArr[i];
+		var id = point.id;
+		var g_id = "id_G_p_g_"+id;
+		var g_points_p = g_points.append("g").attr({'id':g_id});//一个point
+		g_points_p.attr({'transform':"translate("+point.x+","+point.y+")"});//修订位置
+		g_points_p.datum(point);
+		g_points_p.style({'cursor':'pointer'});
+		g_points_p.attr('onclick',function(d,i){
+			return "alert("+d+");";
+		});
+		var href = point.src;
+		var g_image_id = "id_G_p_g_img_"+id;
+		var image = g_points_p.append("image").attr({'id':g_image_id});
+		image.attr({'width':point.width,'height':point.height,'xlink:href':basePath+point.src});
+		var text = g_points_p.append("text");
+		text.attr({'x':point.width/2,'y':point.height,'dy':'15','dx':'1'});
+		text.style({'text-anchor': 'middle','font':'12px sans-serif','fill':'#000000'});
+		text.text(point.name);
+		//'marker-end':"url('#idSvgDefsMarkerArrow')"
+		//制作一个map
+		eval("pointMap."+point.id+"=point");
+	}
+	var relaArr = data.relation;
+	var g_lines = g.append("g").attr({'name':'lines_g_canvas'});
+	for(var i=0;i<relaArr.length;i++){
+		var rela = relaArr[i];
+		var fromP = eval("pointMap."+rela.from);
+		var toP = eval("pointMap."+rela.to);
+		var type = rela.type;
+		var ft = rela.ft;
+		var tt = rela.tt;
+		var path_d = "";
+		var point_from = {};
+		var point_to = {};
+		var textHeight = 20;
+		var padding = 10;
+		//起点
+		if(ft=="0"){
+			point_from.x=fromP.x+fromP.width+padding;//0
+			point_from.y=fromP.y+fromP.height/2;//0
+		}else if(ft=="1"){
+			point_from.x=fromP.x+fromP.width/2;//
+			point_from.y=fromP.y-padding;//
+		}else if(ft=="2"){
+			point_from.x=fromP.x-padding;//
+			point_from.y=fromP.y+fromP.height/2;//
+		}else if(ft=="3"){
+			point_from.x=fromP.x+fromP.width/2;//
+			point_from.y=fromP.y+fromP.height+textHeight+padding;//
+		}else{
+			console.log("参数错误");
+		}
+		//终点
+		if(tt=="0"){
+			point_to.x=toP.x+toP.width+padding;
+			point_to.y=toP.y+toP.height/2;
+		}else if(tt=="1"){
+			point_to.x=toP.x+toP.width/2;
+			point_to.y=toP.y-padding;
+		}else if(tt=="2"){
+			point_to.x=toP.x-padding;
+			point_to.y=toP.y+toP.height/2;
+		}else if(tt=="3"){
+			point_to.x=toP.x+toP.width/2;
+			point_to.y=toP.y+toP.height+textHeight+padding;
+		}else{
+			console.log("参数错误");
+		}
+		//type
+		if(type=="0"){
+			if(ft=="0" || ft=="2"){
+				path_d = "M"+point_from.x+","+point_from.y+" "+"H"+point_to.x;
+			}else if(ft=="1" || ft=="3"){
+				path_d = "M"+point_from.x+","+point_from.y+" "+"V"+point_to.y;
+			}else{
+				console.log("参数错误");
+			}
+		}else if(type=="01" || type=="03" || type=="21" || type=="23"){
+			path_d = "M"+point_from.x+","+point_from.y+" "+"H"+point_to.x+" "+"V"+point_to.y;
+		}else if(type=="10" || type=="12" || type=="32" || type=="30"){
+			path_d = "M"+point_from.x+","+point_from.y+" "+"V"+point_to.y+" "+"H"+point_to.x;
+		}else{
+			console.log("参数错误");
+		}
+		var path = g_lines.append("path");
+		path.attr({'d':path_d});
+		var arrow_color ;
+		for(var j=0;j<data.colors.length;j++){
+			var obj = data.colors[j];
+			if(obj.color==rela.color){
+				arrow_color = obj.id;
+			}
+		}
+		path.style({'stroke':rela.color,'stroke-width':'4px','fill': 'none','marker-end':"url('#idSvgDefsMarkerArrow"+arrow_color+"')"});
+	}
+}
+</script>
+</head>
+<body>
+<hy:view>
+<div id="idDivBackground" style="float:none;padding:20px;margin-left:100px;">
+	<svg id="idSvgBackground" width="" height="" style="overflow:hidden;">
+		<g id="idG_back">
+		<rect id="idRectBackground" width="" height="" fill="none" stroke="#E7E7E7"></rect>
+		</g>
+	</svg>
+</div>
+</hy:view>
+</body>
+</html>

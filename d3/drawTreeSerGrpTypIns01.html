@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head>
+<style>
+.divCanvas{
+  float:none;width:1000px;height:500px;margin:5px;border:1px solid blue;;
+}
+</style>
+<script src="/js/d3.min.js"></script>
+<script>
+
+var data = {"id":2,"children":[{"id":30,"desService":"5tgt","children":[{"id":31,"desGroup":"Default Instance Group","children":[{"id":32,"pthLogoinstance":"/instances/ok/windows2.gif","typInstance":"WINDOWS2","children":[{"id":33,"desInstance":"nw_log desc","typInstance":"WINDOWS2","idnInstance":"nw_log","label":"nw_log desc","type":"instance","availability":0},{"id":34,"desInstance":"nw   param   desc","typInstance":"WINDOWS2","idnInstance":"nw_param","label":"nw   param   desc","type":"instance","availability":0}],"label":"WINDOWS 2000/XP/2003/Vista/7","desTypinstance":"WINDOWS 2000/XP/2003/Vista/7","type":"type"}],"label":"Default Instance Group","idnGroup":"00000000","type":"group"}],"label":"5tgt","type":"service","idnService":"5345435","availability":1},{"id":3,"desService":"this is v3","children":[{"id":4,"desGroup":"test","children":[{"id":5,"pthLogoinstance":"/instances/ok/linux001.gif","typInstance":"LINUX001","children":[{"id":6,"desInstance":"11","typInstance":"LINUX001","idnInstance":"11","label":"11","type":"instance","availability":0}],"label":"Linux Host","desTypinstance":"Linux Host","type":"type"}],"label":"test","idnGroup":"27","type":"group"},{"id":7,"desGroup":"Default Instance Group","children":[{"id":8,"pthLogoinstance":"/instances/ok/linux001.gif","typInstance":"LINUX001","children":[{"id":9,"desInstance":"11","typInstance":"LINUX001","idnInstance":"11","label":"11","type":"instance","availability":0}],"label":"Linux Host","desTypinstance":"Linux Host","type":"type"}],"label":"Default Instance Group","idnGroup":"00000000","type":"group"}],"label":"this is v3","type":"service","idnService":"v3","availability":0},{"id":10,"desService":"ttttt","children":[{"id":11,"desGroup":"测试组","children":[{"id":12,"pthLogoinstance":"/instances/ok/yx.gif","typInstance":"YX000001","children":[{"id":13,"desInstance":"YX","typInstance":"YX000001","idnInstance":"EP_YX","label":"YX","type":"instance","availability":0}],"label":"南网营销代理","desTypinstance":"南网营销代理","type":"type"},{"id":14,"pthLogoinstance":"/instances/ok/UEPWEB01.gif","typInstance":"UEPWEB01","children":[{"id":15,"desInstance":"监控APP","typInstance":"UEPWEB01","idnInstance":"uep_mon","label":"监控APP","type":"instance","availability":0}],"label":"UEPWEB实例类型","desTypinstance":"UEPWEB实例类型","type":"type"},{"id":16,"pthLogoinstance":"/instances/ok/ydlw.gif","typInstance":"YDLW0001","children":[{"id":17,"desInstance":"测试银电联网，请勿修改","typInstance":"YDLW0001","idnInstance":"ydlw_t1","label":"测试银电联网，请勿修改","type":"instance","availability":0}],"label":"银电联网","desTypinstance":"银电联网","type":"type"}],"label":"测试组","idnGroup":"11","type":"group"},{"id":18,"desGroup":"Default Instance Group","children":[{"id":19,"pthLogoinstance":"/instances/ok/yx.gif","typInstance":"YX000001","children":[{"id":20,"desInstance":"YX","typInstance":"YX000001","idnInstance":"EP_YX","label":"YX","type":"instance","availability":0}],"label":"南网营销代理","desTypinstance":"南网营销代理","type":"type"},{"id":21,"pthLogoinstance":"/instances/ok/ipinst01.gif","typInstance":"RTMSG001","children":[{"id":22,"desInstance":"读取实例消息的代理","typInstance":"RTMSG001","idnInstance":"EP_RTMSG","label":"读取实例消息的代理","type":"instance","availability":0}],"label":"realtime message  ","desTypinstance":"realtime message  ","type":"type"},{"id":23,"pthLogoinstance":"/instances/ok/UEPWEB01.gif","typInstance":"UEPWEB01","children":[{"id":24,"desInstance":"监控APP","typInstance":"UEPWEB01","idnInstance":"uep_mon","label":"监控APP","type":"instance","availability":0}],"label":"UEPWEB实例类型","desTypinstance":"UEPWEB实例类型","type":"type"},{"id":25,"pthLogoinstance":"/instances/ok/ydlw.gif","typInstance":"YDLW0001","children":[{"id":26,"desInstance":"测试银电联网，请勿修改","typInstance":"YDLW0001","idnInstance":"ydlw_t1","label":"测试银电联网，请勿修改","type":"instance","availability":0}],"label":"银电联网","desTypinstance":"银电联网","type":"type"}],"label":"Default Instance Group","idnGroup":"00000000","type":"group"},{"id":27,"desGroup":"Osmius Group","children":[{"id":28,"pthLogoinstance":"/instances/ok/ipinst01.gif","typInstance":"RTMSG001","children":[{"id":29,"desInstance":"读取实例消息的代理","typInstance":"RTMSG001","idnInstance":"EP_RTMSG","label":"读取实例消息的代理","type":"instance","availability":0}],"label":"realtime message  ","desTypinstance":"realtime message  ","type":"type"}],"label":"Osmius Group","idnGroup":"OsmGroup","type":"group"}],"label":"ttttt","type":"service","idnService":"test1","availability":0},{"id":35,"desService":"as","children":[{"id":36,"desGroup":"测试组","children":[{"id":37,"pthLogoinstance":"/instances/ok/yx.gif","typInstance":"YX000001","children":[{"id":38,"desInstance":"YX","typInstance":"YX000001","idnInstance":"EP_YX","label":"YX","type":"instance","availability":0}],"label":"南网营销代理","desTypinstance":"南网营销代理","type":"type"}],"label":"测试组","idnGroup":"11","type":"group"},{"id":39,"desGroup":"Default Instance Group","children":[{"id":40,"pthLogoinstance":"/instances/ok/yx.gif","typInstance":"YX000001","children":[{"id":41,"desInstance":"YX","typInstance":"YX000001","idnInstance":"EP_YX","label":"YX","type":"instance","availability":0}],"label":"南网营销代理","desTypinstance":"南网营销代理","type":"type"},{"id":42,"pthLogoinstance":"/instances/ok/windows2.gif","typInstance":"WINDOWS2","children":[{"id":43,"desInstance":"nw_log desc","typInstance":"WINDOWS2","idnInstance":"nw_log","label":"nw_log desc","type":"instance","availability":0},{"id":44,"desInstance":"nw   param   desc","typInstance":"WINDOWS2","idnInstance":"nw_param","label":"nw   param   desc","type":"instance","availability":0}],"label":"WINDOWS 2000/XP/2003/Vista/7","desTypinstance":"WINDOWS 2000/XP/2003/Vista/7","type":"type"}],"label":"Default Instance Group","idnGroup":"00000000","type":"group"}],"label":"as","type":"service","idnService":"as","availability":0},{"id":45,"desService":"this v1","children":[{"id":46,"desGroup":"测试组","children":[{"id":47,"pthLogoinstance":"/instances/ok/log00001.gif","typInstance":"LOG00001","children":[{"id":48,"desInstance":"w","typInstance":"LOG00001","idnInstance":"w","label":"w","type":"instance","availability":0}],"label":"Log File","desTypinstance":"Log File","type":"type"},{"id":49,"pthLogoinstance":"/instances/ok/tomcat01.gif","typInstance":"TOMCAT01","children":[{"id":50,"desInstance":"测试，请勿修改","typInstance":"TOMCAT01","idnInstance":"tm1","label":"测试，请勿修改","type":"instance","availability":0}],"label":"Tomcat Web servers","desTypinstance":"Tomcat Web servers","type":"type"},{"id":51,"pthLogoinstance":"/instances/ok/UEPWEB01.gif","typInstance":"UEPWEB01","children":[{"id":52,"desInstance":"本地机器监控，请勿修改","typInstance":"UEPWEB01","idnInstance":"localPC","label":"本地机器监控，请勿修改","type":"instance","availability":0},{"id":53,"desInstance":"监控APP","typInstance":"UEPWEB01","idnInstance":"uep_mon","label":"监控APP","type":"instance","availability":0},{"id":54,"desInstance":"zzz","typInstance":"UEPWEB01","idnInstance":"zzz","label":"zzz","type":"instance","availability":0}],"label":"UEPWEB实例类型","desTypinstance":"UEPWEB实例类型","type":"type"},{"id":55,"pthLogoinstance":"/instances/ok/weblogic.gif","typInstance":"WEBLOGIC","children":[{"id":56,"desInstance":"weblogic_local","typInstance":"WEBLOGIC","idnInstance":"weblgc01","label":"weblogic_local","type":"instance","availability":0}],"label":"Weblogic Web servers","desTypinstance":"Weblogic Web servers","type":"type"},{"id":57,"pthLogoinstance":"/instances/ok/ydlw.gif","typInstance":"YDLW0001","children":[{"id":58,"desInstance":"测试银电联网，请勿修改","typInstance":"YDLW0001","idnInstance":"ydlw_t1","label":"测试银电联网，请勿修改","type":"instance","availability":0}],"label":"银电联网","desTypinstance":"银电联网","type":"type"}],"label":"测试组","idnGroup":"11","type":"group"},{"id":59,"desGroup":"Default Instance Group","children":[{"id":60,"pthLogoinstance":"/instances/ok/log00001.gif","typInstance":"LOG00001","children":[{"id":61,"desInstance":"w","typInstance":"LOG00001","idnInstance":"w","label":"w","type":"instance","availability":0}],"label":"Log File","desTypinstance":"Log File","type":"type"},{"id":62,"pthLogoinstance":"/instances/ok/tomcat01.gif","typInstance":"TOMCAT01","children":[{"id":63,"desInstance":"测试，请勿修改","typInstance":"TOMCAT01","idnInstance":"tm1","label":"测试，请勿修改","type":"instance","availability":0}],"label":"Tomcat Web servers","desTypinstance":"Tomcat Web servers","type":"type"},{"id":64,"pthLogoinstance":"/instances/ok/UEPWEB01.gif","typInstance":"UEPWEB01","children":[{"id":65,"desInstance":"本地机器监控，请勿修改","typInstance":"UEPWEB01","idnInstance":"localPC","label":"本地机器监控，请勿修改","type":"instance","availability":0},{"id":66,"desInstance":"监控APP","typInstance":"UEPWEB01","idnInstance":"uep_mon","label":"监控APP","type":"instance","availability":0},{"id":67,"desInstance":"zzz","typInstance":"UEPWEB01","idnInstance":"zzz","label":"zzz","type":"instance","availability":0}],"label":"UEPWEB实例类型","desTypinstance":"UEPWEB实例类型","type":"type"},{"id":68,"pthLogoinstance":"/instances/ok/weblogic.gif","typInstance":"WEBLOGIC","children":[{"id":69,"desInstance":"weblogic_local","typInstance":"WEBLOGIC","idnInstance":"weblgc01","label":"weblogic_local","type":"instance","availability":0}],"label":"Weblogic Web servers","desTypinstance":"Weblogic Web servers","type":"type"},{"id":70,"pthLogoinstance":"/instances/ok/windows2.gif","typInstance":"WINDOWS2","children":[{"id":71,"desInstance":"nw_log desc","typInstance":"WINDOWS2","idnInstance":"nw_log","label":"nw_log desc","type":"instance","availability":0},{"id":72,"desInstance":"nw   param   desc","typInstance":"WINDOWS2","idnInstance":"nw_param","label":"nw   param   desc","type":"instance","availability":0}],"label":"WINDOWS 2000/XP/2003/Vista/7","desTypinstance":"WINDOWS 2000/XP/2003/Vista/7","type":"type"},{"id":73,"pthLogoinstance":"/instances/ok/ydlw.gif","typInstance":"YDLW0001","children":[{"id":74,"desInstance":"测试银电联网，请勿修改","typInstance":"YDLW0001","idnInstance":"ydlw_t1","label":"测试银电联网，请勿修改","type":"instance","availability":0}],"label":"银电联网","desTypinstance":"银电联网","type":"type"}],"label":"Default Instance Group","idnGroup":"00000000","type":"group"}],"label":"this v1","type":"service","idnService":"v1","availability":0},{"id":75,"desService":"this is v22","children":[{"id":76,"desGroup":"测试组","children":[{"id":77,"pthLogoinstance":"/instances/ok/tomcat01.gif","typInstance":"TOMCAT01","children":[{"id":78,"desInstance":"测试，请勿修改","typInstance":"TOMCAT01","idnInstance":"tm1","label":"测试，请勿修改","type":"instance","availability":0}],"label":"Tomcat Web servers","desTypinstance":"Tomcat Web servers","type":"type"},{"id":79,"pthLogoinstance":"/instances/ok/UEPWEB01.gif","typInstance":"UEPWEB01","children":[{"id":80,"desInstance":"本地机器监控，请勿修改","typInstance":"UEPWEB01","idnInstance":"localPC","label":"本地机器监控，请勿修改","type":"instance","availability":0},{"id":81,"desInstance":"监控APP","typInstance":"UEPWEB01","idnInstance":"uep_mon","label":"监控APP","type":"instance","availability":0},{"id":82,"desInstance":"zzz","typInstance":"UEPWEB01","idnInstance":"zzz","label":"zzz","type":"instance","availability":0}],"label":"UEPWEB实例类型","desTypinstance":"UEPWEB实例类型","type":"type"},{"id":83,"pthLogoinstance":"/instances/ok/weblogic.gif","typInstance":"WEBLOGIC","children":[{"id":84,"desInstance":"weblogic_local","typInstance":"WEBLOGIC","idnInstance":"weblgc01","label":"weblogic_local","type":"instance","availability":0}],"label":"Weblogic Web servers","desTypinstance":"Weblogic Web servers","type":"type"},{"id":85,"pthLogoinstance":"/instances/ok/ydlw.gif","typInstance":"YDLW0001","children":[{"id":86,"desInstance":"测试银电联网，请勿修改","typInstance":"YDLW0001","idnInstance":"ydlw_t1","label":"测试银电联网，请勿修改","type":"instance","availability":0}],"label":"银电联网","desTypinstance":"银电联网","type":"type"}],"label":"测试组","idnGroup":"11","type":"group"},{"id":87,"desGroup":"Default Instance Group","children":[{"id":88,"pthLogoinstance":"/instances/ok/tomcat01.gif","typInstance":"TOMCAT01","children":[{"id":89,"desInstance":"测试，请勿修改","typInstance":"TOMCAT01","idnInstance":"tm1","label":"测试，请勿修改","type":"instance","availability":0}],"label":"Tomcat Web servers","desTypinstance":"Tomcat Web servers","type":"type"},{"id":90,"pthLogoinstance":"/instances/ok/UEPWEB01.gif","typInstance":"UEPWEB01","children":[{"id":91,"desInstance":"本地机器监控，请勿修改","typInstance":"UEPWEB01","idnInstance":"localPC","label":"本地机器监控，请勿修改","type":"instance","availability":0},{"id":92,"desInstance":"监控APP","typInstance":"UEPWEB01","idnInstance":"uep_mon","label":"监控APP","type":"instance","availability":0},{"id":93,"desInstance":"zzz","typInstance":"UEPWEB01","idnInstance":"zzz","label":"zzz","type":"instance","availability":0}],"label":"UEPWEB实例类型","desTypinstance":"UEPWEB实例类型","type":"type"},{"id":94,"pthLogoinstance":"/instances/ok/weblogic.gif","typInstance":"WEBLOGIC","children":[{"id":95,"desInstance":"weblogic_local","typInstance":"WEBLOGIC","idnInstance":"weblgc01","label":"weblogic_local","type":"instance","availability":0}],"label":"Weblogic Web servers","desTypinstance":"Weblogic Web servers","type":"type"},{"id":96,"pthLogoinstance":"/instances/ok/ydlw.gif","typInstance":"YDLW0001","children":[{"id":97,"desInstance":"测试银电联网，请勿修改","typInstance":"YDLW0001","idnInstance":"ydlw_t1","label":"测试银电联网，请勿修改","type":"instance","availability":0}],"label":"银电联网","desTypinstance":"银电联网","type":"type"}],"label":"Default Instance Group","idnGroup":"00000000","type":"group"}],"label":"this is v22","type":"service","idnService":"v2","availability":0}],"label":"监控控制台","type":"root"};
+
+
+function d3TreeChart(idVal){
+  var _id_canvas;
+  if (idVal != null) {
+    _id_canvas = idVal;
+  }
+  this.idCanvas = function(d) {
+    if (d != null) {
+      _id_canvas = d;
+    } else {
+      return _id_canvas;
+    }
+  };
+  var _data;
+  this.data = function(d) {
+    if (d != null) {
+      _data = d;
+    } else {
+      return _data;
+    }
+  };
+  var _width = 2000;
+  var _height = 2000;
+  var _rect_width = 120;
+  var _rect_height = 20;
+  var _rect_margin_height = 2;
+  var _rect_margin_width = 50;
+  var _rotate = 0;
+
+  var _color_rect_stroke_leave = "#99ffff";//应该依次加深
+  var _color_rect_stroke_on = "#33cccc";
+  var _color_rect_stroke_pressed = "#009966";
+
+  var _color_node_instance_yes = "#33FF66";//实例可用
+  var _color_node_instance_no = "#ff0000";//实例不可用
+  var _color_node_type ="#00ff66";//实例类型;
+  var _color_node_group ="#cccc66";//实例分组;
+  var _color_node_service_yes = "#66ffcc";//服务,可用
+  var _color_node_service_no = "#ff0000";//服务,不可用;
+  var _color_node_default = "#ffcc99";
+
+  var _base_path = "";//$$pageContextPath+"images/mon";
+
+  var setSvgSize = function(w, h) {//给定可能正确的宽度和高度,作判断处理,然后设置给画布
+    if (w && h) {
+      var numReg = new RegExp("\\d+");
+      try {
+        var a = parseInt(w.match(numReg));
+        var b = parseInt(h.match(numReg));
+        if (a > 0 && b > 0) {
+          _width = a;
+          _height = b;
+        }
+      } catch(e) {
+        console.log(e);
+      }
+    }
+  };
+  this.draw = function(){
+    var canvas = d3.select("#" + _id_canvas);
+    canvas.selectAll("svg").remove();
+    setSvgSize(canvas.style("width"), canvas.style("height"));
+    //nodeSize([参数1,参数2]);参数1表示兄弟节点的间隔,参数2代表父子节点的间隔;
+    var tree = d3.layout.tree().size(null).nodeSize([_rect_height+_rect_margin_height,_rect_width+_rect_margin_width]);
+    //计算弧
+    var diagonal = d3.svg.diagonal().projection(function(d) {return [d.y, d.x];});
+    var svg = d3.select("#" + _id_canvas).append("svg").attr({"width":_width,"height":_height}).style({'overflow':'hidden'});
+    //缩放
+    var zoom = d3.behavior.zoom().scaleExtent([0.1,8]).on("zoom",function(){
+          g_canvas.attr("transform","translate("+d3.event.translate+")scale("+d3.event.scale+")");});
+    var g_background = svg.append("g").attr("name","g_background")
+          .attr("transform","translate(0,"+eval(_height/2)+")rotate("+_rotate+")").call(zoom);
+    //背景框
+    var g_canvas = g_background.append("g").attr("name","g_canvas");
+    var rect_background = g_canvas.append("rect").attr("name","rect_background")
+          .attr("width",99999).attr("height",99999).attr("transform","translate(-44444,-44444)")
+          .style({'fill':'none','pointer-events':'all'});
+    var g_links = g_canvas.append("g").attr("name", "g_links");
+    var g_nodes = g_canvas.append("g").attr("name", "g_nodes");
+    //鼠标mouseover事件
+    g_canvas.on("mouseover",function(){d3.select(this).style({'cursor':'move'})});
+    //计算节点信息
+    var nodes = tree.nodes(_data);
+
+    //计算连接信息
+    var links = tree.links(nodes);
+    //画连接线
+    var link = g_links.selectAll("path").data(links).enter().append("path").attr({'d': diagonal})
+        .attr("from",function(d,i){return d.source.id;})
+        .attr("to",function(d,i){return d.target.id;})
+        .attr("depth",function(d,i){return d.source.depth;})
+        .style({'stroke' : '#333333','fill' : 'none','stroke-width':'0.5','display':'block'});//线条样式
+    //节点的容器
+    var node = g_nodes.selectAll("g").data(nodes).enter().append("g")
+    	.attr("node_id",function(d,i){return d.id;})
+        .attr("parent",function(d,i){if(d.type=="root"){return null;}else return d.parent.id;})
+        .attr("depth",function(d,i){return d.depth;})
+        .attr("transform", function(d, i) {return "translate(" + d.y + "," + d.x + ")";})
+        .style({'display':'block'});
+
+   	//节点
+    var g_node = node.append("g").attr("name","g_node_details");
+    //绑定事件
+    g_node.on("mouseover",function(d,i){//鼠标放上去
+      if(d.type.toLowerCase()=="root")return;
+      d3.select(this).style({'cursor':'pointer'});
+      d3.select(this).select("rect[name='background']").style({'stroke':_color_rect_stroke_on});
+    });
+    g_node.on("mouseout",function(d,i){//鼠标挪开
+      if(d.type.toLowerCase()=="root")return;
+      var this_rect =d3.select(this).select("rect[name='background']");
+      this_rect.style({'stroke':_color_rect_stroke_leave});
+    });
+	var changeDisplay = function(nodeId,mode){//mode="block"或"none",;
+		var sonPath = g_links.selectAll("path[from='"+nodeId+"']");//本节点引出的线
+		var sonNode = g_nodes.selectAll("g[parent='"+nodeId+"']");//本节点的子节点
+		if(sonNode[0].length>0){//有子节点
+			//先处理子节点和子线条
+			sonPath.transition().duration(200).style({'display':mode});
+			sonNode.transition().duration(200).style({'display':mode});
+			sonNode.each(function(d,i){//递归
+				changeDisplay(d.id,mode);
+			});
+		}
+	};
+    g_node.on("mousedown",function(d,i){//鼠标按下
+      if(d.type.toLowerCase()=="root")return;
+      d3.select(this).select("rect[name='background']").style({'stroke':_color_rect_stroke_pressed});
+      var clientX = d3.event.clientX;
+      var clientY = d3.event.clientY;
+      d3.select(this).on("mouseup",null).on("mouseup",function(d,i){//鼠标弹起
+        d3.select(this).select("rect[name='background']").style({'stroke':_color_rect_stroke_on});
+        if(clientX==d3.event.clientX && clientY==d3.event.clientY){//按下并弹起,而且没有移动
+          if(d3.event.button==0){//左键弹起
+              var nodeId = d.id;//被点击的节点的id
+              var sonPath = g_links.selectAll("path[from='"+nodeId+"']");//本节点引出的线
+              if(sonPath[0].length>0){//有子节点
+					var original_style_display = sonPath.style("display");
+					if(original_style_display!="block"){
+	              		changeDisplay(nodeId,"block");
+					}else{
+						changeDisplay(nodeId,"none");
+					}
+				}
+            }else if(d3.event.button==2){//右键
+	            console.log(d);
+     		}
+        }
+      });
+    });
+    //丰富节点内容
+    g_node.append("title").text(function(d, i) {
+      var str = "label : "+d.label;
+      for(var item in d){
+        if(!(item=="children"||item=="label"||item=="parent"||item=="depth"||item=="x"||item=="y")){
+          str=str+"\r\n"+item+" : "+d[item];
+        }
+      }
+      return str;
+    });
+    g_node.each(function(d,i){
+      var type = d.type.toLowerCase();
+      if(type=="root"){//此处,处理root节点
+          var root_width = 100;
+          var root_height = 100;
+          //svg
+          var svg_details = d3.select(this).append("g").attr({"transform":"translate("+0+","+eval(-root_height/2)+")"})
+              .append("svg").attr({'name':'svg_details','width':root_width,'height':root_height})
+              .style({'overflow':'hidden'});
+          //rect
+          svg_details.append("rect").attr({"transform":"translate(0.5,0.5)","width": root_width-1,"height": root_height-1,"rx":2,"ry":2})
+              .style({'fill' : '#a2c3e3','stroke' : '#739CC3','stroke-width':'2'});
+          svg_details.append("rect").attr({"transform":"translate(5.5,5.5)","width":root_width-11,"height":root_height-21})
+              .style({"fill":"#99ffff","stroke":"none"});
+          //text
+          svg_details.append("text").attr({'x':root_width/2,'y':root_height/3,'dy':'3.5','dx':'1'})
+              .style({'text-anchor': 'middle','font':'15px sans-serif','fill':'#800080'}).text(function(d,i){return d.label;});
+          svg_details.append("text").attr({'x':root_width/2,'y':root_height/3*2,'dy':'3.5','dx':'1'})
+              .style({'text-anchor': 'middle','font':'10px sans-serif','fill':'#ff0000'}).text("【您当前位置】");
+      }else if(type=="type"){//实例类型
+      	  var node_width = _rect_width;
+          var node_height = _rect_height;
+          var node_color = _color_node_type;
+          //svg
+          var g_svg_father = d3.select(this).append("g").attr({"transform":"translate("+0+","+eval(-node_height/2)+")"})
+          var g_image_canvas =  g_svg_father.append("g").attr({"name":"g_image_father"});
+          g_image_canvas.append("rect").attr({"width":node_height,"height":node_height-2,"transform":"translate(0,1)"})
+          		.style({"stroke":_color_rect_stroke_leave,"fill":"white"});
+          g_image_canvas.append("text").attr({"width":node_height,"height":node_height,"transform":"translate("+_rect_height/2+","+eval(_rect_height/2+1)+")","dy":1})
+          		.style({'text-anchor': 'middle','font':'2px sans-serif'}).text("图");
+          //image
+          g_image_canvas.append("image").attr({'xlink:href':_base_path+d.pthLogoinstance,"width":node_height,"height":node_height});
+          
+          var svg_details = g_svg_father.append("g").attr({"name":"g_svg_father","transform":"translate("+node_height+",0)"}).append("svg").attr({'name':'svg_details','width':node_width+1-node_height,'height':node_height+1})
+              .style({'overflow':'hidden'});
+          //rect
+          svg_details.append("rect").attr({"name":"background","transform":"translate(0.5,0.5)","width": node_width-node_height-0.5,"height": node_height,"rx":2,"ry":2,'original_fill':node_color}).style({'fill' :node_color,'stroke' :_color_rect_stroke_leave,'stroke-width':'2'});
+          //text
+          svg_details.append("text").attr({'y':node_height/2,'dy':'3.5','dx':(node_width-node_height)/2})
+              .style({'text-anchor': 'middle','font':'10px sans-serif'}).text(function(d,i){return d.label;});
+      }else{//其它的node
+          var node_width = _rect_width;
+          var node_height = _rect_height;
+          var node_color = (function(){
+          	if(type=="instance"){
+          		return d.availability==1?_color_node_instance_yes:_color_node_instance_no;
+          	}else if(type=="service"){
+          		return d.availability==1?_color_node_service_yes:_color_node_service_no;
+          	}else if(type=="group"){
+          		return _color_node_group;
+          	}else{
+          		return _color_node_default;
+          	}
+          })();
+          //svg
+          var svg_details = d3.select(this).append("g").attr({"transform":"translate("+0+","+eval(-node_height/2)+")"})
+              .append("svg").attr({'name':'svg_details','width':node_width+1,'height':node_height+1})
+              .style({'overflow':'hidden'});
+          //rect
+          svg_details.append("rect").attr({"name":"background","transform":"translate(0.5,0.5)","width": node_width,"height": node_height,"rx":2,"ry":2,'original_fill':node_color}).style({'fill' :node_color,'stroke' :_color_rect_stroke_leave,'stroke-width':'2'});
+          //text
+          svg_details.append("text").attr({'y':node_height/2,'dy':'3.5','dx':node_width/2})
+              .style({'text-anchor': 'middle','font':'10px sans-serif'}).text(function(d,i){return d.label;});
+      	}
+    });
+	//图例:
+    var g_legend = g_canvas.append("g").attr({'name':'g_legend'});
+    //图例:服务
+    var node_depth1 = g_nodes.select("g[depth='1']");
+    var g_legend_depth1 = g_legend.append("g").attr({'transform':node_depth1.attr("transform")}).append("g")
+    		.attr({'transform':"translate(0,"+-(_rect_height/2+50)+")"}).data(node_depth1.data());
+   	g_legend_depth1.each(function(d,i){
+        d3.select(this).append("rect").attr({"width":_rect_width,"height":45})
+              .style({'stroke':'#E7E7E7','fill':'none','pointer-events':'all'});
+        d3.select(this).append("g").attr({"name":"node_type","transform":"translate(0,0)"}).append("text").attr({'y':10,'dy':3.5})
+              .style({'font':'10px sans-serif'}).text("服务:");
+        var g_legend_depth1_rect_text = d3.select(this).append("g").attr({"name":"图例-文字","transform":"translate(0,"+20+")"});
+        g_legend_depth1_rect_text.append("rect").attr({'width':20,'height':20,"rx":2,"ry":2}).style({'fill':_color_node_service_yes});
+        g_legend_depth1_rect_text.append("text").attr({'transform':"translate("+20+",0)",'y':10,'dy':3.5})
+              .style({'font':'10px sans-serif'}).text("可用");
+        g_legend_depth1_rect_text.append("rect").attr({'transform':"translate("+_rect_width/2+",0)",'width':20,'height':20,"rx":2,"ry":2})
+              .style({'fill':_color_node_service_no});
+        g_legend_depth1_rect_text.append("text").attr({'transform':"translate("+(_rect_width/2+20)+",0)",'y':10,'dy':3.5})
+              .style({'font':'10px sans-serif'}).text("不可用");
+   	});
+    //图例:实例分组
+    var node_depth2 = g_nodes.select("g[depth='2']");
+    var g_legend_depth2 = g_legend.append("g").attr({'transform':node_depth2.attr("transform")}).append("g")
+    		.attr({'transform':"translate(0,"+-(_rect_height/2+35)+")"}).data(node_depth2.data());
+	g_legend_depth2.each(function(d,i){
+		d3.select(this).append("rect").attr({"width":_rect_width,"height":30}).style({'stroke':'#E7E7E7','fill':'none','pointer-events':'all'});
+		d3.select(this).append("g").attr({"name":"node_type","transform":"translate(0,0)"}).append("text").attr({'x':_rect_width/2,'y':15,'dy':3.5})
+				.style({'font':'10px sans-serif','text-anchor':'end'}).text("实例分组:");
+		d3.select(this).append("rect").attr({"transform":"translate("+_rect_width/2+",5)",'width':20,'height':20,"rx":2,"ry":2}).style({'fill':_color_node_group});
+	});
+    //图例:实例类型
+    var node_depth3 = g_nodes.select("g[depth='3']");
+    var g_legend_depth3 = g_legend.append("g").attr({'transform':node_depth3.attr("transform")}).append("g")
+    		.attr({'transform':"translate(0,"+-(_rect_height/2+35)+")"}).data(node_depth3.data());
+    g_legend_depth3.each(function(d,i){
+		d3.select(this).append("rect").attr({"width":_rect_width,"height":30}).style({'stroke':'#E7E7E7','fill':'none','pointer-events':'all'});
+		d3.select(this).append("g").attr({"name":"node_type","transform":"translate(0,0)"}).append("text").attr({'x':_rect_width/2,'y':15,'dy':3.5})
+				.style({'font':'10px sans-serif','text-anchor':'end'}).text("实例类型:");
+		d3.select(this).append("rect").attr({"transform":"translate("+_rect_width/2+",5)",'width':20,'height':20,"rx":2,"ry":2}).style({'fill':_color_node_type});
+    });
+    //图例:实例
+    var node_depth4 = g_nodes.select("g[depth='4']");
+    var g_legend_depth4 = g_legend.append("g").attr({'transform':node_depth4.attr("transform")}).append("g")
+    		.attr({'transform':"translate(0,"+-(_rect_height/2+50)+")"}).data(node_depth4.data());
+    g_legend_depth4.each(function(d,i){
+        d3.select(this).append("rect").attr({"width":_rect_width,"height":45})
+              .style({'stroke':'#E7E7E7','fill':'none','pointer-events':'all'});
+        d3.select(this).append("g").attr({"name":"node_type","transform":"translate(0,0)"}).append("text").attr({'y':10,'dy':3.5})
+              .style({'font':'10px sans-serif'}).text("实例:");
+        var g_legend_depth4_rect_text = d3.select(this).append("g").attr({"name":"图例-文字","transform":"translate(0,"+20+")"});
+        g_legend_depth4_rect_text.append("rect").attr({'width':20,'height':20,"rx":2,"ry":2}).style({'fill':_color_node_instance_yes});
+        g_legend_depth4_rect_text.append("text").attr({'transform':"translate("+20+",0)",'y':10,'dy':3.5})
+              .style({'font':'10px sans-serif'}).text("可用");
+        g_legend_depth4_rect_text.append("rect").attr({'transform':"translate("+_rect_width/2+",0)",'width':20,'height':20,"rx":2,"ry":2})
+              .style({'fill':_color_node_instance_no});
+        g_legend_depth4_rect_text.append("text").attr({'transform':"translate("+(_rect_width/2+20)+",0)",'y':10,'dy':3.5})
+              .style({'font':'10px sans-serif'}).text("不可用");
+    });
+  };
+}
+	function load(){
+		var chart = new d3TreeChart();
+		chart.idCanvas("div_canvas1");
+		chart.data(data);
+		chart.draw();
+	}
+</script>
+</head>
+<body onload="load();" >
+  <div style="float:left;">
+    <div id="div_canvas1" class="divCanvas"></div>
+    <div id="div_canvas2" class="divCanvas"></div>
+    <div id="div_canvas3" class="divCanvas"></div>
+  </div>
+</body>
+</html>
