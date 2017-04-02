@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,7 +31,7 @@
 
 <script src="/js/echarts-all-3.js"></script>
 -->
-<title>wxlzmt</title>
+<title>zdd</title>
 <script type="text/javascript">
 	//获取滚动条当前的位置
 	function getScrollTop() {
@@ -63,6 +62,7 @@
 	//dom onready事件监听
 	function loadReady(){
 		resize();
+		setTimeout(hideMask,1);
 	}
 	//窗体大小改变时，调整margin-top;
 	function resize(){
@@ -73,6 +73,10 @@
 		if(marginTop>0){
 			domDiv.style.marginTop=marginTop+"px";
 		}
+	}
+	
+	function hideMask(){
+		document.getElementById("idDivMask").style.display="none";
 	}
 </script>
 <style type="text/css">
@@ -150,110 +154,79 @@
 </style>
 </head>
 <body onload="loadReady();" onresize="resize();" >
+
+<!-- 遮罩(防止页面闪烁) ,页面载入并计算完成之后,会隐藏掉 -->
+<div id="idDivMask" style="display:block;width:100%;height:100%;position:absolute;top:0px;left:0px; 
+ z-index:999999; background-color: white;" >
+ </div>
+
 <div style="float:left;width:100%;">
 <div style="display:table;width:100%;">
 <div style="display:table-cell;width:100%;" align="center">
 <!-- 正文，页面宽度，margin都在此处指定 -->
-<div id="idDivContent" style="max-width:800px;margin:5px;">
+<div id="idDivContent" style="width:800px;margin-top:30px;">
 <div class="div_piece">
-	<div class='left_top_title' align='left'>主页</div>
+	<div class='left_top_title' align='left'>根目录</div>
 	<div class="div_tb container-fluid">
 		<div class='row-fluid'>
 			<div class='span4'>
-				<div><a href="/iuha/dir" target="_blank">文件索引</a></div>
+				<div><a href="/pages" >pages</a></div>
 			</div>
 			<div class='span4'>
-				<div><a href="/iuha/documents" target="_blank">文档</a></div>
-			</div class='span4'>
-			<div>
-				<div><a href="/iuha/log.txt" target="_blank">日志</a></div>
+				<div><a href="/js" >js</a></div>
+			</div>
+			<div class='span4'>
+				<div><a href="/css" >css</a></div>
 			</div>
 		</div>
 	</div>
 </div>
+
 <div class="div_piece">
-	<div class='left_top_title' align='left'>API</div>
+	<div class='left_top_title' align='left'>站内工具</div>
 	<div class="div_tb container-fluid">
 		<div class='row-fluid'>
 			<div class='span4'>
-				<div><a href="/iuha/api/docs_www/api/index.html" target="_blank">Java™SE 7 API</a></div>
+				<div><a href="/pages/test/test_js.html" >HTML测试</a></div>
 			</div>
 			<div class='span4'>
-				<div><a href="/iuha/api/docs_www/index.html" target="_blank">Java SE 7 Documentation</a></div>
+				<div><a href="/pages/regexptest/regexptest.html" >正则表达式测试</a></div>
 			</div>
 			<div class='span4'>
-				<div><a href="/iuha/api/aip-jdk1.6-%E4%B8%AD%E6%96%87%E7%89%88/index.html" target="_blank">jdk1.6中文版API</a></div>
-			</div>
-		</div class='row-fluid'>
-		<div>
-			<div class='span4'>
-				<div><a href="/iuha/api/glassfish4/docs/api/index.html" target="_blank">Java(TM) EE 7 Specification APIs</a></div>
-			</div>
-			<div class='span4'>
-				<div><a href="/iuha/snapshot/struts.apache.org/maven/struts2-core/apidocs/index.html" target="_blank">struts2-core-API</a></div>
-			</div>
-			<div class='span4'>
-				<div><a href="/iuha/snapshot/struts.apache.org/docs/guides.html" target="_blank">struts2-Core-Developers-Guide</a></div>
-			</div>
-		</div>
-		<div>
-			<div class='span4'>
-				<div><a href="/iuha/snapshot/www.runoob.com/manual/jquery/index.html" target="_blank">jQuery速查表</a></div>
-			</div>
-			<div class='span4'>
-				<div><a href="/iuha/snapshot/www.php100.com/manual/xmldom/index.html" target="_blank">XMLDOM对象方法手册</a></div>
-			</div>
-			<div class='span4'>
-				<div><a href="/iuha/snapshot/css.doyoe.com/index.htm" target="_blank">CSS参考手册</a></div>
-			</div>
-		</div>
-		<div>
-			<div class='span4'>
-				<div><a href="/iuha/snapshot/shouce.jb51.net/jscript/index.html" target="_blank">js中文手册</a></div>
-			</div>
-			<div class='span4'>
-				<div><a href="/iuha/project/zTree_v3-master/api/API_cn.html" target="_blank">zTree_v3 API</a></div>
-			</div>
-			<div class='span4'>
-				<div><a href="/iuha/project/zTree_v3-master/demo/cn/index.html" target="_blank">zTree_v3 demo</a></div>
-			</div>
-		</div>
-	</div>
-</div>
-<div class="div_piece">
-	<div class='left_top_title' align='left'>工具</div>
-	<div class="div_tb container-fluid">
-		<div class='row-fluid'>
-			<div class='span4'>
-				<div><a href="/iuha/pages/test/test_js.html" target="_blank">HTML测试</a></div>
-			</div>
-			<div class='span4'>
-				<div><a href="/iuha/pages/regexptest/regexptest.html" target="_blank">正则表达式测试</a></div>
-			</div>
-			<div class='span4'>
-				<div><a href="/iuha/pages/rgb-16-radix/RGB_to_16radix.html" target="_blank">RGB转16进制</a></div>
+				<div><a href="/pages/rgb-16-radix/RGB_to_16radix.html" >RGB转16进制</a></div>
 			</div>
 		</div>
 		<div class='row-fluid'>
 			<div class='span4'>
-				<div><a href="/iuha/pages/test/test_image_decode.html" target="_blank">base64→图片</a></div>
+				<div><a href="/pages/test/test_image_decode.html" >base64→图片</a></div>
 			</div>
 			<div class='span4'>
-				<div><a href="/iuha/pages/img_to_base64/BASE64.html" target="_blank">图片→base64</a></div>
+				<div><a href="/pages/img_to_base64/BASE64.html" >图片→base64</a></div>
 			</div>
 			<div class='span4'>
-				<div><a href="/iuha/pages/radix_switch/radix_switch.html" target="_blank">进制转换器</a></div>
+				<div><a href="/pages/radix_switch/radix_switch.html" >进制转换器</a></div>
 			</div>
 		</div>
 		<div class='row-fluid'>
 			<div class='span4'>
-				<div><a href="/iuha/pages/json_format/jsonformat.html" target="_blank">JSON格式化</a></div>
+				<div><a href="/pages/json_format/jsonformat.html" >JSON格式化</a></div>
 			</div>
 			<div class='span4'>
-				<div><a href="/iuha/pages/PPICalculator/PPICalculator.html" target="_blank">PPI计算器</a></div>
+				<div><a href="/pages/PPICalculator/PPICalculator.html" >PPI计算器</a></div>
 			</div>
 			<div class='span4'>
-				<div><a href="/iuha/pages/unicode_trans/unicode_trans.html" target="_blank">unicode转换</a></div>
+				<div><a href="/pages/unicode_trans/unicode_trans.html" >unicode转换</a></div>
+			</div>
+		</div>
+		<div class='row-fluid'>
+			<div class='span4'>
+				<div><a href="/pages/code_highlight/highlight.html" >在线代码着色</a></div>
+			</div>
+			<div class='span4'>
+				<div><a href="/pages/test/base64.html" >base64解码/编码</a></div>
+			</div>
+			<div class='span4'>
+				<div><a href="/pages/test/url_en_decode.html" >URL编码/解码</a></div>
 			</div>
 		</div>
 	</div>
@@ -263,21 +236,21 @@
 	<div class="div_tb container-fluid">
 		<div class='row-fluid'>
 			<div class='span4'>
-				<div><a href="/iuha/pages/echart3/echart3_demo.html" target="_blank">Echart3_demo</a></div>
+				<div><a href="/pages/echart3/echart3_demo.html" >Echart3_demo</a></div>
 			</div>
 			<div class='span4'>
-				<div><a href="/iuha/api/jquery-ui-1.11.4.custom/index.html" target="_blank">jquery-ui-1.11.4.custom</a></div>
+				<div><a ></a></div>
 			</div>
 			<div class='span4'>
-				<div><a href="/iuha/pages/font_awesome/Font_Awesome.html" target="_blank">FontAwesome图标字体</a></div>
+				<div><a href="/pages/font_awesome/Font_Awesome.html" >FontAwesome图标字体</a></div>
 			</div>
 		</div>
 		<div class='row-fluid'>
 			<div class='span4'>
-				<div><a href="/iuha/pages/menu-float/test_menu_float.html" target="_blank">浮动菜单</a></div>
+				<div><a href="/pages/menu-float/test_menu_float.html" >浮动菜单</a></div>
 			</div>
 			<div class='span4'>
-				<div><a href="/iuha/pages/throbber/placeholder.html" target="_blank">进度圈</a></div>
+				<div><a href="/pages/throbber/placeholder.html" >进度圈</a></div>
 			</div>
 			<div class='span4'>
 				<div></div>
@@ -285,47 +258,84 @@
 		</div>
 		<div class='row-fluid'>
 			<div class='span4'>
-				<div><a href="/iuha/pages/test/custom_scroll_bar.html" target="_blank">自定义滚动条</a></div>
+				<div><a href="/pages/test/custom_scroll_bar.html" >自定义滚动条</a></div>
 			</div>
 			<div class='span4'>
-				<div><a href="/iuha/pages/scroll_load/scrollAlertTest.html" target="_blank">滚动位置监听</a></div>
+				<div><a href="/pages/scroll_load/scrollAlertTest.html" >滚动位置监听</a></div>
 			</div>
 			<div class='span4'>
-				<div><a href="/iuha/pages/scroll_load/ScrollLoad.html" target="_blank">页面滚动图片加载</a></div>
+				<div><a href="/pages/scroll_load/ScrollLoad.html" >页面滚动图片加载</a></div>
 			</div>
 		</div>
 	</div>
 </div>
-<!--
-<div class="div_piece"   >
-	<div class='left_top_title' align='left'>其它</div>
+
+<div class="div_piece">
+	<div class='left_top_title' align='left'>站外API链</div>
 	<div class="div_tb container-fluid">
 		<div class='row-fluid'>
 			<div class='span4'>
-				<div></div>
+				<div><a href="/api/docs_www/api/index.html" target="_blank">Java™SE 7 API</a></div>
 			</div>
 			<div class='span4'>
-				<div></div>
+				<div><a href="/api/docs_www/index.html" target="_blank">Java SE 7 Documentation</a></div>
 			</div>
 			<div class='span4'>
-				<div></div>
+				<div><a href="/api/aip-jdk1.6-%E4%B8%AD%E6%96%87%E7%89%88/index.html" target="_blank">jdk1.6中文版API</a></div>
+			</div>
+		</div>
+		<div class='row-fluid'>
+			<div class='span4'>
+				<div><a href="/api/glassfish4/docs/api/index.html" target="_blank">Java(TM) EE 7 Specification APIs</a></div>
+			</div>
+			<div class='span4'>
+				<div><a href="/snapshot/struts.apache.org/maven/struts2-core/apidocs/index.html" target="_blank">struts2-core-API</a></div>
+			</div>
+			<div class='span4'>
+				<div><a href="/snapshot/struts.apache.org/docs/guides.html" target="_blank">struts2-Core-Developers-Guide</a></div>
+			</div>
+		</div>
+		<div class='row-fluid'>
+			<div class='span4'>
+				<div><a href="/snapshot/www.runoob.com/manual/jquery/index.html" target="_blank">jQuery速查表</a></div>
+			</div>
+			<div class='span4'>
+				<div><a href="/snapshot/www.php100.com/manual/xmldom/index.html" target="_blank">XMLDOM对象方法手册</a></div>
+			</div>
+			<div class='span4'>
+				<div><a href="/snapshot/css.doyoe.com/index.htm" target="_blank">CSS参考手册</a></div>
+			</div>
+		</div>
+		<div class='row-fluid'>
+			<div class='span4'>
+				<div><a href="/snapshot/shouce.jb51.net/jscript/index.html" target="_blank">js中文手册</a></div>
+			</div>
+			<div class='span4'>
+				<div><a href="/project/zTree_v3-master/api/API_cn.html" target="_blank">zTree_v3 API</a></div>
+			</div>
+			<div class='span4'>
+				<div><a href="/project/zTree_v3-master/demo/cn/index.html" target="_blank">zTree_v3 demo</a></div>
 			</div>
 		</div>
 	</div>
 </div>
--->
+
+<!-- footer -->
 <div style="display: table;width: 100%;margin-top: 10px; " >
 	<div style="display: table-row;width: 100%; " >
 		<!--server-->
 		<div align="left" style="display: table-cell;width: 60%;color:black;opacity: 0.7; " >
-			<i style="padding-left: 5px; " ><a href="https://wxlzmt.github.io/" target='_blank' >index</a></i>
+			<i style="padding-left: 5px; " ><a href="https://github.com/wxlzmt/" target='_blank' >wxlzmt's GitHub</a></i>
 		</div>
 		<!--author-->
 		<div align="right" style="display: table-cell;width: 40%;padding-right: 5px; color:black; " >
-		<i class="hover_underline" style="cursor: pointer;padding-right: 5px;opacity: 0.7; " mode='1' onclick="{var mode = this.getAttribute('mode');if(mode=='1'){this.setAttribute('mode','2');this.innerHTML='wxlzmtzd@gmail.com';}else{this.setAttribute('mode','1');this.innerHTML='author : wxlzmt';};}" >author : wxlzmt</i>
+		<i class="hover_underline" style="cursor: pointer;padding-right: 5px;opacity: 0.7; " mode='1' 
+		onclick="{var mode = this.getAttribute('mode');if(mode=='1'){this.setAttribute('mode','2');this.innerHTML='wxlzmtzd@gmail.com';}else{this.setAttribute('mode','1');this.innerHTML='author : wxlzmt';};}" >author : wxlzmt</i>
 		</div>
 	</div>
 </div>
+
+
 </div>
 </div>
 </div>
