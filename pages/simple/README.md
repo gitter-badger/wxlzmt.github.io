@@ -2,6 +2,6 @@
 
 ### all file list:
 
-- [simple/auto_circles.html](simple/auto_circles.html)
-- [simple/base64.html](simple/base64.html)
+- [auto_circles.html](auto_circles.html)
+- [base64.html](base64.html)
 - [README.md](README.md)
