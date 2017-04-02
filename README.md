@@ -1,12 +1,10 @@
-# wxlzmt.github.io
-> MainPage: https://wxlzmt.github.io/
+# GitHub Pages
 
-### 我的简历1.0
-- https://wxlzmt.github.io/pages/resume/zhilian_20170304.html
-- https://wxlzmt.github.io/pages/resume/zhilian_20170320.html
+## descriptions
 
-### 站内快速链接
-- [auto add or remove circles](https://wxlzmt.github.io/pages/simple/auto_circles.html)
-- [base64 解码/编码](https://wxlzmt.github.io/pages/simple/base64.html)
+> ### 个人的小仓库,放一些代码随笔以及一些web前端工具和站外URL链接.
+> ### 有些页面是从别的地方copy过来方便自己平时使用,还有一些私人珍藏.
+> ### 非盈利.
 
+> #### 主页:[https://wxlzmt.github.io/](https://wxlzmt.github.io/)
 
